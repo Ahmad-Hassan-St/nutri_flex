@@ -6,7 +6,7 @@ import 'package:slide_to_act/slide_to_act.dart';
 import 'Loginscreen.dart';
 
 class ForgetPassword extends StatefulWidget {
-  const ForgetPassword({super.key});
+  ForgetPassword({Key? key}) : super(key: key);
 
   @override
   State<ForgetPassword> createState() => _ForgetPasswordState();

@@ -36,8 +36,8 @@ class _onBoardScreen3State extends State<onBoardScreen3> {
                 padding: const EdgeInsets.only(top: 40.0, left: 30, right: 30),
                 child: TopRow(
                   text: "Login",
-                  textcolor: Colors.white,
-                  backgroundcolor: const Color(0xFF19b597),
+                  textcolor: Theme.of(context).colorScheme.tertiary,
+                  backgroundcolor: Theme.of(context).colorScheme.primary,
                   onpressed: () {
                     Navigator.pushReplacement(
                         context,
@@ -104,20 +104,23 @@ void showCustomDialog(BuildContext context) {
                   double containerWidth = (width - 50).clamp(0, double.infinity);
 
                   return Container(
+                    color: Theme.of(context).colorScheme.onBackground,
+
                     width: containerWidth,
                     child:  Column(
                       children: [
                         ListTile(
-                          title: Text("Continue with Email"),
+                          title: const Text("Continue with Email"),
                           trailing:SvgPicture.asset("assets/icons/email.svg"),
 
                         ),
                         Divider(
                           indent: 30,
                           endIndent: 30,
+                          color: Theme.of(context).colorScheme.surface,
                         ),
                         ListTile(
-                          title: Text("Continue with Google"),
+                          title: const Text("Continue with Google"),
                           trailing:SvgPicture.asset("assets/icons/google.svg"),
                         ),
                       ],
@@ -146,10 +149,11 @@ void showCustomDialog(BuildContext context) {
                   double containerWidth = (width - 50).clamp(0, double.infinity);
 
                   return Container(
+                    color: Theme.of(context).colorScheme.onBackground,
                     width: containerWidth,
-                    child: const ListTile(
-                      title: Text("Cancel"),
-                      trailing: Icon(Icons.cancel_outlined),
+                    child:  ListTile(
+                      title: const Text("Cancel"),
+                      trailing: SvgPicture.asset("assets/icons/cancel.svg"),
                     ),
                   );
                 },

@@ -23,7 +23,7 @@ class onboardContainer extends StatelessWidget {
       width: double.infinity,
       height: double.infinity,
       decoration: BoxDecoration(
-        color: const Color(0xFFf6f7f7),
+        color: Theme.of(context).colorScheme.tertiary,
         borderRadius: BorderRadius.circular(40),
       ),
       child: Column(
@@ -33,9 +33,10 @@ class onboardContainer extends StatelessWidget {
             child: Text(
               text1,
               style: const TextStyle(
-                  fontFamily: "Zen Kaku Gothic Antique",
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold),
+                fontFamily: "Zen Kaku Gothic Antique",
+                fontSize: 26,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(
@@ -57,14 +58,14 @@ class onboardContainer extends StatelessWidget {
               radius: 40,
               lineWidth: 3,
               percent: progress,
-              progressColor: const Color(0xFF19B888),
+              progressColor: Theme.of(context).colorScheme.primary,
               circularStrokeCap: CircularStrokeCap.round,
-              backgroundColor: const Color(0xFFB8C7CB),
+              backgroundColor: Theme.of(context).colorScheme.surface,
               center: FittedBox(
                 child: FloatingActionButton(
                   heroTag: null,
                   elevation: 0,
-                  backgroundColor: const Color(0xFF173430),
+                  backgroundColor: Theme.of(context).colorScheme.secondary,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30)),
                   onPressed: onpressed,

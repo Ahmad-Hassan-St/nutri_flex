@@ -35,10 +35,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(30)),
                         onPressed: () {},
-                        child: const Padding(
+                        child:  Padding(
                           padding: EdgeInsets.only(left: 8.0),
                           child: Icon(
                             Icons.arrow_back_ios,
+                            color: Theme.of(context).colorScheme.background,
                             size: 20,
                           ),
                         ),

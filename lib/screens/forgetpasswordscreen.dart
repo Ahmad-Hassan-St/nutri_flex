@@ -37,10 +37,12 @@ class _ForgetPasswordState extends State<ForgetPassword> {
                         onPressed: () {
                           Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>LoginScreen()));
                         },
-                        child: const Padding(
-                          padding: EdgeInsets.only(left: 8.0),
+                        child:  Padding(
+                          padding: const EdgeInsets.only(left: 8.0),
                           child: Icon(
                             Icons.arrow_back_ios,
+                            color: Theme.of(context).colorScheme.background,
+
                             size: 20,
                           ),
                         ),

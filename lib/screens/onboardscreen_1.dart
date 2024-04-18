@@ -32,8 +32,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.only(top: 40.0, left: 30, right: 30),
               child: TopRow(
                 text: "Skip",
-                textcolor: Colors.black,
-                backgroundcolor: const Color(0xFFf6f7f7),
+                textcolor:Theme.of(context).colorScheme.background,
+                backgroundcolor: Theme.of(context).colorScheme.tertiary,
                 onpressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>onBoardScreen3()));
                 },

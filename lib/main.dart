@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifefit/screens/splashscreen.dart';
+import 'package:lifefit/utils/app_theme.dart';
 
 void main() {
   runApp(const MyApp());
@@ -14,6 +15,7 @@ class MyApp extends StatelessWidget {
     return  SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        theme: appTheme,
         home: SplashScreen(),
       ),
     );

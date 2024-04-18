@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
+import 'package:lifefit/constants/colors.dart';
 
 import 'onboardscreen_1.dart';
 
@@ -13,8 +14,8 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(
-      Duration(seconds: 5),
-          () => Navigator.pushReplacement(
+      Duration(seconds: 3),
+      () => Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => HomeScreen()),
       ),
@@ -27,7 +28,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(
-            colors: [Color(0xFF4AC056), Color(0xFF20BA999)],
+            colors: gradientColor,
             center: Alignment.topCenter,
             radius: 5,
           ),
@@ -38,7 +39,6 @@ class _SplashScreenState extends State<SplashScreen> {
               left: 1,
               bottom: 13,
               child: Image.asset("assets/images/Ornament.png"),
-
             ),
             // Background image
             Center(

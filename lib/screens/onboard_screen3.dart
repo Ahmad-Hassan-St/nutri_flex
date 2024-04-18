@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifefit/screens/onboardscreen_1.dart';
 
 import '../components/onBoardcontainer.dart';
@@ -104,11 +105,12 @@ void showCustomDialog(BuildContext context) {
 
                   return Container(
                     width: containerWidth,
-                    child: const Column(
+                    child:  Column(
                       children: [
                         ListTile(
                           title: Text("Continue with Email"),
-                          trailing: Icon(Icons.email),
+                          trailing:SvgPicture.asset("assets/icons/email.svg"),
+
                         ),
                         Divider(
                           indent: 30,
@@ -116,7 +118,7 @@ void showCustomDialog(BuildContext context) {
                         ),
                         ListTile(
                           title: Text("Continue with Google"),
-                          trailing: Icon(Icons.apple),
+                          trailing:SvgPicture.asset("assets/icons/google.svg"),
                         ),
                       ],
                     ),

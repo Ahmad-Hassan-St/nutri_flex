@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:lifefit/screens/account_setup_screen.dart';
 import 'package:lifefit/screens/forgetpasswordscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:slide_to_act/slide_to_act.dart';
@@ -158,7 +159,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 outerColor: const Color(0xFF173430),
                 onSubmit: () {
                   Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => SplashScreen()));
+                      MaterialPageRoute(builder: (context) => UserNameScreen()));
                 },
                 submittedIcon: const Icon(
                   Icons.check,

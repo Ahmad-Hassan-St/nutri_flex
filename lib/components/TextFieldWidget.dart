@@ -25,10 +25,7 @@ class TextfieldWidget extends StatelessWidget {
         cursorColor: const Color(0xFF19b888),
         decoration: InputDecoration(
           hintText: (text),
-          hintStyle: const TextStyle(
-              fontFamily: "Zen Kaku Gothic Antique",
-              color: Colors.grey,
-              fontSize: 13),
+          hintStyle:  Theme.of(context).textTheme.displayMedium!.copyWith(color: Colors.grey,fontSize: 13),
           suffixIcon:  Padding(
             padding: const EdgeInsets.only(right: 30),
             child: Icon(

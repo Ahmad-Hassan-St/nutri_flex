@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../constants/colors.dart';
 
 ThemeData appTheme = ThemeData(
-  // brightness: Brightness.light,
+  brightness: Brightness.light,
   colorScheme: const ColorScheme.light(
     primary: primaryColorGreen,
     secondary: secondaryDarkGreen,
@@ -11,6 +11,7 @@ ThemeData appTheme = ThemeData(
     background: blackColor,
     surface: containerWhiteColor,
     onBackground: Colors.white,
+    tertiaryContainer: greyColor,
   ),
   scaffoldBackgroundColor: Colors.white,
   textTheme: const TextTheme(
@@ -27,6 +28,14 @@ ThemeData appTheme = ThemeData(
       fontFamily: "Zen Kaku Gothic Antique",
       fontSize: 10,
     ),
+  ),
+
+  elevatedButtonTheme: ElevatedButtonThemeData(
 
   ),
+  iconTheme: IconThemeData(),
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+
+)
+
 );

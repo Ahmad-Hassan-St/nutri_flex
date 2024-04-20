@@ -32,7 +32,7 @@ class onboardContainer extends StatelessWidget {
             padding: const EdgeInsets.only(top: 28.0),
             child: Text(
               text1,
-              style:Theme.of(context).textTheme.displayLarge,
+              style: Theme.of(context).textTheme.displayLarge,
             ),
           ),
           const SizedBox(
@@ -41,45 +41,68 @@ class onboardContainer extends StatelessWidget {
           Text(
             text2,
             textAlign: TextAlign.center,
-            style:Theme.of(context).textTheme.displayMedium,
+            style: Theme.of(context).textTheme.displayMedium,
           ),
           const SizedBox(
             height: 70,
           ),
           Container(
-            child: CircularPercentIndicator(
-              radius: 40,
-              lineWidth: 3,
-              percent: progress,
-              progressColor: Theme.of(context).colorScheme.primary,
-              circularStrokeCap: CircularStrokeCap.round,
-              backgroundColor: Theme.of(context).colorScheme.surface,
-              center: FittedBox(
-                child: FloatingActionButton(
-                  heroTag: null,
-                  elevation: 0,
-                  backgroundColor: Theme.of(context).colorScheme.secondary,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30)),
-                  onPressed: onpressed,
-                  child: icon != null
-                      ? Icon(
-                          icon,
-                          color: Colors.white,
-                          size: 18,
-                        )
-                      : const Text(
-                          "Start",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontFamily: "Zen Kaku Gothic Antique",
-                              fontSize: 10),
-                        ), //
-                ),
-              ),
+            child: FloatingActionButtonProgressWidget(
+              progress: progress,
+              onpressed: onpressed,
+              icon: icon,
             ),
-          )
+          ),
         ],
+      ),
+    );
+  }
+}
+
+class FloatingActionButtonProgressWidget extends StatelessWidget {
+  const FloatingActionButtonProgressWidget({
+    super.key,
+    required this.progress,
+    required this.onpressed,
+    required this.icon,
+  });
+
+  final double progress;
+  final VoidCallback onpressed;
+  final IconData? icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return CircularPercentIndicator(
+      radius: 40,
+      lineWidth: 3,
+      percent: progress,
+      progressColor: Theme.of(context).colorScheme.primary,
+      circularStrokeCap: CircularStrokeCap.round,
+      backgroundColor: Theme.of(context).colorScheme.surface,
+      center: FittedBox(
+        child: FloatingActionButton(
+          heroTag: null,
+          elevation: 0,
+          backgroundColor: Theme.of(context).colorScheme.secondary,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
+          onPressed: onpressed,
+          child: icon != null
+              ? Icon(
+                  icon,
+                  color: Colors.white,
+                  size: 18,
+                )
+              : const Text(
+                  "Start",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontFamily: "Zen Kaku Gothic Antique",
+                    fontSize: 10,
+                  ),
+                ), //
+        ),
       ),
     );
   }

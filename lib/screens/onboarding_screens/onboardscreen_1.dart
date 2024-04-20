@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lifefit/components/topbutton.dart';
-import 'package:lifefit/screens/onboard_screen2.dart';
-import 'package:lifefit/screens/onboard_screen3.dart';
-import '../components/onBoardcontainer.dart';
+import 'package:lifefit/screens/onboarding_screens/onboard_screen2.dart';
+import 'package:lifefit/screens/onboarding_screens/onboard_screen3.dart';
+import '../../components/onBoardcontainer.dart';
 
 class OnBoardingScreen extends StatefulWidget {
   const OnBoardingScreen({super.key});

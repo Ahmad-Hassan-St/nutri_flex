@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:lifefit/screens/onboard_screen3.dart';
 
-import '../components/onBoardcontainer.dart';
-import '../components/topbutton.dart';
+
+import '../../components/onBoardcontainer.dart';
+import '../../components/topbutton.dart';
+import 'onboard_screen3.dart';
 import 'onboardscreen_1.dart';
 
 class onboardScreen2 extends StatefulWidget {

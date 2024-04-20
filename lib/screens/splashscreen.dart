@@ -2,7 +2,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
 
-import 'onboardscreen_1.dart';
+import 'onboarding_screens/onboardscreen_1.dart';
+
 
 class SplashScreen extends StatefulWidget {
   @override

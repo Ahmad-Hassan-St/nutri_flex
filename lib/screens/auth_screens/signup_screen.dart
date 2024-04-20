@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:lifefit/screens/account_setup_screen.dart';
-import 'package:lifefit/screens/forgetpasswordscreen.dart';
-import 'package:lifefit/screens/goal_screenn.dart';
+import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
+import 'package:lifefit/screens/auth_screens/forgetpasswordscreen.dart';
+import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
-import '../components/TextFieldWidget.dart';
-import '../services/local_auth.dart';
+import '../../components/TextFieldWidget.dart';
+import '../../services/local_auth.dart';
 
-class SignupScreen extends StatefulWidget {
-  const SignupScreen({Key? key});
+class SignUpScreen extends StatefulWidget {
+  const SignUpScreen({Key? key});
 
   @override
-  State<SignupScreen> createState() => _SignupScreenState();
+  State<SignUpScreen> createState() => _SignUpScreenState();
 }
 
-class _SignupScreenState extends State<SignupScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
@@ -45,7 +45,7 @@ class _SignupScreenState extends State<SignupScreen> {
                         ),
                         onPressed: () {},
                         child: Padding(
-                          padding: EdgeInsets.only(left: 8.0),
+                          padding: const EdgeInsets.only(left: 8.0),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).colorScheme.background,

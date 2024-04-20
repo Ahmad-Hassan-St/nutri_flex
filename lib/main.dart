@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/goal_screen.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
+import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
@@ -18,7 +20,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home:  SplashScreen(),
+        home:   RadioFrequencySlider(),
       ),
     );
   }

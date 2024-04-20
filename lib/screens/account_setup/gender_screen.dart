@@ -1,15 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
-import 'package:lifefit/screens/date_of_birth_screen.dart';
-import 'package:lifefit/screens/goal_screenn.dart';
+import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
+import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 
-class GenderScreen extends StatefulWidget {
-  @override
-  State<GenderScreen> createState() => _GenderScreenState();
-}
-
-class _GenderScreenState extends State<GenderScreen> {
+class GenderScreen extends StatelessWidget {
   // Define a list of objects where each object contains text and image information
   final List<Map<String, dynamic>> goals = [
     {"text": "Male", "imagePath": "assets/icons/male.svg"},
@@ -64,7 +59,7 @@ class _GenderScreenState extends State<GenderScreen> {
               ),
             ),
             SizedBox(height: screenSize.height * 0.04),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -130,7 +125,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         height: screenSize.height * 0.26,
                         width: screenSize.width * 0.43,
                         decoration: BoxDecoration(
-                          color: index == 1 ? Color(0xffebf6d6) : Colors.grey[200],
+                          color: index == 1 ? const Color(0xffebf6d6) : Colors.grey[200],
                           borderRadius: BorderRadius.circular(screenSize.height * 0.04),
                         ),
                         child: Padding(
@@ -158,7 +153,7 @@ class _GenderScreenState extends State<GenderScreen> {
             SizedBox(height: screenSize.height * 0.18),
             FloatingActionButtonProgressWidget(
                 progress: 0.77,
-                onpressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>DateBirthScreen()));},
+                onpressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const DateBirthScreen()));},
                 icon: Icons.arrow_forward_ios_outlined)
           ],
         ),

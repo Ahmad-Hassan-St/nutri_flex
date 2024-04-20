@@ -3,8 +3,8 @@ import 'package:lifefit/components/TextFieldWidget.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/components/setup_account_Textfield.dart';
 import 'package:lifefit/screens/goal_screen.dart';
-import 'package:lifefit/screens/goal_screenn.dart';
-import 'package:lifefit/screens/signup_screen.dart';
+import 'package:lifefit/screens/account_setup/goal_screenn.dart';
+import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({super.key});

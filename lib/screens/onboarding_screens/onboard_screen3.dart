@@ -2,11 +2,10 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:lifefit/screens/onboardscreen_1.dart';
 
-import '../components/onBoardcontainer.dart';
-import '../components/topbutton.dart';
-import 'Loginscreen.dart';
+import '../../components/onBoardcontainer.dart';
+import '../../components/topbutton.dart';
+import '../auth_screens/Loginscreen.dart';
 
 class onBoardScreen3 extends StatefulWidget {
   const onBoardScreen3({super.key});

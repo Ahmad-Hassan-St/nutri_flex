@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:lifefit/screens/account_setup_screen.dart';
-import 'package:lifefit/screens/forgetpasswordscreen.dart';
+import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
+import 'package:lifefit/screens/auth_screens/forgetpasswordscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 
-import '../components/TextFieldWidget.dart';
-import '../services/local_auth.dart';
+import '../../components/TextFieldWidget.dart';
+import '../../services/local_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

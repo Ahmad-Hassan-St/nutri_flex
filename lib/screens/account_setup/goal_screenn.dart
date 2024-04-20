@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
-import 'package:lifefit/screens/account_setup_screen.dart';
-import 'package:lifefit/screens/gender_screen.dart';
+import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
+import 'package:lifefit/screens/account_setup/gender_screen.dart';
 
 class GoalScreen extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _GoalScreenState extends State<GoalScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => UserNameScreen()));
+                                  builder: (context) => const UserNameScreen()));
                         },
                         child: Padding(
                           padding:
@@ -69,7 +69,7 @@ class _GoalScreenState extends State<GoalScreen> {
               ),
             ),
             SizedBox(height: screenSize.height * 0.02),
-            Row(
+            const Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
@@ -80,6 +80,7 @@ class _GoalScreenState extends State<GoalScreen> {
                   ),
                 ),
                 Text(
+
                   "/8",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
@@ -130,7 +131,7 @@ class _GoalScreenState extends State<GoalScreen> {
                     final String text = goals[index]["text"];
                     final String imagePath = goals[index]["imagePath"];
                     final Color? containerColor =
-                        index == 1 ? Color(0xffebf6d6) : Colors.grey[200];
+                        index == 1 ? const Color(0xffebf6d6) : Colors.grey[200];
 
                     return Padding(
                       padding: EdgeInsets.only(
@@ -139,8 +140,11 @@ class _GoalScreenState extends State<GoalScreen> {
                         right: screenSize.width * 0.05,
                       ),
                       child: InkWell(
+                        borderRadius:
+                        BorderRadius.circular(screenSize.height * 0.02),
+
                         onTap: () {},
-                        child: Container(
+                        child: Ink(
                           height: screenSize.height * 0.135,
                           decoration: BoxDecoration(
                             color: containerColor,

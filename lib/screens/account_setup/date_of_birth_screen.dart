@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
-import 'package:lifefit/screens/gender_screen.dart';
-import 'package:lifefit/screens/signup_screen.dart';
+import 'package:lifefit/screens/account_setup/gender_screen.dart';
+import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 
-import '../components/setup_account_Textfield.dart';
-import 'goal_screen.dart'; // Import the intl package
+import '../../components/setup_account_Textfield.dart';
+import '../goal_screen.dart'; // Import the intl package
 
 class DateBirthScreen extends StatefulWidget {
   const DateBirthScreen({Key? key});
@@ -64,7 +64,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                 ),
               ),
               SizedBox(height: 30,),
-              Row(
+              const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(

@@ -63,7 +63,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                   ],
                 ),
               ),
-              SizedBox(height: 30,),
+              const SizedBox(height: 30,),
               const Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -112,7 +112,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               SizedBox(height: screenHeight * 0.15),
               SetupAccount_TextfieldWidget(
                 textAlign: TextAlign.center,
-                containerColor: Color((0xffebf6d6)),
+                containerColor: const Color((0xffebf6d6)),
                 contentPadding: EdgeInsets.symmetric(
                   vertical: screenHeight * 0.045,
                   horizontal: screenWidth * 0.05,

@@ -3,17 +3,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
+import 'package:lifefit/screens/goal_screen.dart';
 
+import '../../components/Frequency_slider.dart';
+import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
 
-class HeightScreen extends StatelessWidget {
+class HeightScreen extends StatefulWidget {
   HeightScreen({super.key});
 
+  @override
+  State<HeightScreen> createState() => _HeightScreenState();
+}
+
+class _HeightScreenState extends State<HeightScreen> {
   final List<Map<String, dynamic>> goals = [
     {"text": "Male", "imagePath": "assets/icons/male.svg"},
     {"text": "Female", "imagePath": "assets/icons/female.svg"},
   ];
+
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -150,122 +160,77 @@ class HeightScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(height: screenSize.height * 0.028),
+            SizedBox(height: screenSize.height * 0.015),
+            SvgPicture.asset("assets/shapes/polygon.svg"),
+            SizedBox(height: screenSize.height * 0.01),
+
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicPadding,
               ),
-              child: SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    Container(
-                      height: 140,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffebf6d6),
-                        borderRadius:
-                            BorderRadius.circular(screenSize.height * 0.04),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: dynamicPadding,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  NumberContainerWidget(
+                    screenSize: screenSize,
+                    text: height - 1,
+                    dynamicPadding: dynamicPadding,
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                          fontSize: 33,
+                          fontWeight: FontWeight.w400,
+                          color: greyColor,
                         ),
-                        child: Center(
-                          child: Text(
-                            "178",
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ),
-                      ),
+                  ),
+                  SizedBox(width: screenSize.width * 0.028),
+                  NumberContainerWidget(
+                    screenSize: screenSize,
+                    text: height,
+                    dynamicPadding: dynamicPadding,
+                    height: 180,
+                    color: limeGreen,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                  SizedBox(width: screenSize.width * 0.028),
+
+                  NumberContainerWidget(
+                    screenSize: screenSize,
+                    text: ++height,
+                    dynamicPadding: dynamicPadding,
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      fontSize: 33,
+                      fontWeight: FontWeight.w400,
+                      color: greyColor,
                     ),
-                    SizedBox(width: screenSize.width * 0.028),
-
-                    Container(
-                      height: 180,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffebf6d6),
-                        borderRadius:
-                        BorderRadius.circular(screenSize.height * 0.04),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: dynamicPadding,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "179",
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: screenSize.width * 0.028),
-
-                    Container(
-                      height: 140,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffebf6d6),
-                        borderRadius:
-                        BorderRadius.circular(screenSize.height * 0.04),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: dynamicPadding,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "180",
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: screenSize.width * 0.028),
-
-                    Container(
-                      height: 140,
-                      width: 120,
-                      decoration: BoxDecoration(
-                        color: const Color(0xffebf6d6),
-                        borderRadius:
-                        BorderRadius.circular(screenSize.height * 0.04),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: dynamicPadding,
-                        ),
-                        child: Center(
-                          child: Text(
-                            "181",
-                            style: Theme.of(context).textTheme.labelLarge,
-                          ),
-                        ),
-                      ),
-                    ),
-
-
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-            SizedBox(height: screenSize.height * 0.18),
+            RadioFrequencySlider(
+              onValueChanged: (value) {
+                setState(() {
+                  height = value.toInt();
+                });
+                print("Current value: $value");
+              },
+            ),
+            SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
-                progress: 0.77,
-                onpressed: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const DateBirthScreen(),
-                    ),
-                  );
-                },
-                icon: Icons.arrow_forward_ios_outlined)
+              progress: 0.77,
+              onpressed: () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const DateBirthScreen(),
+                  ),
+                );
+              },
+              icon: Icons.arrow_forward_ios_outlined,
+            ),
           ],
         ),
       ),
     );
   }
 }
+
+

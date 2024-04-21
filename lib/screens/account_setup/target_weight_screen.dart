@@ -156,7 +156,10 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
               ),
             ),
             SizedBox(height: screenSize.height * 0.025),
-            SvgPicture.asset("assets/shapes/polygon.svg"),
+            Padding(
+              padding: const EdgeInsets.only(left: 180.0),
+              child: SvgPicture.asset("assets/shapes/polygon.svg"),
+            ),
             SizedBox(height: screenSize.height * 0.025),
             Padding(
               padding: EdgeInsets.symmetric(
@@ -172,7 +175,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                     height: 130,
                     width: 120,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: greyColor,
+                      color: kGreyColor,
                     ),
                   ),
                   Icon(
@@ -186,7 +189,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                     dynamicPadding: dynamicPadding,
                     height: 130,
                     width: 120,
-                    color: limeGreen,
+                    color: kLimeGreen,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                 ],

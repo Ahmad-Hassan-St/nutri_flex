@@ -5,13 +5,13 @@ import '../constants/colors.dart';
 ThemeData appTheme = ThemeData(
   brightness: Brightness.light,
   colorScheme: const ColorScheme.light(
-    primary: primaryColorGreen,
-    secondary: secondaryDarkGreen,
-    tertiary: whiteColor,
-    background: blackColor,
-    surface: containerWhiteColor,
+    primary: kPrimaryColorGreen,
+    secondary: kSecondaryDarkGreen,
+    tertiary: kWhiteColor,
+    background: kBlackColor,
+    surface: kContainerWhiteColor,
     onBackground: Colors.white,
-    tertiaryContainer: greyColor,
+    tertiaryContainer: kGreyColor,
   ),
   scaffoldBackgroundColor: Colors.white,
   textTheme: const TextTheme(
@@ -31,7 +31,7 @@ ThemeData appTheme = ThemeData(
     labelLarge: TextStyle(
       fontFamily: "Zen Kaku Gothic Antique",
       fontSize: 44,
-      color: secondaryDarkGreen,
+      color: kSecondaryDarkGreen,
       fontWeight: FontWeight.bold,
     ),
   ),

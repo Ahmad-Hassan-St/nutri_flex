@@ -175,7 +175,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           fontSize: 33,
                           fontWeight: FontWeight.w400,
-                          color: greyColor,
+                          color: kGreyColor,
                         ),
                   ),
                   SizedBox(width: screenSize.width * 0.028),
@@ -184,7 +184,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     text: height,
                     dynamicPadding: dynamicPadding,
                     height: 180,
-                    color: limeGreen,
+                    color: kLimeGreen,
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   SizedBox(width: screenSize.width * 0.028),
@@ -196,7 +196,7 @@ class _HeightScreenState extends State<HeightScreen> {
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
                       fontSize: 33,
                       fontWeight: FontWeight.w400,
-                      color: greyColor,
+                      color: kGreyColor,
                     ),
                   ),
                 ],

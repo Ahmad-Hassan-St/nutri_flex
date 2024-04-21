@@ -29,7 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Container(
         decoration: const BoxDecoration(
           gradient: RadialGradient(
-            colors: gradientColor,
+            colors: kGradientColor,
             center: Alignment.topCenter,
             radius: 5,
           ),

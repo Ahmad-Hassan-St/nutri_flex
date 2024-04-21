@@ -159,7 +159,6 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                 progress: 0.5,
                 onpressed: () {
                   Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HeightScreen()));
-
                 },
                 icon: Icons.arrow_forward_ios,
               ),

@@ -2,9 +2,12 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:lifefit/screens/auth_screens/signup_screen.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 
 import '../../components/onBoardcontainer.dart';
 import '../../components/topbutton.dart';
+import '../account_setup/account_setup_screen.dart';
 import '../auth_screens/Loginscreen.dart';
 
 class onBoardScreen3 extends StatefulWidget {
@@ -109,11 +112,19 @@ void showCustomDialog(BuildContext context) {
                     child: Column(
                       children: [
                         ListTile(
-                          title:  Text("Continue with Email",
+                          title: Text(
+                            "Continue with Email",
                             style: Theme.of(context).textTheme.displayMedium,
-
                           ),
                           trailing: SvgPicture.asset("assets/icons/email.svg"),
+                          onTap: () {
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const SignUpScreen(),
+                              ),
+                            );
+                          },
                         ),
                         Divider(
                           indent: 30,
@@ -126,6 +137,15 @@ void showCustomDialog(BuildContext context) {
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                           trailing: SvgPicture.asset("assets/icons/google.svg"),
+                          onTap: () {
+                            showToastMsg("Registration with google");
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const UserNameScreen(),
+                              ),
+                            );
+                          },
                         ),
                       ],
                     ),
@@ -154,14 +174,23 @@ void showCustomDialog(BuildContext context) {
                   double containerWidth =
                       (width - 50).clamp(0, double.infinity);
 
-                  return Container(
-                    color: Theme.of(context).colorScheme.onBackground,
-                    width: containerWidth,
-                    child: ListTile(
-                      title:  Text("Cancel",
-                        style: Theme.of(context).textTheme.displayMedium?.copyWith(color:Colors.red),
+                  return InkWell(
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Ink(
+                      color: Theme.of(context).colorScheme.onBackground,
+                      width: containerWidth,
+                      child: ListTile(
+                        title: Text(
+                          "Cancel",
+                          style: Theme.of(context)
+                              .textTheme
+                              .displayMedium
+                              ?.copyWith(color: Colors.red),
+                        ),
+                        trailing: SvgPicture.asset("assets/icons/cancel.svg"),
                       ),
-                      trailing: SvgPicture.asset("assets/icons/cancel.svg"),
                     ),
                   );
                 },

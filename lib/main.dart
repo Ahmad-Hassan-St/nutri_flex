@@ -1,4 +1,6 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
@@ -8,7 +10,9 @@ import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MyApp());
 }
 
@@ -22,7 +26,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home:   WeightScreen(),
+        home:   SplashScreen(),
       ),
     );
   }

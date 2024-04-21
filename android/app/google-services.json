@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1065059750636",
+    "project_id": "nutriflex-d35a9",
+    "storage_bucket": "nutriflex-d35a9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1065059750636:android:a02f16de995bc70a034bc9",
+        "android_client_info": {
+          "package_name": "com.example.lifefit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1065059750636-hghkp3hbbr2ce2a7j92ku84nf6q04sre.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBbRQysITy5fEgW004VOYwpHxBiEQKm7BI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1065059750636-hghkp3hbbr2ce2a7j92ku84nf6q04sre.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

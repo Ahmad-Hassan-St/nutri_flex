@@ -163,7 +163,7 @@ class _WeightScreenState extends State<WeightScreen> {
                 dynamicPadding: dynamicPadding,
                 height: 130,
                 width: 120,
-                color: limeGreen,
+                color: kLimeGreen,
                 style: Theme.of(context).textTheme.labelLarge,
               ),
             ),

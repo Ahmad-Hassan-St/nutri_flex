@@ -102,13 +102,13 @@ class FrequencyRulerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint linePaint = Paint()
-      ..color = greyColor.withOpacity(0.6)
+      ..color = kGreyColor.withOpacity(0.6)
       ..strokeWidth = 2.0;
 
     final double centerX = size.width / 2;
     final double centerY = size.height / 2;
     final Paint centerLinePaint = Paint()
-      ..color = greenColor
+      ..color = kGreenColor
       ..strokeWidth = 3.0;
     // Draw center line
     canvas.drawLine(Offset(centerX, centerY - 20),
@@ -146,7 +146,7 @@ class FrequencyRulerPainter extends CustomPainter {
       final text = (i).toStringAsFixed(0);
       TextSpan span = TextSpan(
           style: const TextStyle(
-            color: secondaryDarkGreen,
+            color: kSecondaryDarkGreen,
             fontSize: 14,
             fontFamily: "Zen Kaku Gothic Antique",
             fontWeight: FontWeight.w900,

@@ -39,6 +39,10 @@ dependencies:
   percent_indicator: ^4.2.3
   local_auth: ^2.2.0
   flutter_svg: ^2.0.10+1
+  firebase_core: ^2.30.0
+  firebase_auth: ^4.19.2
+  google_sign_in: ^6.2.1
+  fluttertoast: ^8.2.5
 
 
 dev_dependencies:

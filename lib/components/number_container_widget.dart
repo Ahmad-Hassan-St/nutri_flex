@@ -18,7 +18,7 @@ class NumberContainerWidget extends StatelessWidget {
     required this.dynamicPadding,
     this.height = 140,
     this.width = 110,
-    this.color = softGrey,
+    this.color = kSoftGrey,
     this.style,
   });
 

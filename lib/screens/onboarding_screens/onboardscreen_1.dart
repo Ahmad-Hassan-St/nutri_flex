@@ -55,6 +55,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               onpressed: () {
                 Navigator.pushReplacement(context,
                     MaterialPageRoute(builder: (context) => onboardScreen2()));
+
+
+
               },
             ),
           ),

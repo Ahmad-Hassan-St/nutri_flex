@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lifefit/screens/account_setup/height_screen.dart';
-import 'package:lifefit/screens/account_setup/target_weight_screen.dart';
+import 'package:lifefit/screens/account_setup/weight_screen.dart';
 
 import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
 
-class WeightScreen extends StatefulWidget {
-  const WeightScreen({super.key});
+class TargetWeightScreen extends StatefulWidget {
+  int weight;
+
+  TargetWeightScreen({super.key, required this.weight});
 
   @override
-  State<WeightScreen> createState() => _WeightScreenState();
+  State<TargetWeightScreen> createState() => _TargetWeightScreenState();
 }
 
-class _WeightScreenState extends State<WeightScreen> {
-  int weight =50;
-
+class _TargetWeightScreenState extends State<TargetWeightScreen> {
+  int _weight = 0;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _weight = widget.weight;
+  }
   @override
   Widget build(BuildContext context) {
     // Getting screen size
@@ -49,17 +55,17 @@ class _WeightScreenState extends State<WeightScreen> {
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(
                           borderRadius:
-                          BorderRadius.circular(screenSize.height * 0.06),
+                              BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => HeightScreen()));
+                                  builder: (context) => WeightScreen()));
                         },
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: screenSize.width * 0.025),
+                              EdgeInsets.only(left: screenSize.width * 0.025),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).colorScheme.background,
@@ -77,7 +83,7 @@ class _WeightScreenState extends State<WeightScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "6",
+                  "7",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
                     fontWeight: FontWeight.bold,
@@ -106,7 +112,7 @@ class _WeightScreenState extends State<WeightScreen> {
                   width: 8,
                 ),
                 Text(
-                  "Current Weight",
+                  "target Weight",
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
@@ -124,8 +130,8 @@ class _WeightScreenState extends State<WeightScreen> {
               "We will use this data to give you\n a better diet type for you",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                color: Colors.grey,
-              ),
+                    color: Colors.grey,
+                  ),
             ),
             SizedBox(height: screenSize.height * 0.008),
             Container(
@@ -142,8 +148,8 @@ class _WeightScreenState extends State<WeightScreen> {
                           .textTheme
                           .displayMedium!
                           .copyWith(
-                          color:
-                          Theme.of(context).colorScheme.onBackground),
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
                 ),
@@ -152,42 +158,59 @@ class _WeightScreenState extends State<WeightScreen> {
             SizedBox(height: screenSize.height * 0.025),
             SvgPicture.asset("assets/shapes/polygon.svg"),
             SizedBox(height: screenSize.height * 0.025),
-
             Padding(
               padding: EdgeInsets.symmetric(
-                horizontal: dynamicPadding,
+                horizontal: dynamicPadding * 6.5,
               ),
-              child: NumberContainerWidget(
-                screenSize: screenSize,
-                text: weight,
-                dynamicPadding: dynamicPadding,
-                height: 130,
-                width: 120,
-                color: limeGreen,
-                style: Theme.of(context).textTheme.labelLarge,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  NumberContainerWidget(
+                    screenSize: screenSize,
+                    text: widget.weight,
+                    dynamicPadding: dynamicPadding,
+                    height: 130,
+                    width: 120,
+                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
+                      color: greyColor,
+                    ),
+                  ),
+                  Icon(
+                    Icons.arrow_forward_ios_rounded,
+                    color: Theme.of(context).colorScheme.secondary,
+                    size: 50,
+                  ),
+                  NumberContainerWidget(
+                    screenSize: screenSize,
+                    text: _weight,
+                    dynamicPadding: dynamicPadding,
+                    height: 130,
+                    width: 120,
+                    color: limeGreen,
+                    style: Theme.of(context).textTheme.labelLarge,
+                  ),
+                ],
               ),
             ),
             RadioFrequencySlider(
-              intialValue: 50,
-              minCurrentVal: 30,
-              maxCurrentVal: 200,
-
+              intialValue: widget.weight.toDouble(),
+              minCurrentVal: widget.weight.toDouble()-20,
+              maxCurrentVal: widget.weight.toDouble()+20,
               onValueChanged: (value) {
-
                 setState(() {
-                  weight = value.toInt();
+                  _weight = value.toInt();
                 });
                 print("Current value: $value");
               },
             ),
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
-              progress: 0.75,
+              progress: 0.875,
               onpressed: () {
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => TargetWeightScreen(weight: weight),
+                    builder: (context) => WeightScreen(),
                   ),
                 );
               },

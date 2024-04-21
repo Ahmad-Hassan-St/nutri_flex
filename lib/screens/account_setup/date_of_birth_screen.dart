@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/gender_screen.dart';
+import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 
 import '../../components/setup_account_Textfield.dart';
@@ -155,8 +156,11 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               ),
               SizedBox(height: screenHeight * 0.16),
               FloatingActionButtonProgressWidget(
-                progress: 1,
-                onpressed: () {},
+                progress: 0.5,
+                onpressed: () {
+                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HeightScreen()));
+
+                },
                 icon: Icons.arrow_forward_ios,
               ),
             ],

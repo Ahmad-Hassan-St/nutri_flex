@@ -7,6 +7,7 @@ import 'package:lifefit/constants/colors.dart';
 
 class RadioFrequencySlider extends StatefulWidget {
   final void Function(double) onValueChanged;
+  double intialValue;
   double currentVal = 100.0; // Initial value
   double minCurrentVal = 100.0; // Minimum value (scaled to 100)
   double maxCurrentVal = 200.0;
@@ -17,6 +18,7 @@ class RadioFrequencySlider extends StatefulWidget {
     this.currentVal=100,
     this.minCurrentVal=100,
     this.maxCurrentVal=200,
+    this.intialValue=120,
   });
 
   @override
@@ -24,13 +26,25 @@ class RadioFrequencySlider extends StatefulWidget {
 }
 
 class _RadioFrequencySliderState extends State<RadioFrequencySlider> {
-  double _currentVal = 100.0; // Initial value
-  double _minCurrentVal = 100.0; // Minimum value (scaled to 100)
-  double _maxCurrentVal = 200.0; // Maximum value (scaled to 200)
+ late double _currentVal ; // Initial value
+  double get currentVal => _currentVal;
+  set currentVal(double value) {
+    setState(() {
+      _currentVal = value;
+    });
+  }
+
+  double get _minCurrentVal => widget.minCurrentVal;
+  double get _maxCurrentVal => widget.maxCurrentVal;
   double _ratio = 10; // Ratio for drawing ticks
   late double _touchStart; // Touch start position
   late double _touchEnd; // Current touch position
 
+  @override
+  void initState() {
+    super.initState();
+    _currentVal = widget.intialValue;
+  }
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -88,7 +102,7 @@ class FrequencyRulerPainter extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final Paint linePaint = Paint()
-      ..color = greyColor
+      ..color = greyColor.withOpacity(0.6)
       ..strokeWidth = 2.0;
 
     final double centerX = size.width / 2;
@@ -133,9 +147,9 @@ class FrequencyRulerPainter extends CustomPainter {
       TextSpan span = TextSpan(
           style: const TextStyle(
             color: secondaryDarkGreen,
-            fontSize: 12,
+            fontSize: 14,
             fontFamily: "Zen Kaku Gothic Antique",
-            fontWeight: FontWeight.w700,
+            fontWeight: FontWeight.w900,
           ),
           text: text);
       TextPainter tp = TextPainter(

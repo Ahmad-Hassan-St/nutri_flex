@@ -152,7 +152,7 @@ class GenderScreen extends StatelessWidget {
             ),
             SizedBox(height: screenSize.height * 0.18),
             FloatingActionButtonProgressWidget(
-                progress: 0.77,
+                progress: 0.375,
                 onpressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const DateBirthScreen()));},
                 icon: Icons.arrow_forward_ios_outlined)
           ],

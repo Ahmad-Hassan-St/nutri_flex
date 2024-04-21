@@ -83,7 +83,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                 height: 200,
               ),
               FloatingActionButtonProgressWidget(
-                  progress: 0.11,
+                  progress: 0.125,
                   onpressed: () {
                     Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => GoalScreen()));

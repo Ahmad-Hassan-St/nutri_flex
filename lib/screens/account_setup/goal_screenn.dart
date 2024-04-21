@@ -181,7 +181,7 @@ class _GoalScreenState extends State<GoalScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
               child: FloatingActionButtonProgressWidget(
-                  progress: 0.66,
+                  progress: 0.25,
                   onpressed: () {
                     Navigator.pushReplacement(
                         context,

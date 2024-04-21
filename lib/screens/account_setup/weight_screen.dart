@@ -1,26 +1,21 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
-import 'package:lifefit/screens/account_setup/goal_screenn.dart';
-import 'package:lifefit/screens/account_setup/weight_screen.dart';
-import 'package:lifefit/screens/goal_screen.dart';
+import 'package:lifefit/screens/account_setup/height_screen.dart';
 
 import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
 
-class HeightScreen extends StatefulWidget {
-  HeightScreen({super.key});
+class WeightScreen extends StatefulWidget {
+  const WeightScreen({super.key});
 
   @override
-  State<HeightScreen> createState() => _HeightScreenState();
+  State<WeightScreen> createState() => _WeightScreenState();
 }
 
-class _HeightScreenState extends State<HeightScreen> {
-
-  int height =180;
+class _WeightScreenState extends State<WeightScreen> {
+  int weight =50;
 
   @override
   Widget build(BuildContext context) {
@@ -53,17 +48,17 @@ class _HeightScreenState extends State<HeightScreen> {
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(
                           borderRadius:
-                              BorderRadius.circular(screenSize.height * 0.06),
+                          BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => DateBirthScreen()));
+                                  builder: (context) => HeightScreen()));
                         },
                         child: Padding(
                           padding:
-                              EdgeInsets.only(left: screenSize.width * 0.025),
+                          EdgeInsets.only(left: screenSize.width * 0.025),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).colorScheme.background,
@@ -81,7 +76,7 @@ class _HeightScreenState extends State<HeightScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "5",
+                  "6",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
                     fontWeight: FontWeight.bold,
@@ -103,22 +98,18 @@ class _HeightScreenState extends State<HeightScreen> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  "How",
+                  "Your",
                   style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(
                   width: 8,
                 ),
                 Text(
-                  "Tall",
+                  "Current Weight",
                   style: Theme.of(context)
                       .textTheme
                       .displayLarge!
                       .copyWith(color: Theme.of(context).colorScheme.primary),
-                ),
-                Text(
-                  " are you?",
-                  style: Theme.of(context).textTheme.displayLarge,
                 ),
                 const SizedBox(
                   width: 8,
@@ -132,8 +123,8 @@ class _HeightScreenState extends State<HeightScreen> {
               "We will use this data to give you\n a better diet type for you",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    color: Colors.grey,
-                  ),
+                color: Colors.grey,
+              ),
             ),
             SizedBox(height: screenSize.height * 0.008),
             Container(
@@ -145,76 +136,52 @@ class _HeightScreenState extends State<HeightScreen> {
                   child: Padding(
                     padding: const EdgeInsets.only(bottom: 5.0),
                     child: Text(
-                      "cm",
+                      "KG",
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium!
                           .copyWith(
-                              color:
-                                  Theme.of(context).colorScheme.onBackground),
+                          color:
+                          Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
                 ),
               ),
             ),
-            SizedBox(height: screenSize.height * 0.015),
+            SizedBox(height: screenSize.height * 0.025),
             SvgPicture.asset("assets/shapes/polygon.svg"),
-            SizedBox(height: screenSize.height * 0.01),
+            SizedBox(height: screenSize.height * 0.025),
 
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicPadding,
               ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  NumberContainerWidget(
-                    screenSize: screenSize,
-                    text: height - 1,
-                    dynamicPadding: dynamicPadding,
-                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                          fontSize: 33,
-                          fontWeight: FontWeight.w400,
-                          color: greyColor,
-                        ),
-                  ),
-                  SizedBox(width: screenSize.width * 0.028),
-                  NumberContainerWidget(
-                    screenSize: screenSize,
-                    text: height,
-                    dynamicPadding: dynamicPadding,
-                    height: 180,
-                    color: limeGreen,
-                    style: Theme.of(context).textTheme.labelLarge,
-                  ),
-                  SizedBox(width: screenSize.width * 0.028),
-
-                  NumberContainerWidget(
-                    screenSize: screenSize,
-                    text: ++height,
-                    dynamicPadding: dynamicPadding,
-                    style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      fontSize: 33,
-                      fontWeight: FontWeight.w400,
-                      color: greyColor,
-                    ),
-                  ),
-                ],
+              child: NumberContainerWidget(
+                screenSize: screenSize,
+                text: weight,
+                dynamicPadding: dynamicPadding,
+                height: 130,
+                width: 120,
+                color: limeGreen,
+                style: Theme.of(context).textTheme.labelLarge,
               ),
             ),
             RadioFrequencySlider(
-              intialValue: 180,
+              intialValue: 50,
+              minCurrentVal: 30,
+              maxCurrentVal: 200,
+
               onValueChanged: (value) {
 
                 setState(() {
-                  height = value.toInt();
+                  weight = value.toInt();
                 });
                 print("Current value: $value");
               },
             ),
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
-              progress: 0.625,
+              progress: 0.75,
               onpressed: () {
                 Navigator.pushReplacement(
                   context,
@@ -231,5 +198,3 @@ class _HeightScreenState extends State<HeightScreen> {
     );
   }
 }
-
-

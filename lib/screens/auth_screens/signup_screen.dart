@@ -1,8 +1,12 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
+import 'package:lifefit/services/auth_services.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../../components/TextFieldWidget.dart';
+import '../../utils/validations.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key});
@@ -21,8 +25,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     super.initState();
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
-    _confirmpasswordController= TextEditingController();
+    _confirmpasswordController = TextEditingController();
   }
+
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery.of(context).size;
 
@@ -37,7 +42,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
             Row(
               children: [
                 Padding(
-                  padding: EdgeInsets.only(top: paddingValue, left: paddingValue),
+                  padding:
+                      EdgeInsets.only(top: paddingValue, left: paddingValue),
                   child: Container(
                     height: 70,
                     width: 70,
@@ -49,12 +55,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(30),
                         ),
-                        onPressed: () {Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const LoginScreen(),
-                          ),
-                        );},
+                        onPressed: () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const LoginScreen(),
+                            ),
+                          );
+                        },
                         child: Padding(
                           padding: const EdgeInsets.only(left: 8.0),
                           child: Icon(
@@ -87,40 +95,40 @@ class _SignUpScreenState extends State<SignUpScreen> {
               padding: EdgeInsets.symmetric(horizontal: paddingValue),
               child: Column(
                 children: [
-                TextfieldWidget(
-                text: 'Email',
-                icon: Icons.mail,
-                controller: _emailController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Email is required';
-                  }
-                  if (!_isValidEmail(value)) {
-                    return 'Enter a valid email address';
-                  }
-                  return null;
-                },
-              ),
+                  TextfieldWidget(
+                    text: 'Email',
+                    icon: Icons.mail,
+                    controller: _emailController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Email is required';
+                      }
+                      if (!isValidEmail(value)) {
+                        return 'Enter a valid email address';
+                      }
+                      return null;
+                    },
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
-              TextfieldWidget(
-                text: 'Password',
-                icon: Icons.lock,
-                obscureText: true,
-                controller: _passwordController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Password is required';
-                  }
-                  if (!_isValidPassword(value)) {
-                    return 'Password must contain at least 8 characters\n '
-                        '1 uppercase letter\n '
-                        '1 special character';
-                  }
-                  return null;
-                },
-              ),
+                  TextfieldWidget(
+                    text: 'Password',
+                    icon: Icons.lock,
+                    obscureText: true,
+                    controller: _passwordController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Password is required';
+                      }
+                      if (!isValidPassword(value)) {
+                        return 'Password must contain at least 8 characters\n '
+                            '1 uppercase letter\n '
+                            '1 special character';
+                      }
+                      return null;
+                    },
+                  ),
                   const SizedBox(
                     height: 20,
                   ),
@@ -133,11 +141,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Re-enter your password';
                       }
-                      if (!_isValidPassword(value)) {
+                      if (!isValidPassword(value)) {
                         return 'Password must contain at least 8 characters\n '
                             '1 uppercase letter\n '
                             '1 special character';
                       }
+
                       return null;
                     },
                   ),
@@ -155,8 +164,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 elevation: 0,
                 text: 'Signup',
                 textStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
-                  color: Theme.of(context).colorScheme.onBackground,
-                ),
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
                 borderRadius: 25,
                 sliderButtonIcon: const Icon(
                   Icons.arrow_forward_ios,
@@ -165,9 +174,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 innerColor: const Color(0xFF173430),
                 outerColor: const Color(0xFF173430),
-                onSubmit: () {
-                  Navigator.pushReplacement(context,
-                      MaterialPageRoute(builder: (context) => GoalScreen()));
+                onSubmit: () async {
+                  if (_confirmpasswordController.text != _passwordController.text) {
+                    ShowToastMsg("Password not matched with confirmation");
+                  } else {
+                    try {
+                      UserCredential userCredential =
+                          await AuthServices().signUpAuth(
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                      );
+                      if (userCredential != null) {
+                        ShowToastMsg("User Scussefully signed up");
+
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const LoginScreen()));
+                      }
+                    } catch (e) {
+                      ShowToastMsg("Something went wrong");
+                    }
+                  }
                 },
                 submittedIcon: const Icon(
                   Icons.check,
@@ -180,15 +208,4 @@ class _SignUpScreenState extends State<SignUpScreen> {
       ),
     );
   }
-}
-
-bool _isValidEmail(String email) {
-  final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-  return emailRegExp.hasMatch(email);
-}
-
-bool _isValidPassword(String password) {
-  final passwordRegExp =
-  RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-  return passwordRegExp.hasMatch(password);
 }

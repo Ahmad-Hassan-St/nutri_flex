@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/auth_screens/forgetpasswordscreen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
+import 'package:lifefit/services/auth_services.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../../components/TextFieldWidget.dart';
+import '../../services/local_auth.dart';
+import '../../utils/validations.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
@@ -23,6 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
     _emailController = TextEditingController();
     _passwordController = TextEditingController();
   }
+
+  bool isBiometricAuth = false;
 
   @override
   Widget build(BuildContext context) {
@@ -93,7 +101,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Email is required';
                       }
-                      if (!_isValidEmail(value)) {
+                      if (!isValidEmail(value)) {
                         return 'Enter a valid email address';
                       }
                       return null;
@@ -114,7 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             if (value == null || value.isEmpty) {
                               return 'Password is required';
                             }
-                            if (!_isValidPassword(value)) {
+                            if (!isValidPassword(value)) {
                               return 'Password must contain at least 8 characters\n '
                                   '1 uppercase letter\n '
                                   '1 special character';
@@ -133,17 +141,27 @@ class _LoginScreenState extends State<LoginScreen> {
                           child: FloatingActionButton(
                             heroTag: null,
                             elevation: 0,
-                            backgroundColor: const Color(0xFF19b888),
+                            backgroundColor:
+                                isBiometricAuth ? kGreenColor : kRedColor,
                             shape: RoundedRectangleBorder(
                               borderRadius:
                                   BorderRadius.circular(screenHeight * 0.05),
                             ),
-                            onPressed: () {
-                              Navigator.of(context).pushReplacement(
-                                MaterialPageRoute(
-                                  builder: (context) => SplashScreen(),
-                                ),
-                              );
+                            onPressed: () async {
+                              final isAuthenticated =
+                                  await LocalAuthApi.authenticate();
+                              print(isAuthenticated);
+                              if (isAuthenticated) {
+                                setState(() {
+                                  isBiometricAuth = true;
+                                });
+                              }
+                              else{
+                                setState(() {
+                                  isBiometricAuth = false;
+
+                                });
+                              }
                             },
                             child: const Icon(
                               Icons.fingerprint_rounded,
@@ -159,7 +177,25 @@ class _LoginScreenState extends State<LoginScreen> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: screenHeight * 0.15),
+              padding: const EdgeInsets.only(top: 18.0),
+              child: isBiometricAuth
+                  ? Text(
+                      "Biometric Authentication Successfully",
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium!
+                          .copyWith(color: kGreenColor),
+                    )
+                  : Text(
+                      "Authenticate Biometric First",
+                      style:
+                          Theme.of(context).textTheme.displayMedium!.copyWith(
+                                color: kRedColor,
+                              ),
+                    ),
+            ),
+            Padding(
+              padding: EdgeInsets.only(top: screenHeight * 0.06),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -215,13 +251,30 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 innerColor: const Color(0xFF173430),
                 outerColor: const Color(0xFF173430),
-                onSubmit: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => UserNameScreen(),
-                    ),
-                  );
+                onSubmit: () async {
+                  if(!isBiometricAuth){
+                    ShowToastMsg("First authenticate Biometric");
+                  }
+                  else {
+                    try {
+                      UserCredential user = await AuthServices().signInAuth(
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim(),
+                      );
+                      if (user != null) {
+                        ShowToastMsg(
+                            "${user.user?.email}. is login successful");
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const UserNameScreen(),
+                          ),
+                        );
+                      }
+                    } catch (e) {
+                      print(e);
+                    }
+                  }
                 },
                 submittedIcon: const Icon(
                   Icons.check,
@@ -233,16 +286,5 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
-  }
-
-  bool _isValidEmail(String email) {
-    final emailRegExp = RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$');
-    return emailRegExp.hasMatch(email);
-  }
-
-  bool _isValidPassword(String password) {
-    final passwordRegExp =
-        RegExp(r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$');
-    return passwordRegExp.hasMatch(password);
   }
 }

@@ -1,7 +1,7 @@
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:lifefit/constants/colors.dart';
 
-void showToastMsg(String message) {
+void ShowToastMsg(String message) {
   Fluttertoast.showToast(
     msg: message,
     toastLength: Toast.LENGTH_SHORT,

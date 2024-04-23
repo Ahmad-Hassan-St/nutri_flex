@@ -1,12 +1,15 @@
 import 'dart:ui';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/onBoardcontainer.dart';
 import '../../components/topbutton.dart';
+import '../../services/auth_services.dart';
 import '../account_setup/account_setup_screen.dart';
 import '../auth_screens/Loginscreen.dart';
 
@@ -137,14 +140,24 @@ void showCustomDialog(BuildContext context) {
                             style: Theme.of(context).textTheme.displayMedium,
                           ),
                           trailing: SvgPicture.asset("assets/icons/google.svg"),
-                          onTap: () {
-                            showToastMsg("Registration with google");
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => const UserNameScreen(),
-                              ),
-                            );
+                          onTap: () async {
+                            UserCredential userCredential =
+                                await AuthServices().SignInWithGoogle();
+                            User? user = userCredential.user;
+                            if (user != null) {
+                              SharedPreferences sp =
+                                  await SharedPreferences.getInstance();
+                              sp.setString("email", user.email.toString());
+
+                              ShowToastMsg("Registration with google");
+                              Navigator.pushReplacement(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => const UserNameScreen(),
+                                ),
+                              );
+                            }
+
                           },
                         ),
                       ],

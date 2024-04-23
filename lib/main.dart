@@ -4,6 +4,7 @@ import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
+import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/goal_screen.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';

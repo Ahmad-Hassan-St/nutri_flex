@@ -90,6 +90,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                   onpressed: () {
                     UserSetup user=UserSetup();
                     user.userName= _controllerName.text;
+                    print(user.userName);
                     Navigator.push(
                       context,
                       MaterialPageRoute(

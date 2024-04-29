@@ -8,6 +8,7 @@ import 'package:lifefit/screens/account_setup/weight_screen.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
+import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home:   UserNameScreen(),
+        home:const ProfileScreen(),
       ),
     );
   }

@@ -24,7 +24,8 @@ class DmlServices {
         "gender": userSetup.gender,
         "targetWeight": userSetup.targetWeight,
         "dateOfBirth": userSetup.dateOfBirth,
-        "age": userSetup.age
+        "age": userSetup.age??" years",
+        "BMI": userSetup.BMI,
 
       });
       return;

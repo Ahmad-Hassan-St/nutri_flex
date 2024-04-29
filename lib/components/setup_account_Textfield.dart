@@ -10,22 +10,25 @@ class SetupAccount_TextfieldWidget extends StatelessWidget {
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
   final EdgeInsets contentPadding;
-  final TextEditingController ? controller;
+  final TextEditingController? controller;
+  final int? age;
+
+  bool readOnly;
   // Added parameter for contentPadding
 
   SetupAccount_TextfieldWidget({
     super.key,
     this.text,
     this.icon,
+    this.age,
     this.HFontsize=13,
     this.Fontsize,
     this.fontWeight,
+    this.controller,
     this.textAlign,
     this.containerColor,
-
-    this.controller,
-
-    EdgeInsets? contentPadding, // Nullable parameter for contentPadding
+    this.readOnly=false,
+    EdgeInsets? contentPadding,  // Nullable parameter for contentPadding
   }) : contentPadding = contentPadding ?? const EdgeInsets.symmetric(horizontal: 26.0, vertical: 23.0);
 
   @override
@@ -38,12 +41,13 @@ class SetupAccount_TextfieldWidget extends StatelessWidget {
       ),
       child: TextField(
         controller: controller,
-          textAlign: textAlign ?? TextAlign.start,
+        readOnly: readOnly,
+        textAlign: textAlign ?? TextAlign.start,
         style:  Theme.of(context).textTheme.displayLarge,
         cursorColor: const Color(0xFF19b888),
         decoration: InputDecoration(
-          hintText: (text),
-          hintStyle: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.grey),
+          hintText: age != null ? " $age" : text,
+          hintStyle: Theme.of(context).textTheme.displayLarge!.copyWith(color: Colors.black),
           suffixIcon: Padding(
             padding: const EdgeInsets.only(right: 30),
             child: Icon(

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
+import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
+import 'package:lifefit/services/dml_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
@@ -211,7 +214,23 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
               progress: 0.875,
-              onpressed: () {
+              onpressed: () async {
+                SharedPreferences sp=await SharedPreferences.getInstance();
+                widget.userSetup.email=sp.getString("email").toString();
+
+
+                double heightMeter=widget.userSetup.height/100;
+                double BMI= widget.userSetup.weight/(heightMeter * heightMeter);
+
+                print(BMI.toStringAsFixed(2));
+                widget.userSetup.BMI=BMI.toStringAsFixed(2);
+                widget.userSetup.targetWeight=_weight;
+                widget.userSetup.age??"23";
+                DmlServices.insertUserData(userSetup: widget.userSetup);
+
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString())), (route) => false);
+
+
 
               },
               icon: Icons.arrow_forward_ios_outlined,

@@ -2,25 +2,28 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
-import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
-import 'package:lifefit/screens/goal_screen.dart';
 
 import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
+import '../../models/user_setup_model.dart';
 
 class HeightScreen extends StatefulWidget {
-  HeightScreen({super.key});
+  UserSetup userSetup;
+
+  HeightScreen({
+    super.key,
+    required this.userSetup,
+  });
 
   @override
   State<HeightScreen> createState() => _HeightScreenState();
 }
 
 class _HeightScreenState extends State<HeightScreen> {
-
-  int height =180;
+  int height = 180;
 
   @override
   Widget build(BuildContext context) {
@@ -56,10 +59,7 @@ class _HeightScreenState extends State<HeightScreen> {
                               BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => DateBirthScreen()));
+                          Navigator.pop(context);
                         },
                         child: Padding(
                           padding:
@@ -160,7 +160,6 @@ class _HeightScreenState extends State<HeightScreen> {
             SizedBox(height: screenSize.height * 0.015),
             SvgPicture.asset("assets/shapes/polygon.svg"),
             SizedBox(height: screenSize.height * 0.01),
-
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicPadding,
@@ -188,16 +187,15 @@ class _HeightScreenState extends State<HeightScreen> {
                     style: Theme.of(context).textTheme.labelLarge,
                   ),
                   SizedBox(width: screenSize.width * 0.028),
-
                   NumberContainerWidget(
                     screenSize: screenSize,
                     text: ++height,
                     dynamicPadding: dynamicPadding,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      fontSize: 33,
-                      fontWeight: FontWeight.w400,
-                      color: kGreyColor,
-                    ),
+                          fontSize: 33,
+                          fontWeight: FontWeight.w400,
+                          color: kGreyColor,
+                        ),
                   ),
                 ],
               ),
@@ -205,7 +203,6 @@ class _HeightScreenState extends State<HeightScreen> {
             RadioFrequencySlider(
               intialValue: 180,
               onValueChanged: (value) {
-
                 setState(() {
                   height = value.toInt();
                 });
@@ -216,10 +213,11 @@ class _HeightScreenState extends State<HeightScreen> {
             FloatingActionButtonProgressWidget(
               progress: 0.625,
               onpressed: () {
-                Navigator.pushReplacement(
+                widget.userSetup.height=height;
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => WeightScreen(),
+                    builder: (context) =>  WeightScreen(userSetup: widget.userSetup,),
                   ),
                 );
               },
@@ -231,5 +229,3 @@ class _HeightScreenState extends State<HeightScreen> {
     );
   }
 }
-
-

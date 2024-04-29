@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/components/TextFieldWidget.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/components/setup_account_Textfield.dart';
-import 'package:lifefit/screens/goal_screen.dart';
+import 'package:lifefit/models/user_setup_model.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 
@@ -14,6 +14,8 @@ class UserNameScreen extends StatefulWidget {
 }
 
 class _UserNameScreenState extends State<UserNameScreen> {
+  TextEditingController _controllerName = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +77,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                 height: 130,
               ),
               SetupAccount_TextfieldWidget(
+                controller: _controllerName,
                 contentPadding:
                     const EdgeInsets.symmetric(vertical: 45, horizontal: 50),
                 text: "Name",
@@ -85,8 +88,16 @@ class _UserNameScreenState extends State<UserNameScreen> {
               FloatingActionButtonProgressWidget(
                   progress: 0.125,
                   onpressed: () {
-                    Navigator.pushReplacement(context,
-                        MaterialPageRoute(builder: (context) => GoalScreen()));
+                    UserSetup user=UserSetup();
+                    user.userName= _controllerName.text;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GoalScreen(userSetup:user,
+
+                        ),
+                      ),
+                    );
                   },
                   icon: Icons.arrow_forward_ios)
             ],

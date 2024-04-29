@@ -6,10 +6,14 @@ import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 
 import '../../components/setup_account_Textfield.dart';
-import '../goal_screen.dart'; // Import the intl package
+import '../../models/user_setup_model.dart';
 
 class DateBirthScreen extends StatefulWidget {
-  const DateBirthScreen({Key? key});
+  UserSetup userSetup;
+
+   DateBirthScreen({Key? key,
+required this.userSetup
+  });
 
   @override
   State<DateBirthScreen> createState() => _DateBirthScreenState();
@@ -49,7 +53,9 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(screenSize.height * 0.06),
                           ),
-                          onPressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>GenderScreen()));},
+                          onPressed: () {
+                            Navigator.pop(context);
+                            },
                           child: Padding(
                             padding: EdgeInsets.only(left: screenSize.width * 0.025),
                             child: Icon(
@@ -158,7 +164,11 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               FloatingActionButtonProgressWidget(
                 progress: 0.5,
                 onpressed: () {
-                  Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=> HeightScreen()));
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=> HeightScreen(
+
+                  userSetup: widget.userSetup,
+                  ),),
+                  );
                 },
                 icon: Icons.arrow_forward_ios,
               ),
@@ -179,6 +189,8 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
     if (picked != null) {
       setState(() {
         _dateController.text = DateFormat('MMMM/dd/yyyy').format(picked);
+        widget.userSetup.dateOfBirth = picked; // Assign picked directly
+
       });
     }
   }

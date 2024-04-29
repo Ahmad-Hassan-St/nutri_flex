@@ -4,16 +4,33 @@ import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 
-class GenderScreen extends StatelessWidget {
+import '../../models/user_setup_model.dart';
+
+class GenderScreen extends StatefulWidget {
+  UserSetup userSetup;
+
+  GenderScreen({super.key,
+    required this.userSetup
+
+  });
+
+  @override
+  State<GenderScreen> createState() => _GenderScreenState();
+}
+
+class _GenderScreenState extends State<GenderScreen> {
   // Define a list of objects where each object contains text and image information
   final List<Map<String, dynamic>> goals = [
     {"text": "Male", "imagePath": "assets/icons/male.svg"},
     {"text": "Female", "imagePath": "assets/icons/female.svg"},
   ];
 
+  String gender = "" ;
+
   @override
   Widget build(BuildContext context) {
     // Getting screen size
+    print(gender);
     final Size screenSize = MediaQuery.of(context).size;
 
     // Calculate dynamic padding
@@ -41,11 +58,15 @@ class GenderScreen extends StatelessWidget {
                         elevation: 0,
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(screenSize.height * 0.06),
+                          borderRadius:
+                              BorderRadius.circular(screenSize.height * 0.06),
                         ),
-                        onPressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>GoalScreen()));},
+                        onPressed: () {
+                          Navigator.pop(context);
+                        },
                         child: Padding(
-                          padding: EdgeInsets.only(left: screenSize.width * 0.025),
+                          padding:
+                              EdgeInsets.only(left: screenSize.width * 0.025),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).colorScheme.background,
@@ -107,8 +128,8 @@ class GenderScreen extends StatelessWidget {
               "We will use this data to give you\n a better diet type for you",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                color: Colors.grey,
-              ),
+                    color: Colors.grey,
+                  ),
             ),
             SizedBox(height: screenSize.height * 0.088),
             Row(
@@ -120,13 +141,22 @@ class GenderScreen extends StatelessWidget {
                       horizontal: dynamicPadding,
                     ),
                     child: InkWell(
-                      onTap: () {},
+                      onTap: () {
+                        setState(() {
+                          gender=goals[index]["text"];
+
+                        });
+
+                      },
                       child: Container(
                         height: screenSize.height * 0.26,
                         width: screenSize.width * 0.43,
                         decoration: BoxDecoration(
-                          color: index == 1 ? const Color(0xffebf6d6) : Colors.grey[200],
-                          borderRadius: BorderRadius.circular(screenSize.height * 0.04),
+                          color: index == 1
+                              ? const Color(0xffebf6d6)
+                              : Colors.grey[200],
+                          borderRadius:
+                              BorderRadius.circular(screenSize.height * 0.04),
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(
@@ -138,9 +168,12 @@ class GenderScreen extends StatelessWidget {
                               SvgPicture.asset(goals[index]["imagePath"]),
                               Text(
                                 goals[index]["text"],
-                                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                                  fontSize: screenSize.height * 0.02,
-                                ),
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .displayMedium!
+                                    .copyWith(
+                                      fontSize: screenSize.height * 0.02,
+                                    ),
                               ),
                             ],
                           ),
@@ -153,7 +186,18 @@ class GenderScreen extends StatelessWidget {
             SizedBox(height: screenSize.height * 0.18),
             FloatingActionButtonProgressWidget(
                 progress: 0.375,
-                onpressed: () {Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>const DateBirthScreen()));},
+                onpressed: () {
+                  widget.userSetup.gender=gender;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>  DateBirthScreen(
+                        userSetup: widget.userSetup,
+
+                      ),
+                    ),
+                  );
+                },
                 icon: Icons.arrow_forward_ios_outlined)
           ],
         ),

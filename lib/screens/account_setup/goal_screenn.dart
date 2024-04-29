@@ -4,7 +4,14 @@ import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/account_setup/gender_screen.dart';
 
+import '../../models/user_setup_model.dart';
+
 class GoalScreen extends StatefulWidget {
+  UserSetup userSetup;
+  GoalScreen({super.key,
+  required this.userSetup
+  });
+
   @override
   State<GoalScreen> createState() => _GoalScreenState();
 }
@@ -17,10 +24,13 @@ class _GoalScreenState extends State<GoalScreen> {
     {"text": "Stay healthy", "imagePath": "assets/icons/victory.svg"},
   ];
 
+  String goal = "";
+
   @override
   Widget build(BuildContext context) {
     // Getting screen size
     final Size screenSize = MediaQuery.of(context).size;
+    print(goal);
 
     return Scaffold(
       body: Padding(
@@ -48,10 +58,7 @@ class _GoalScreenState extends State<GoalScreen> {
                               BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UserNameScreen()));
+                          Navigator.pop(context);
                         },
                         child: Padding(
                           padding:
@@ -80,7 +87,6 @@ class _GoalScreenState extends State<GoalScreen> {
                   ),
                 ),
                 Text(
-
                   "/8",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
@@ -141,9 +147,12 @@ class _GoalScreenState extends State<GoalScreen> {
                       ),
                       child: InkWell(
                         borderRadius:
-                        BorderRadius.circular(screenSize.height * 0.02),
-
-                        onTap: () {},
+                            BorderRadius.circular(screenSize.height * 0.02),
+                        onTap: () {
+                          setState(() {
+                            goal = goals[index]["text"];
+                          });
+                        },
                         child: Ink(
                           height: screenSize.height * 0.135,
                           decoration: BoxDecoration(
@@ -183,10 +192,15 @@ class _GoalScreenState extends State<GoalScreen> {
               child: FloatingActionButtonProgressWidget(
                   progress: 0.25,
                   onpressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => GenderScreen()));
+                    widget.userSetup.goal=goal;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => GenderScreen(
+                         userSetup: widget.userSetup,
+                        ),
+                      ),
+                    );
                   },
                   icon: Icons.arrow_forward_ios_outlined),
             )

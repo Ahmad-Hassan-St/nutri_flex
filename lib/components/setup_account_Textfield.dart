@@ -9,7 +9,9 @@ class SetupAccount_TextfieldWidget extends StatelessWidget {
   late double? HFontsize;
   final FontWeight? fontWeight;
   final TextAlign? textAlign;
-  final EdgeInsets contentPadding; // Added parameter for contentPadding
+  final EdgeInsets contentPadding;
+  final TextEditingController ? controller;
+  // Added parameter for contentPadding
 
   SetupAccount_TextfieldWidget({
     super.key,
@@ -20,6 +22,9 @@ class SetupAccount_TextfieldWidget extends StatelessWidget {
     this.fontWeight,
     this.textAlign,
     this.containerColor,
+
+    this.controller,
+
     EdgeInsets? contentPadding, // Nullable parameter for contentPadding
   }) : contentPadding = contentPadding ?? const EdgeInsets.symmetric(horizontal: 26.0, vertical: 23.0);
 
@@ -32,6 +37,7 @@ class SetupAccount_TextfieldWidget extends StatelessWidget {
         color: containerColor ?? Colors.grey[200], // Set your desired grey color
       ),
       child: TextField(
+        controller: controller,
           textAlign: textAlign ?? TextAlign.start,
         style:  Theme.of(context).textTheme.displayLarge,
         cursorColor: const Color(0xFF19b888),

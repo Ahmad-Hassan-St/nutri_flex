@@ -6,11 +6,16 @@ import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
+import '../../models/user_setup_model.dart';
 
 class TargetWeightScreen extends StatefulWidget {
   int weight;
+  UserSetup userSetup;
 
-  TargetWeightScreen({super.key, required this.weight});
+
+  TargetWeightScreen({super.key, required this.weight,
+  required this.userSetup
+  });
 
   @override
   State<TargetWeightScreen> createState() => _TargetWeightScreenState();
@@ -58,10 +63,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                               BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
-                          Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => WeightScreen()));
+                          Navigator.pop(context);
                         },
                         child: Padding(
                           padding:
@@ -210,12 +212,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
             FloatingActionButtonProgressWidget(
               progress: 0.875,
               onpressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => WeightScreen(),
-                  ),
-                );
+
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

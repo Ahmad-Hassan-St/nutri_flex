@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
+import 'package:lifefit/screens/home_feed_screen.dart';
+import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import 'onboarding_screens/onboardscreen_1.dart';
@@ -29,7 +31,7 @@ class _SplashScreenState extends State<SplashScreen> {
     print(token);
     print(isShowOnboard);
     if (token != null && token.isNotEmpty) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) =>  UserNameScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) =>   HomeFeedScreen()));
     }
     else if (isShowOnboard == true) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const LoginScreen()));

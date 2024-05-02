@@ -34,45 +34,6 @@ class DmlServices {
     }
   }
 
-  static insertBookedTrainData({
-    required String destination,
-    required String source,
-    required String trainName,
-    required String fare,
-    required String arrival,
-    required String email,
-
-    required String departure,
-    required String numberOfSeats,
-    required String totalPrice
-    ,
-    required String numberOfAdults,
-   required String numberOfChildren,
-   required String numberOfInfants,
-
-  }) async {
-    try {
-      DocumentReference documentReference = _fireStore.collection(
-          'bookedTrains').doc();
-      await documentReference.set({
-        'Train Name': trainName,
-        "Start Location": source,
-        "Destination": destination,
-        "Fare": fare,
-        "Departure": departure,
-        "Arrival": arrival,
-        "Email": email,
-        "Number Of Seats": numberOfSeats,
-        "Total Price": totalPrice,
-        "Adults": numberOfAdults,
-        "Children": numberOfChildren,
-        "Infants": numberOfInfants,
-      });
-      return;
-    } on FirebaseException catch (e) {
-      print("Error ${e.toString()}");
-    }
-  }
 
 
   Future<void> updateUserImageByEmail(
@@ -98,7 +59,7 @@ class DmlServices {
 
 
   Future<List<Map<String, dynamic>>> fetchDataByEmail(String? email) async {
-    CollectionReference ridesCollection = _fireStore.collection('users');
+    CollectionReference ridesCollection = _fireStore.collection('userDetails');
     try {
       QuerySnapshot querySnapshot = await ridesCollection
           .where("email", isEqualTo: email)

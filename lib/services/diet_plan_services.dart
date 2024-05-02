@@ -21,7 +21,7 @@ class DietPlanService {
     "weight loss diet plan 3.json",
   ];
 
-  static Future suggestDietPlan(String goal) async {
+  static Future<Map<String,dynamic>> suggestDietPlan(String goal) async {
 
     int index = Random().nextInt(3);
     print(index);

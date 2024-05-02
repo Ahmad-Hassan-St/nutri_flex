@@ -24,11 +24,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return  SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home: SplashScreen(),
+        home:SplashScreen()
       ),
     );
   }

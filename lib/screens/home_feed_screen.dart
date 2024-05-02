@@ -1,42 +1,45 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 
 class HomeFeedScreen extends StatefulWidget {
-  HomeFeedScreen({super.key});
+  const HomeFeedScreen({super.key});
 
   @override
   State<HomeFeedScreen> createState() => _HomeFeedScreenState();
 }
 
 class _HomeFeedScreenState extends State<HomeFeedScreen> {
-  int selectedIndex = 0;
+  int selectedIndex = 3;
 
   final List<Widget> screenList = <Widget>[
     const Text("Home1", style: TextStyle(fontSize: 50, color: Colors.red)),
     const Text("Reports", style: TextStyle(fontSize: 50, color: Colors.red)),
     const Text("Stats", style: TextStyle(fontSize: 50, color: Colors.red)),
-    const Text("Profile", style: TextStyle(fontSize: 50, color: Colors.red)),
+    const ProfileScreen(),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child:screenList[selectedIndex]
-      ),
+      body: Center(child: screenList[selectedIndex]),
       bottomNavigationBar: Container(
         width: 339,
         height: 70,
         decoration: BoxDecoration(
-            color: Theme.of(context).colorScheme.secondary,
-            boxShadow: [
-              BoxShadow(
-                blurRadius: 20,
-                color: Colors.black.withOpacity(.1),
-              ),
-            ],
-            borderRadius: BorderRadius.circular(25)),
+          color: Theme.of(context).colorScheme.secondary,
+          boxShadow: [
+            BoxShadow(
+              blurRadius: 20,
+              color: Colors.black.withOpacity(.1),
+            ),
+          ],
+          borderRadius: const BorderRadius.only(
+            topLeft: Radius.circular(25),
+            topRight: Radius.circular(25),
+          ),
+        ),
         child: CustomBottomNavigationBar(
           items: [
             BottomNavItem(icon: 'assets/icons/home.svg', text: 'Home'),
@@ -45,12 +48,9 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             BottomNavItem(icon: 'assets/icons/profile.svg', text: 'Setting'),
           ],
           selectedIndex: selectedIndex,
-
           onTabSelected: (index) {
             selectedIndex = index;
-setState(() {
-
-});
+            setState(() {});
           },
         ),
       ),

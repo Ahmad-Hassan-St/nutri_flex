@@ -6,6 +6,7 @@ import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/height_screen.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
+import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
@@ -21,14 +22,13 @@ void main() async{
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return  SafeArea(
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: appTheme,
-        home:const ProfileScreen(),
+        home: SplashScreen(),
       ),
     );
   }

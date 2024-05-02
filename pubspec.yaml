@@ -74,6 +74,7 @@ flutter:
    - assets/images/
    - assets/icons/
    - assets/shapes/
+   - assets/diet_plan/
 
   #   - images/a_dot_ham.jpeg
 

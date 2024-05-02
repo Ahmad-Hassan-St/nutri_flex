@@ -1,0 +1,46 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {"items": ["Cheese paratha", "Fried eggs", "Lassi"], "calories": 800},
+      "lunch": {"items": ["Vegetable Biryani", "Chicken curry", "Raita", "Salad"], "calories": 1000},
+      "dinner": {"items": ["Chapati", "Beef Kofta", "Daal Chawal", "Mixed vegetable salad"], "calories": 900},
+      "snack": {"items": ["Pakoras", "Mango Shake"], "calories": 800}
+    },
+    "day_2": {
+      "breakfast": {"items": ["Alu Bhujia with paratha", "Fried eggs", "Lassi"], "calories": 900},
+      "lunch": {"items": ["Chicken Pulao", "Mutton curry", "Raita", "Salad"], "calories": 1100},
+      "dinner": {"items": ["Naan", "Chicken Karahi", "Daal Makhni", "Mixed fruit salad"], "calories": 1000},
+      "snack": {"items": ["Samosas", "Falooda"], "calories": 600}
+    },
+    "day_3": {
+      "breakfast": {"items": ["Vegetable omelette with toast", "Fried potatoes", "Lassi"], "calories": 800},
+      "lunch": {"items": ["Beef Biryani", "Beef curry", "Raita", "Salad"], "calories": 1200},
+      "dinner": {"items": ["Roti", "Mutton Korma", "Chana Masala", "Mixed vegetable salad"], "calories": 1000},
+      "snack": {"items": ["Fruit Chaat", "Mango Shake"], "calories": 500}
+    },
+    "day_4": {
+      "breakfast": {"items": ["French Toast with honey", "Fried eggs", "Lassi"], "calories": 800},
+      "lunch": {"items": ["Chicken Handi with naan", "Mixed vegetable rice", "Raita", "Salad"], "calories": 1100},
+      "dinner": {"items": ["Chapati", "Beef Nihari", "Saag", "Mixed fruit salad"], "calories": 1000},
+      "snack": {"items": ["Kebabs", "Lemonade"], "calories": 600}
+    },
+    "day_5": {
+      "breakfast": {"items": ["Scrambled eggs with toast", "Fried potatoes", "Lassi"], "calories": 800},
+      "lunch": {"items": ["Vegetable Biryani", "Chicken curry", "Raita", "Salad"], "calories": 1000},
+      "dinner": {"items": ["Naan", "Beef Karahi", "Daal", "Mixed fruit salad"], "calories": 1000},
+      "snack": {"items": ["Pakoras", "Falooda"], "calories": 700}
+    },
+    "day_6": {
+      "breakfast": {"items": ["Aloo paratha with yogurt", "Fried eggs", "Lassi"], "calories": 900},
+      "lunch": {"items": ["Mutton Pulao", "Mutton curry", "Raita", "Salad"], "calories": 1100},
+      "dinner": {"items": ["Roti", "Chicken Korma", "Daal Mash", "Mixed fruit salad"], "calories": 1000},
+      "snack": {"items": ["Pakoras", "Chai"], "calories": 900}
+    },
+    "day_7": {
+      "breakfast": {"items": ["Cheese paratha", "Fried eggs", "Lassi"], "calories": 800},
+      "lunch": {"items": ["Chicken Biryani", "Chicken curry", "Raita", "Salad"], "calories": 1000},
+      "dinner": {"items": ["Chapati", "Beef Karahi", "Daal Makhni", "Mixed vegetable salad"], "calories": 900},
+      "snack": {"items": ["Samosas", "Mango Shake"], "calories": 800}
+    }
+  }
+}

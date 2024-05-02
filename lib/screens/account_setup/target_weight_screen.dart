@@ -228,7 +228,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                 widget.userSetup.age??"23";
                 DmlServices.insertUserData(userSetup: widget.userSetup);
 
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString())), (route) => false);
+                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString(), userSetup: widget.userSetup,)), (route) => false);
 
 
 

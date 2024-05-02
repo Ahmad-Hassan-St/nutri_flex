@@ -1,0 +1,46 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {"items": ["Whole grain toast with avocado", "Poached egg", "Orange slices"], "calories": 400},
+      "lunch": {"items": ["Quinoa salad with chickpeas, tomatoes, cucumbers, and feta cheese"], "calories": 500},
+      "dinner": {"items": ["Grilled chicken breast", "Brown rice", "Steamed broccoli"], "calories": 600},
+      "snack": {"items": ["Greek yogurt with honey and almonds"], "calories": 300}
+    },
+    "day_2": {
+      "breakfast": {"items": ["Oatmeal with banana slices and walnuts", "Skim milk"], "calories": 350},
+      "lunch": {"items": ["Turkey and avocado wrap with spinach", "Carrot sticks with hummus"], "calories": 550},
+      "dinner": {"items": ["Salmon fillet with lemon-dill sauce", "Quinoa pilaf", "Grilled asparagus"], "calories": 700},
+      "snack": {"items": ["Cottage cheese with pineapple chunks"], "calories": 300}
+    },
+    "day_3": {
+      "breakfast": {"items": ["Whole grain cereal with strawberries", "Almond milk", "Hard-boiled egg"], "calories": 400},
+      "lunch": {"items": ["Mediterranean lentil salad with feta cheese and olives"], "calories": 500},
+      "dinner": {"items": ["Grilled shrimp skewers", "Quinoa tabbouleh", "Mixed greens salad"], "calories": 600},
+      "snack": {"items": ["Apple slices with peanut butter"], "calories": 300}
+    },
+    "day_4": {
+      "breakfast": {"items": ["Smoothie with spinach, banana, Greek yogurt, and chia seeds"], "calories": 350},
+      "lunch": {"items": ["Chicken Caesar salad with whole grain croutons"], "calories": 550},
+      "dinner": {"items": ["Turkey meatballs in marinara sauce", "Whole wheat spaghetti", "Roasted zucchini"], "calories": 700},
+      "snack": {"items": ["Mixed nuts"], "calories": 300}
+    },
+    "day_5": {
+      "breakfast": {"items": ["Scrambled eggs with tomatoes and spinach", "Whole wheat toast", "Orange juice"], "calories": 450},
+      "lunch": {"items": ["Quinoa-stuffed bell peppers", "Green salad with balsamic vinaigrette"], "calories": 550},
+      "dinner": {"items": ["Grilled tofu with teriyaki sauce", "Brown rice", "Stir-fried vegetables"], "calories": 700},
+      "snack": {"items": ["Yogurt with granola and mixed berries"], "calories": 300}
+    },
+    "day_6": {
+      "breakfast": {"items": ["Whole grain pancakes with maple syrup", "Turkey bacon", "Fresh fruit salad"], "calories": 450},
+      "lunch": {"items": ["Mango and black bean quinoa salad"], "calories": 550},
+      "dinner": {"items": ["Grilled chicken thighs", "Quinoa pilaf", "Roasted Brussels sprouts"], "calories": 700},
+      "snack": {"items": ["Rice cakes with almond butter"], "calories": 300}
+    },
+    "day_7": {
+      "breakfast": {"items": ["Greek yogurt parfait with granola and mixed berries"], "calories": 400},
+      "lunch": {"items": ["Tuna salad sandwich with whole grain bread", "Vegetable sticks with hummus"], "calories": 550},
+      "dinner": {"items": ["Baked cod with lemon and herbs", "Quinoa salad with avocado and cherry tomatoes"], "calories": 700},
+      "snack": {"items": ["Trail mix with dried fruits and nuts"], "calories": 300}
+    }
+  }
+}

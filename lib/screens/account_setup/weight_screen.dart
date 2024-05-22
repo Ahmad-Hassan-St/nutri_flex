@@ -85,7 +85,7 @@ class _WeightScreenState extends State<WeightScreen> {
                   ),
                 ),
                 Text(
-                  "/8",
+                  "/9",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
                     color: Colors.grey,
@@ -183,7 +183,7 @@ class _WeightScreenState extends State<WeightScreen> {
             ),
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
-              progress: 0.75,
+              progress: 0.66,
               onpressed: () {
                 widget.userSetup.weight=weight;
                 Navigator.pushReplacement(

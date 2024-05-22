@@ -91,7 +91,7 @@ class _GenderScreenState extends State<GenderScreen> {
                   ),
                 ),
                 Text(
-                  "/8",
+                  "/9",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
                     color: Colors.grey,
@@ -141,6 +141,8 @@ class _GenderScreenState extends State<GenderScreen> {
                       horizontal: dynamicPadding,
                     ),
                     child: InkWell(
+                      borderRadius:
+                      BorderRadius.circular(screenSize.height * 0.04),
                       onTap: () {
                         setState(() {
                           gender=goals[index]["text"];
@@ -148,7 +150,7 @@ class _GenderScreenState extends State<GenderScreen> {
                         });
 
                       },
-                      child: Container(
+                      child: Ink(
                         height: screenSize.height * 0.26,
                         width: screenSize.width * 0.43,
                         decoration: BoxDecoration(
@@ -185,7 +187,7 @@ class _GenderScreenState extends State<GenderScreen> {
             ),
             SizedBox(height: screenSize.height * 0.18),
             FloatingActionButtonProgressWidget(
-                progress: 0.375,
+                progress: 0.33,
                 onpressed: () {
                   widget.userSetup.gender=gender;
                   Navigator.push(

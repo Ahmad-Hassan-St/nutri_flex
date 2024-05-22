@@ -50,7 +50,7 @@ class _BMIScreenState extends State<BMIScreen> {
                   children: [
                     Text('BMI Calculator ${widget.BMI}'),
                     SizedBox(height: 20), // Add some spacing
-                    Text(data["day_1"]['breakfast']['items'][2].toString()),
+                    Text(data.toString()),
                   ],
                 ),
               ),

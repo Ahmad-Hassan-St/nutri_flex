@@ -34,7 +34,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                         fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "/8",
+                    "/9",
                     style: TextStyle(
                         fontFamily: "Zen Kaku Gothic Antique",
                         color: Colors.grey),
@@ -86,7 +86,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
                 height: 200,
               ),
               FloatingActionButtonProgressWidget(
-                  progress: 0.125,
+                  progress: 0.11,
                   onpressed: () {
                     UserSetup user=UserSetup();
                     user.userName= _controllerName.text;

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lifefit/screens/account_setup/biceps_screen.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
 import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
 import 'package:lifefit/services/dml_services.dart';
@@ -15,10 +16,8 @@ class TargetWeightScreen extends StatefulWidget {
   int weight;
   UserSetup userSetup;
 
-
-  TargetWeightScreen({super.key, required this.weight,
-  required this.userSetup
-  });
+  TargetWeightScreen(
+      {super.key, required this.weight, required this.userSetup});
 
   @override
   State<TargetWeightScreen> createState() => _TargetWeightScreenState();
@@ -26,12 +25,14 @@ class TargetWeightScreen extends StatefulWidget {
 
 class _TargetWeightScreenState extends State<TargetWeightScreen> {
   int _weight = 0;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     _weight = widget.weight;
   }
+
   @override
   Widget build(BuildContext context) {
     // Getting screen size
@@ -95,7 +96,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                   ),
                 ),
                 Text(
-                  "/8",
+                  "/9",
                   style: TextStyle(
                     fontFamily: "Zen Kaku Gothic Antique",
                     color: Colors.grey,
@@ -180,8 +181,8 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                     height: 130,
                     width: 120,
                     style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                      color: kGreyColor,
-                    ),
+                          color: kGreyColor,
+                        ),
                   ),
                   Icon(
                     Icons.arrow_forward_ios_rounded,
@@ -202,8 +203,8 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
             ),
             RadioFrequencySlider(
               intialValue: widget.weight.toDouble(),
-              minCurrentVal: widget.weight.toDouble()-20,
-              maxCurrentVal: widget.weight.toDouble()+20,
+              minCurrentVal: widget.weight.toDouble() - 20,
+              maxCurrentVal: widget.weight.toDouble() + 20,
               onValueChanged: (value) {
                 setState(() {
                   _weight = value.toInt();
@@ -213,25 +214,26 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
             ),
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
-              progress: 0.875,
+              progress: 0.77,
               onpressed: () async {
-                SharedPreferences sp=await SharedPreferences.getInstance();
-                widget.userSetup.email=sp.getString("email").toString();
+                // SharedPreferences sp = await SharedPreferences.getInstance();
+                // widget.userSetup.email = sp.getString("email").toString();
+                //
+                // double heightMeter = widget.userSetup.height / 100;
+                // double BMI =
+                //     widget.userSetup.weight / (heightMeter * heightMeter);
+                //
+                // print(BMI.toStringAsFixed(2));
+                // widget.userSetup.BMI = BMI.toStringAsFixed(2);
+                // widget.userSetup.targetWeight = _weight;
+                // widget.userSetup.age ?? "23";
 
+                // DmlServices.insertUserData(userSetup: widget.userSetup);
+                //
+                // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString(), userSetup: widget.userSetup,)), (route) => false);
 
-                double heightMeter=widget.userSetup.height/100;
-                double BMI= widget.userSetup.weight/(heightMeter * heightMeter);
-
-                print(BMI.toStringAsFixed(2));
-                widget.userSetup.BMI=BMI.toStringAsFixed(2);
-                widget.userSetup.targetWeight=_weight;
-                widget.userSetup.age??"23";
-                DmlServices.insertUserData(userSetup: widget.userSetup);
-
-                Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString(), userSetup: widget.userSetup,)), (route) => false);
-
-
-
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (_) => const BicepScreen()));
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

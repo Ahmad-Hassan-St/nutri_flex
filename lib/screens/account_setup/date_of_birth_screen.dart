@@ -84,7 +84,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                     ),
                   ),
                   Text(
-                    "/8",
+                    "/9",
                     style: TextStyle(
                       fontFamily: "Zen Kaku Gothic Antique",
                       color: Colors.grey,
@@ -172,7 +172,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               ),
               SizedBox(height: screenHeight * 0.16),
               FloatingActionButtonProgressWidget(
-                progress: 0.5,
+                progress: 0.44,
                 onpressed: () {
                   Navigator.push(
                     context,

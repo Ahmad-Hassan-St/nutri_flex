@@ -21,25 +21,21 @@ class DietPlanService {
     "weight loss diet plan 3.json",
   ];
 
-  static Future<Map<String,dynamic>> suggestDietPlan(String goal) async {
-
+  static Future<Map<String, dynamic>> suggestDietPlan(String goal) async {
     int index = Random().nextInt(3);
     print(index);
-List dietPlan =[];
-    if(goal=="Lose weight"){
-      dietPlan=weightLossDietPlan;
-    }
-    else if(goal=="Gain weight"){
-      dietPlan=weightGainDietPlan;
-    }
-    else{
-      dietPlan=balancedDietPlan;
+    List dietPlan = [];
+    if (goal == "Lose weight") {
+      dietPlan = weightLossDietPlan;
+    } else if (goal == "Gain weight") {
+      dietPlan = weightGainDietPlan;
+    } else {
+      dietPlan = balancedDietPlan;
     }
 
-    final String response = await rootBundle
-        .loadString("assets/diet_plan/${dietPlan[index]}");
+    final String response =
+        await rootBundle.loadString("assets/diet_plan/${dietPlan[index]}");
     final result = await json.decode(response);
-
     print(result['meal_plan']);
     return result['meal_plan'];
   }

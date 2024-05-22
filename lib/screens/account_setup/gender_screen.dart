@@ -4,6 +4,7 @@ import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 
+import '../../constants/colors.dart';
 import '../../models/user_setup_model.dart';
 
 class GenderScreen extends StatefulWidget {
@@ -27,6 +28,7 @@ class _GenderScreenState extends State<GenderScreen> {
 
   String gender = "" ;
 
+  final bool isSelected = true;
   @override
   Widget build(BuildContext context) {
     // Getting screen size
@@ -146,6 +148,9 @@ class _GenderScreenState extends State<GenderScreen> {
                       onTap: () {
                         setState(() {
                           gender=goals[index]["text"];
+                          isSelected != isSelected;
+
+
 
                         });
 
@@ -159,6 +164,11 @@ class _GenderScreenState extends State<GenderScreen> {
                               : Colors.grey[200],
                           borderRadius:
                               BorderRadius.circular(screenSize.height * 0.04),
+                          border: Border.all(
+                            color: gender == goals[index]["text"] ? kBlackColor : Colors.transparent,
+                            width: gender == goals[index]["text"] ? 2 : 0,
+                          ),
+
                         ),
                         child: Padding(
                           padding: EdgeInsets.symmetric(

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
+import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/account_setup/gender_screen.dart';
 
@@ -8,9 +9,8 @@ import '../../models/user_setup_model.dart';
 
 class GoalScreen extends StatefulWidget {
   UserSetup userSetup;
-  GoalScreen({super.key,
-  required this.userSetup
-  });
+
+  GoalScreen({super.key, required this.userSetup});
 
   @override
   State<GoalScreen> createState() => _GoalScreenState();
@@ -136,8 +136,9 @@ class _GoalScreenState extends State<GoalScreen> {
                     // Get the text and image information from the list
                     final String text = goals[index]["text"];
                     final String imagePath = goals[index]["imagePath"];
-                    final Color? containerColor =
-                        index == 1 ? const Color(0xffebf6d6) : Colors.grey[200];
+                    final bool isSelected = goal == text;
+
+                    final Color? containerColor =  index == 1 ? const Color(0xffebf6d6) : Colors.grey[200];
 
                     return Padding(
                       padding: EdgeInsets.only(
@@ -151,14 +152,16 @@ class _GoalScreenState extends State<GoalScreen> {
                         onTap: () {
                           setState(() {
                             goal = goals[index]["text"];
+
+
                           });
                         },
                         child: Ink(
                           height: screenSize.height * 0.135,
                           decoration: BoxDecoration(
                             color: containerColor,
-                            borderRadius:
-                                BorderRadius.circular(screenSize.height * 0.02),
+                            borderRadius: BorderRadius.circular(screenSize.height * 0.02),
+                            border: Border.all(color: isSelected ? kBlackColor : Colors.transparent, width: 2), // Add border based on selection
                           ),
                           child: Padding(
                             padding: EdgeInsets.symmetric(
@@ -190,20 +193,21 @@ class _GoalScreenState extends State<GoalScreen> {
             Padding(
               padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
               child: FloatingActionButtonProgressWidget(
-                  progress: 0.22,
-                  onpressed: () {
-                    widget.userSetup.goal=goal;
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GenderScreen(
-                         userSetup: widget.userSetup,
-                        ),
+                progress: 0.22,
+                onpressed: () {
+                  widget.userSetup.goal = goal;
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => GenderScreen(
+                        userSetup: widget.userSetup,
                       ),
-                    );
-                  },
-                  icon: Icons.arrow_forward_ios_outlined),
-            )
+                    ),
+                  );
+                },
+                icon: Icons.arrow_forward_ios_outlined,
+              ),
+            ),
           ],
         ),
       ),

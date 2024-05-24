@@ -49,7 +49,7 @@ class onboardContainer extends StatelessWidget {
           Container(
             child: FloatingActionButtonProgressWidget(
               progress: progress,
-              onpressed: onpressed,
+              onPressed: onpressed,
               icon: icon,
             ),
           ),
@@ -63,12 +63,12 @@ class FloatingActionButtonProgressWidget extends StatelessWidget {
   const FloatingActionButtonProgressWidget({
     super.key,
     required this.progress,
-    required this.onpressed,
+    required this.onPressed,
     required this.icon,
   });
 
   final double progress;
-  final VoidCallback onpressed;
+  final VoidCallback onPressed;
   final IconData? icon;
 
   @override
@@ -87,7 +87,7 @@ class FloatingActionButtonProgressWidget extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.secondary,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(30)),
-          onPressed: onpressed,
+          onPressed: onPressed,
           child: icon != null
               ? Icon(
                   icon,

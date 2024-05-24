@@ -212,7 +212,7 @@ class _HeightScreenState extends State<HeightScreen> {
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
               progress: 0.55,
-              onpressed: () {
+              onPressed: () {
                 widget.userSetup.height=height;
                 Navigator.push(
                   context,

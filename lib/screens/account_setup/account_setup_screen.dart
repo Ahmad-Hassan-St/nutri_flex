@@ -87,7 +87,7 @@ class _UserNameScreenState extends State<UserNameScreen> {
               ),
               FloatingActionButtonProgressWidget(
                   progress: 0.11,
-                  onpressed: () {
+                  onPressed: () {
                     UserSetup user=UserSetup();
                     user.userName= _controllerName.text;
                     print(user.userName);

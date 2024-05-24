@@ -173,7 +173,7 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               SizedBox(height: screenHeight * 0.16),
               FloatingActionButtonProgressWidget(
                 progress: 0.44,
-                onpressed: () {
+                onPressed: () {
                   Navigator.push(
                     context,
                     MaterialPageRoute(

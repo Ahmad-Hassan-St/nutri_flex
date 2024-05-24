@@ -184,7 +184,7 @@ class _WeightScreenState extends State<WeightScreen> {
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
               progress: 0.66,
-              onpressed: () {
+              onPressed: () {
                 widget.userSetup.weight=weight;
                 Navigator.pushReplacement(
                   context,

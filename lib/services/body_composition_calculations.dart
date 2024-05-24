@@ -9,7 +9,7 @@ class BodyCompositionCalculation{
 
   static double bodyFatPercentage({required double bicepSize,required double height}){
     //Yuhasz equation.
-    return (((0.31457 * bicepSize) -3.125)/height)*100;
+    return (((0.31457 * bicepSize) - 3.125)/height)*100;
   }
 
   static double calories({required double weight,required double height, required String gender,required int age}){
@@ -24,11 +24,11 @@ class BodyCompositionCalculation{
     }
   }
 
-
-  static double bodyWaterPercentage({required double leanMass, required double bodyWeight}){
-
-    return (leanMass/bodyWeight)*100;
-  }
+  //
+  // static double bodyWaterPercentage({required double leanMass, required double bodyWeight}){
+  //
+  //   return (leanMass/bodyWeight)*100;
+  // }
 
   static double leanMass({required double bodyWeight,required double bodyFatPercentage}){
     return bodyWeight * (1- bodyFatPercentage);

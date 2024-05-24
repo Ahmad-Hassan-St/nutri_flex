@@ -198,7 +198,7 @@ class _GenderScreenState extends State<GenderScreen> {
             SizedBox(height: screenSize.height * 0.18),
             FloatingActionButtonProgressWidget(
                 progress: 0.33,
-                onpressed: () {
+                onPressed: () {
                   widget.userSetup.gender=gender;
                   Navigator.push(
                     context,

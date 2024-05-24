@@ -79,6 +79,9 @@ class _BMIScreenState extends State<BMIScreen> {
                     Text(
                         "Body Fat Percentage: ${widget.bodyComposition.bodyFatPercentage.toStringAsFixed(2)}%"),
 
+                    Text("----------------------------------------------------------------"),
+                    Text("Question Score",style: TextStyle(fontSize: 50),),
+                    Text("Score : ${widget.bodyComposition.questionnaireScore.toStringAsFixed(2)}")
                   ],
                 ),
               ),

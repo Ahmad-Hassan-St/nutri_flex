@@ -74,7 +74,7 @@ final List<Map<String, dynamic>> questions = [
   {
     "text": "Do your nails curve like a spoon (spooning)?",
     "options": ["Normal", "Low", "Moderate", "High"],
-    "factor": 1,
+    "factor": 1.0,
     "deficiency": ["Iron"]
   },
   {
@@ -128,7 +128,7 @@ final List<Map<String, dynamic>> questions = [
   {
     "text": "Do you have symptoms of goiter (swelling in the neck)?",
     "options": ["Normal", "Low", "Moderate", "High"],
-    "factor": 3,
+    "factor": 3.0,
     "deficiency": ["Iodine"]
   },
   {

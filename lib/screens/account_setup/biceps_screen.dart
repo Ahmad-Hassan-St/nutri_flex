@@ -183,7 +183,7 @@ class _BicepScreenState extends State<BicepScreen> {
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
               progress: 0.88,
-              onpressed: () {
+              onPressed: () {
                 BodyComposition bodyComposition = BodyComposition();
 
                 widget.userSetup.bicepSize = bicepSize;
@@ -192,6 +192,7 @@ class _BicepScreenState extends State<BicepScreen> {
                 double weight = widget.userSetup.weight.toDouble();
                 int age = int.parse(widget.userSetup.age);
                 double bicep = bicepSize.toDouble();
+                String gender = widget.userSetup.gender;
 
                 double bodyFatPercentage =
                     BodyCompositionCalculation.bodyFatPercentage(
@@ -218,10 +219,11 @@ class _BicepScreenState extends State<BicepScreen> {
                 );
 
                 double bodyWaterPercentage =
-                    BodyCompositionCalculation.bodyWaterPercentage(
-                  leanMass: leanMass,
-                  bodyWeight: weight,
-                );
+                    BodyCompositionCalculation.totalBodyWaterPercentage(
+                        weight: weight,
+                        height: height,
+                        gender: gender,
+                        age: age);
 
                 double results = bodyWaterPercentage +
                     fatMass +
@@ -239,20 +241,14 @@ class _BicepScreenState extends State<BicepScreen> {
                 print(bodyFatPercentage);
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (_) => BMIScreen(
-                              BMI: widget.userSetup.BMI,
-                              userSetup: widget.userSetup,
-                              bodyComposition: bodyComposition,
-                            )));
-
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) =>  QuestionnaireScreen(),
-                //   ),
-                // );
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => QuestionnaireScreen(
+                      userSetup: widget.userSetup,
+                      bodyComposition: bodyComposition,
+                    ),
+                  ),
+                );
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

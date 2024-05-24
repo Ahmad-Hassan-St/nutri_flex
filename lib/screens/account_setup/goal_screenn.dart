@@ -194,7 +194,7 @@ class _GoalScreenState extends State<GoalScreen> {
               padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
               child: FloatingActionButtonProgressWidget(
                 progress: 0.22,
-                onpressed: () {
+                onPressed: () {
                   widget.userSetup.goal = goal;
                   Navigator.push(
                     context,

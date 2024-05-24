@@ -215,7 +215,7 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
             SizedBox(height: screenSize.height * 0.08),
             FloatingActionButtonProgressWidget(
               progress: 0.77,
-              onpressed: () async {
+              onPressed: () async {
                 // SharedPreferences sp = await SharedPreferences.getInstance();
                 // widget.userSetup.email = sp.getString("email").toString();
                 //

@@ -1,3 +1,5 @@
+import 'package:flutter/physics.dart';
+
 class UserSetup {
   late String _userName;
   late String _goal;
@@ -9,6 +11,7 @@ class UserSetup {
   late String _email;
   late String _age;
   late String _BMI;
+  late int _bicepSize;
 
   // Getters
   String get userName => _userName;
@@ -21,6 +24,7 @@ class UserSetup {
   String get email => _email;
   String get age => _age;
   String get BMI   => _BMI;
+  int get bicepSize => _bicepSize;
 
   // Setters
   set userName(String value) => _userName = value;
@@ -33,4 +37,7 @@ class UserSetup {
   set email(String value) => _email = value;
   set age(String value) => _age = value;
   set BMI(String value) => _BMI = value;
+  set bicepSize(int value) => _bicepSize = value;
 }
+
+

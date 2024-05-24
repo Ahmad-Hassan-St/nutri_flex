@@ -2,15 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/services/diet_plan_services.dart';
 
 import '../../models/user_setup_model.dart';
+import '../../models/body_composition.dart';
 
 class BMIScreen extends StatefulWidget {
   String BMI;
   UserSetup userSetup;
+  BodyComposition  bodyComposition;
 
   BMIScreen({
     super.key,
     required this.BMI,
     required this.userSetup,
+    required this.bodyComposition,
   });
 
   @override
@@ -51,6 +54,31 @@ class _BMIScreenState extends State<BMIScreen> {
                     Text('BMI Calculator ${widget.BMI}'),
                     SizedBox(height: 20), // Add some spacing
                     Text(data.toString()),
+
+                    const Text("------------------------------------------------"),
+                    const Text("Body information",style: TextStyle(fontSize: 40),),
+
+                    Text("Weight: ${widget.userSetup.weight}"),
+                    Text("Height: ${widget.userSetup.height}"),
+
+                    Text("gender: ${widget.userSetup.gender}"),
+                    Text("age: ${widget.userSetup.age}"),
+                    Text("Bicep: ${widget.userSetup.bicepSize}"),
+
+                    Text("BMi: ${widget.userSetup.BMI}"),
+
+                    const Text("------------------------------------------------"),
+                    const Text("Body COmposition",style: TextStyle(fontSize: 40),),
+
+                    Text("Fat Mass: ${widget.bodyComposition.fatMass.toStringAsFixed(2)}"),
+                    Text("Lean Mass: ${widget.bodyComposition.leanMass.toStringAsFixed(2)}"),
+                    Text("Muscle Mass: ${widget.bodyComposition.muscleMass.toStringAsFixed(2)}"),
+                    Text("Calories: ${widget.bodyComposition.calories.toStringAsFixed(2)}"),
+                    Text(
+                        "Body Water Percentage: ${widget.bodyComposition.bodyWaterPercentage.toStringAsFixed(2)}%"),
+                    Text(
+                        "Body Fat Percentage: ${widget.bodyComposition.bodyFatPercentage.toStringAsFixed(2)}%"),
+
                   ],
                 ),
               ),

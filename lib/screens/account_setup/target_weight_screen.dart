@@ -219,21 +219,27 @@ class _TargetWeightScreenState extends State<TargetWeightScreen> {
                 // SharedPreferences sp = await SharedPreferences.getInstance();
                 // widget.userSetup.email = sp.getString("email").toString();
                 //
-                // double heightMeter = widget.userSetup.height / 100;
-                // double BMI =
-                //     widget.userSetup.weight / (heightMeter * heightMeter);
-                //
-                // print(BMI.toStringAsFixed(2));
-                // widget.userSetup.BMI = BMI.toStringAsFixed(2);
-                // widget.userSetup.targetWeight = _weight;
-                // widget.userSetup.age ?? "23";
+                double heightMeter = widget.userSetup.height / 100;
+                double BMI =
+                    widget.userSetup.weight / (heightMeter * heightMeter);
+
+                print(BMI.toStringAsFixed(2));
+                widget.userSetup.BMI = BMI.toStringAsFixed(2);
+                widget.userSetup.targetWeight = _weight;
+                widget.userSetup.age ?? "23";
 
                 // DmlServices.insertUserData(userSetup: widget.userSetup);
                 //
                 // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString(), userSetup: widget.userSetup,)), (route) => false);
 
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (_) => const BicepScreen()));
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => BicepScreen(
+                      userSetup: widget.userSetup,
+                    ),
+                  ),
+                );
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

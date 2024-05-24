@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lifefit/models/body_composition.dart';
 import 'package:lifefit/screens/account_setup/questionair_screen.dart';
+import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
+import 'package:lifefit/services/diet_plan_services.dart';
 
 import '../../components/Frequency_slider.dart';
 import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
+import '../../models/user_setup_model.dart';
 
 class BicepScreen extends StatefulWidget {
-  const BicepScreen({super.key});
+  UserSetup userSetup;
+
+  BicepScreen({super.key, required this.userSetup});
 
   @override
   State<BicepScreen> createState() => _BicepScreenState();
@@ -16,7 +22,8 @@ class BicepScreen extends StatefulWidget {
 
 class _BicepScreenState extends State<BicepScreen> {
   @override
-  int weight =10;
+  int bicepSize = 10;
+
   Widget build(BuildContext context) {
     // Getting screen size
     final Size screenSize = MediaQuery.of(context).size;
@@ -47,14 +54,14 @@ class _BicepScreenState extends State<BicepScreen> {
                         backgroundColor: Colors.grey[200],
                         shape: RoundedRectangleBorder(
                           borderRadius:
-                          BorderRadius.circular(screenSize.height * 0.06),
+                              BorderRadius.circular(screenSize.height * 0.06),
                         ),
                         onPressed: () {
                           Navigator.pop(context);
                         },
                         child: Padding(
                           padding:
-                          EdgeInsets.only(left: screenSize.width * 0.025),
+                              EdgeInsets.only(left: screenSize.width * 0.025),
                           child: Icon(
                             Icons.arrow_back_ios,
                             color: Theme.of(context).colorScheme.background,
@@ -119,8 +126,8 @@ class _BicepScreenState extends State<BicepScreen> {
               "We will use this data to give you\n a better diet type for you",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                color: Colors.grey,
-              ),
+                    color: Colors.grey,
+                  ),
             ),
             SizedBox(height: screenSize.height * 0.008),
             Container(
@@ -137,8 +144,8 @@ class _BicepScreenState extends State<BicepScreen> {
                           .textTheme
                           .displayMedium!
                           .copyWith(
-                          color:
-                          Theme.of(context).colorScheme.onBackground),
+                              color:
+                                  Theme.of(context).colorScheme.onBackground),
                     ),
                   ),
                 ),
@@ -147,14 +154,13 @@ class _BicepScreenState extends State<BicepScreen> {
             SizedBox(height: screenSize.height * 0.025),
             SvgPicture.asset("assets/shapes/polygon.svg"),
             SizedBox(height: screenSize.height * 0.025),
-
             Padding(
               padding: EdgeInsets.symmetric(
                 horizontal: dynamicPadding,
               ),
               child: NumberContainerWidget(
                 screenSize: screenSize,
-                text: weight,
+                text: bicepSize,
                 dynamicPadding: dynamicPadding,
                 height: 130,
                 width: 120,
@@ -166,11 +172,9 @@ class _BicepScreenState extends State<BicepScreen> {
               intialValue: 15,
               minCurrentVal: 10,
               maxCurrentVal: 70,
-
               onValueChanged: (value) {
-
                 setState(() {
-                  weight = value.toInt();
+                  bicepSize = value.toInt();
                 });
                 print("Current value: $value");
               },
@@ -179,13 +183,46 @@ class _BicepScreenState extends State<BicepScreen> {
             FloatingActionButtonProgressWidget(
               progress: 0.88,
               onpressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  QuestionnaireScreen(),
-                  ),
+                BodyComposition bodyComposition  = BodyComposition();
+
+                widget.userSetup.bicepSize = bicepSize;
+                print(widget.userSetup.age);
+
+                double bodyFatPercentage = DietPlanService.bodyFatPercentage(bicepSize: widget.userSetup.bicepSize.toDouble(), height: widget.userSetup.height.toDouble());
+                double fatMass = DietPlanService.fatMass(totalBodyWeight: widget.userSetup.weight.toDouble(), bodyFatPercentage: bodyFatPercentage);
+
+                double leanMass = DietPlanService.leanMass(bodyWeight: widget.userSetup.weight.toDouble(), bodyFatPercentage: bodyFatPercentage);
+                double muscleMass = DietPlanService.muscleMass(
+                  totalBodyWeight: widget.userSetup.weight,
+                  fatMass: fatMass,
                 );
 
+                double calories = DietPlanService.calories(weight: widget.userSetup.weight.toDouble(), height: widget.userSetup.height.toDouble(), gender: widget.userSetup.gender, age: int.parse( widget.userSetup.age));
+
+                double bodyWaterPercentage = DietPlanService.bodyWaterPercentage(leanMass: leanMass, bodyWeight: widget.userSetup.weight.toDouble());
+
+
+                double results = bodyWaterPercentage + fatMass +leanMass +muscleMass + bodyWaterPercentage;
+
+
+               bodyComposition.fatMass =fatMass;
+               bodyComposition.leanMass = leanMass;
+               bodyComposition.muscleMass = muscleMass;
+               bodyComposition.calories = calories;
+               bodyComposition.bodyWaterPercentage = bodyWaterPercentage;
+               bodyComposition.bodyFatPercentage = bodyFatPercentage;
+
+
+                print(bodyFatPercentage);
+
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: widget.userSetup.BMI, userSetup: widget.userSetup, bodyComposition: bodyComposition,)));
+
+                // Navigator.push(
+                //   context,
+                //   MaterialPageRoute(
+                //     builder: (context) =>  QuestionnaireScreen(),
+                //   ),
+                // );
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

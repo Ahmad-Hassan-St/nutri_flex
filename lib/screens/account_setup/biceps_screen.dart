@@ -10,6 +10,7 @@ import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
 import '../../models/user_setup_model.dart';
+import '../../services/body_composition_calculations.dart';
 
 class BicepScreen extends StatefulWidget {
   UserSetup userSetup;
@@ -183,39 +184,68 @@ class _BicepScreenState extends State<BicepScreen> {
             FloatingActionButtonProgressWidget(
               progress: 0.88,
               onpressed: () {
-                BodyComposition bodyComposition  = BodyComposition();
+                BodyComposition bodyComposition = BodyComposition();
 
                 widget.userSetup.bicepSize = bicepSize;
                 print(widget.userSetup.age);
+                double height = widget.userSetup.height.toDouble();
+                double weight = widget.userSetup.weight.toDouble();
+                int age = int.parse(widget.userSetup.age);
+                double bicep = bicepSize.toDouble();
 
-                double bodyFatPercentage = DietPlanService.bodyFatPercentage(bicepSize: widget.userSetup.bicepSize.toDouble(), height: widget.userSetup.height.toDouble());
-                double fatMass = DietPlanService.fatMass(totalBodyWeight: widget.userSetup.weight.toDouble(), bodyFatPercentage: bodyFatPercentage);
+                double bodyFatPercentage =
+                    BodyCompositionCalculation.bodyFatPercentage(
+                  bicepSize: bicep,
+                  height: height,
+                );
+                double fatMass = BodyCompositionCalculation.fatMass(
+                  totalBodyWeight: weight,
+                  bodyFatPercentage: bodyFatPercentage,
+                );
 
-                double leanMass = DietPlanService.leanMass(bodyWeight: widget.userSetup.weight.toDouble(), bodyFatPercentage: bodyFatPercentage);
-                double muscleMass = DietPlanService.muscleMass(
-                  totalBodyWeight: widget.userSetup.weight,
+                double leanMass = BodyCompositionCalculation.leanMass(
+                    bodyWeight: weight, bodyFatPercentage: bodyFatPercentage);
+                double muscleMass = BodyCompositionCalculation.muscleMass(
+                  totalBodyWeight: weight,
                   fatMass: fatMass,
                 );
 
-                double calories = DietPlanService.calories(weight: widget.userSetup.weight.toDouble(), height: widget.userSetup.height.toDouble(), gender: widget.userSetup.gender, age: int.parse( widget.userSetup.age));
+                double calories = BodyCompositionCalculation.calories(
+                  weight: weight,
+                  height: height,
+                  gender: widget.userSetup.gender,
+                  age: age,
+                );
 
-                double bodyWaterPercentage = DietPlanService.bodyWaterPercentage(leanMass: leanMass, bodyWeight: widget.userSetup.weight.toDouble());
+                double bodyWaterPercentage =
+                    BodyCompositionCalculation.bodyWaterPercentage(
+                  leanMass: leanMass,
+                  bodyWeight: weight,
+                );
 
+                double results = bodyWaterPercentage +
+                    fatMass +
+                    leanMass +
+                    muscleMass +
+                    bodyWaterPercentage;
 
-                double results = bodyWaterPercentage + fatMass +leanMass +muscleMass + bodyWaterPercentage;
-
-
-               bodyComposition.fatMass =fatMass;
-               bodyComposition.leanMass = leanMass;
-               bodyComposition.muscleMass = muscleMass;
-               bodyComposition.calories = calories;
-               bodyComposition.bodyWaterPercentage = bodyWaterPercentage;
-               bodyComposition.bodyFatPercentage = bodyFatPercentage;
-
+                bodyComposition.fatMass = fatMass;
+                bodyComposition.leanMass = leanMass;
+                bodyComposition.muscleMass = muscleMass;
+                bodyComposition.calories = calories;
+                bodyComposition.bodyWaterPercentage = bodyWaterPercentage;
+                bodyComposition.bodyFatPercentage = bodyFatPercentage;
 
                 print(bodyFatPercentage);
 
-                Navigator.push(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: widget.userSetup.BMI, userSetup: widget.userSetup, bodyComposition: bodyComposition,)));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => BMIScreen(
+                              BMI: widget.userSetup.BMI,
+                              userSetup: widget.userSetup,
+                              bodyComposition: bodyComposition,
+                            )));
 
                 // Navigator.push(
                 //   context,

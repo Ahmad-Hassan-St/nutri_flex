@@ -39,7 +39,7 @@ class _BMIScreenState extends State<BMIScreen> {
         future: DietPlanService.suggestDietPlan(widget.userSetup.goal),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             // If an error occurred
             return Center(child: Text('Error: ${snapshot.error}'));
@@ -52,7 +52,7 @@ class _BMIScreenState extends State<BMIScreen> {
                 child: Column(
                   children: [
                     Text('BMI Calculator ${widget.BMI}'),
-                    SizedBox(height: 20), // Add some spacing
+                    const SizedBox(height: 20), // Add some spacing
                     Text(data.toString()),
 
                     const Text("------------------------------------------------"),

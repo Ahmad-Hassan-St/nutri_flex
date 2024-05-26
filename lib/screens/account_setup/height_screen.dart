@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/weight_screen.dart';
@@ -202,6 +203,8 @@ class _HeightScreenState extends State<HeightScreen> {
             ),
             RadioFrequencySlider(
               intialValue: 180,
+              currentVal: height.toDouble(),
+
               onValueChanged: (value) {
                 setState(() {
                   height = value.toInt();

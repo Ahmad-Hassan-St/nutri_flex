@@ -23,7 +23,8 @@ class DietPlanService {
   ];
 
   static Future<Map<String, dynamic>> suggestDietPlan(String goal) async {
-    int index = Random().nextInt(3);
+    // int index = Random().nextInt(3)
+    int index = 1;
     print(index);
     List dietPlan = [];
     if (goal == "Lose weight") {
@@ -37,7 +38,7 @@ class DietPlanService {
     final String response =
         await rootBundle.loadString("assets/diet_plan/${dietPlan[index]}");
     final result = await json.decode(response);
-    print(result['meal_plan']);
-    return result['meal_plan'];
+    // print(result['meal_plan']);
+    return result;
   }
 }

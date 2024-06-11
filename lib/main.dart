@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
+import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 import 'package:lifefit/screens/scanner/scanner_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: appTheme,
           // home:  ScannerScreen(camera: cameras.first,)
-          home: UserNameScreen()
+          home:   ProfileScreen()
 
       ),
     );

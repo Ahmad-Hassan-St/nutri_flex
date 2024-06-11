@@ -7,6 +7,8 @@ import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
 
 import '../../components/onBoardcontainer.dart';
 import '../../constants/questions.dart';
+import '../../services/body_composition_calculations.dart';
+import '../../services/dml_services.dart';
 
 class QuestionnaireScreen extends StatefulWidget {
    QuestionnaireScreen({super.key, required this.bodyComposition,required this.userSetup});
@@ -215,6 +217,22 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                   print("Calculated Score: $score");
 
                   widget.bodyComposition.questionnaireScore=score;
+                  double bmiscore= double.parse(widget.userSetup.BMI);
+                 double dietPlan = BodyCompositionCalculation.bodyResultScroe(
+                      boydFatPercentage: widget.bodyComposition.bodyFatPercentage,
+                      waterPercentage: widget.bodyComposition.bodyWaterPercentage,
+                      questionScore: widget.bodyComposition.questionnaireScore, bmi:bmiscore);
+
+                 int diet = dietPlan.round();
+
+  print(diet);
+
+                  DmlServices.insertUserData(userSetup: widget.userSetup);
+                  DmlServices.insertUserBodyCompositionData(userSetup: widget.userSetup, bodyComposition: widget.bodyComposition,);
+                  //
+                  // Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: BMI.toString(), userSetup: widget.userSetup,)), (route) => false);
+
+
                   Navigator.push(context, MaterialPageRoute(builder: (_)=>BMIScreen(BMI: widget.userSetup.BMI, userSetup: widget.userSetup, bodyComposition: widget.bodyComposition)));
 
 

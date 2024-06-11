@@ -10,10 +10,11 @@ class ShowDietScreen extends StatefulWidget {
 class _ShowDietScreenState extends State<ShowDietScreen> {
   final List<String> dates = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
   final List<String> mealTypes = ["Breakfast", "Lunch", "Dinner","Snack"];
-  String selectedDate = "Tuesday";
+  String selectedDate = "Monday";
   String selectedMealType = "Breakfast";
 
   Future<Map<String, dynamic>> fetchDietPlan() async {
+
     return await DietPlanService.suggestDietPlan("Gain weight");
   }
 

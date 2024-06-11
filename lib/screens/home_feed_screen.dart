@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 
 class HomeFeedScreen extends StatefulWidget {
@@ -15,7 +16,8 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
 
   final List<Widget> screenList = <Widget>[
     const Text("Home1", style: TextStyle(fontSize: 50, color: Colors.red)),
-    const Text("Reports", style: TextStyle(fontSize: 50, color: Colors.red)),
+    // const Text("Reports", style: TextStyle(fontSize: 50, color: Colors.red)),
+    ShowDietScreen(),
     const Text("Stats", style: TextStyle(fontSize: 50, color: Colors.red)),
     const ProfileScreen(),
   ];

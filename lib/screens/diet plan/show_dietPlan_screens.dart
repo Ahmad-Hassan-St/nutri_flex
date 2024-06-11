@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:lifefit/services/dml_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../components/nutrition_item.dart';
 import '../../services/diet_plan_services.dart';
 
@@ -13,9 +15,31 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
   String selectedDate = "Monday";
   String selectedMealType = "Breakfast";
 
+  late int dietPlan;
+
   Future<Map<String, dynamic>> fetchDietPlan() async {
 
-    return await DietPlanService.suggestDietPlan("Gain weight");
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String? email = sp.getString('email');
+
+    int? dietPlanNumber = sp.getInt("dietPlan");
+    String? goal = sp.getString('target');
+    print(dietPlanNumber);
+    if (dietPlanNumber== null) {
+      List<Map<String, dynamic>> bodyComposition =
+      await DmlServices().fetchDataUserBodyComposition(email);
+      dietPlan= (bodyComposition[0]["dietPlan"]);
+      dietPlanNumber = sp.setInt("dietPlan", dietPlan) as int?;
+    }
+    if (goal == null) {
+      List<Map<String, dynamic>> userDetails =
+      await DmlServices().fetchDataUserDetails(email);
+      print(userDetails[0]["goal"]);
+      goal =sp.setString('target',userDetails[0]["goal"] ) as String?;
+    }
+
+        print(dietPlanNumber);
+    return await DietPlanService.suggestDietPlan(goal!,dietPlanNumber!);
   }
 
   List<Map<String, dynamic>> getMealItems(Map<String, dynamic> data) {

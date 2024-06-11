@@ -12,7 +12,7 @@ class HomeFeedScreen extends StatefulWidget {
 }
 
 class _HomeFeedScreenState extends State<HomeFeedScreen> {
-  int selectedIndex = 2;
+  int selectedIndex = 1;
 
   final List<Widget> screenList = <Widget>[
     const Text("Home1", style: TextStyle(fontSize: 50, color: Colors.red)),

@@ -26,7 +26,7 @@ class _BMIScreenState extends State<BMIScreen> {
 
   void dietPlan() {
     print(widget.userSetup.goal);
-    DietPlanService.suggestDietPlan(widget.userSetup.goal);
+    DietPlanService.suggestDietPlan(widget.userSetup.goal,1);
 
     setState(() {
       double bmiscore= double.parse(widget.userSetup.BMI);
@@ -48,7 +48,7 @@ class _BMIScreenState extends State<BMIScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: FutureBuilder<Map<String, dynamic>>(
-        future: DietPlanService.suggestDietPlan(widget.userSetup.goal),
+        future: DietPlanService.suggestDietPlan(widget.userSetup.goal,1),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(child: CircularProgressIndicator());

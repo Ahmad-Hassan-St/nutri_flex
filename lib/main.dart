@@ -8,8 +8,10 @@ import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 import 'package:lifefit/screens/scanner/scanner_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/utils/app_theme.dart';
+
 List<CameraDescription> cameras = [];
-void main() async{
+
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   cameras = await availableCameras();
@@ -21,15 +23,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    return  SafeArea(
+    return SafeArea(
       child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: appTheme,
-        // home:  ScannerScreen(camera: cameras.first,)
-        home:  SplashScreen()
+          debugShowCheckedModeBanner: false,
+          theme: appTheme,
+          // home:  ScannerScreen(camera: cameras.first,)
+          home: UserNameScreen()
 
-    ),
+      ),
     );
   }
 }

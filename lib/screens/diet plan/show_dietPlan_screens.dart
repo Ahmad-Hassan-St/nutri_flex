@@ -27,6 +27,7 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
     }
     return [];
   }
+
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -164,7 +165,6 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
                     },
                   ),
                 ),
-                // Text("data $totalKcl"),
               ],
             );
           }

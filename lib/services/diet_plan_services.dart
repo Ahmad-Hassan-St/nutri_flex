@@ -41,4 +41,5 @@ class DietPlanService {
     // print(result['meal_plan']);
     return result;
   }
+
 }

@@ -3,11 +3,12 @@ import 'package:lifefit/services/diet_plan_services.dart';
 
 import '../../models/user_setup_model.dart';
 import '../../models/body_composition.dart';
+import '../../services/body_composition_calculations.dart';
 
 class BMIScreen extends StatefulWidget {
   String BMI;
   UserSetup userSetup;
-  BodyComposition  bodyComposition;
+  BodyComposition bodyComposition;
 
   BMIScreen({
     super.key,
@@ -21,9 +22,19 @@ class BMIScreen extends StatefulWidget {
 }
 
 class _BMIScreenState extends State<BMIScreen> {
+  late double score;
+
   void dietPlan() {
     print(widget.userSetup.goal);
     DietPlanService.suggestDietPlan(widget.userSetup.goal);
+
+    setState(() {
+      double bmiscore= double.parse(widget.userSetup.BMI);
+      score = BodyCompositionCalculation.bodyResultScroe(
+          boydFatPercentage: widget.bodyComposition.bodyFatPercentage,
+          waterPercentage: widget.bodyComposition.bodyWaterPercentage,
+          questionScore: widget.bodyComposition.questionnaireScore, bmi:bmiscore);
+    });
   }
 
   @override
@@ -32,6 +43,7 @@ class _BMIScreenState extends State<BMIScreen> {
     // TODO: implement initState
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,8 +67,12 @@ class _BMIScreenState extends State<BMIScreen> {
                     const SizedBox(height: 20), // Add some spacing
                     Text(data.toString()),
 
-                    const Text("------------------------------------------------"),
-                    const Text("Body information",style: TextStyle(fontSize: 40),),
+                    const Text(
+                        "------------------------------------------------"),
+                    const Text(
+                      "Body information",
+                      style: TextStyle(fontSize: 40),
+                    ),
 
                     Text("Weight: ${widget.userSetup.weight}"),
                     Text("Height: ${widget.userSetup.height}"),
@@ -67,21 +83,36 @@ class _BMIScreenState extends State<BMIScreen> {
 
                     Text("BMi: ${widget.userSetup.BMI}"),
 
-                    const Text("------------------------------------------------"),
-                    const Text("Body COmposition",style: TextStyle(fontSize: 40),),
+                    const Text(
+                        "------------------------------------------------"),
+                    const Text(
+                      "Body COmposition",
+                      style: TextStyle(fontSize: 40),
+                    ),
 
-                    Text("Fat Mass: ${widget.bodyComposition.fatMass.toStringAsFixed(2)}"),
-                    Text("Lean Mass: ${widget.bodyComposition.leanMass.toStringAsFixed(2)}"),
-                    Text("Muscle Mass: ${widget.bodyComposition.muscleMass.toStringAsFixed(2)}"),
-                    Text("Calories: ${widget.bodyComposition.calories.toStringAsFixed(2)}"),
+                    Text(
+                        "Fat Mass: ${widget.bodyComposition.fatMass.toStringAsFixed(2)}"),
+                    Text(
+                        "Lean Mass: ${widget.bodyComposition.leanMass.toStringAsFixed(2)}"),
+                    Text(
+                        "Muscle Mass: ${widget.bodyComposition.muscleMass.toStringAsFixed(2)}"),
+                    Text(
+                        "Calories: ${widget.bodyComposition.calories.toStringAsFixed(2)}"),
                     Text(
                         "Body Water Percentage: ${widget.bodyComposition.bodyWaterPercentage.toStringAsFixed(2)}%"),
                     Text(
                         "Body Fat Percentage: ${widget.bodyComposition.bodyFatPercentage.toStringAsFixed(2)}%"),
 
-                    Text("----------------------------------------------------------------"),
-                    Text("Question Score",style: TextStyle(fontSize: 50),),
-                    Text("Score : ${widget.bodyComposition.questionnaireScore.toStringAsFixed(2)}")
+                    Text(
+                        "----------------------------------------------------------------"),
+                    Text(
+                      "Question Score",
+                      style: TextStyle(fontSize: 50),
+                    ),
+                    Text(
+                        "Score : ${widget.bodyComposition.questionnaireScore.toStringAsFixed(2)}"),
+                    Text("score: $score",)
+
                   ],
                 ),
               ),
@@ -91,5 +122,4 @@ class _BMIScreenState extends State<BMIScreen> {
       ),
     );
   }
-
 }

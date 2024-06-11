@@ -6,6 +6,7 @@ import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 
 import '../../constants/colors.dart';
 import '../../models/user_setup_model.dart';
+import '../../utils/flutter_toast_message.dart';
 
 class GenderScreen extends StatefulWidget {
   UserSetup userSetup;
@@ -149,9 +150,6 @@ class _GenderScreenState extends State<GenderScreen> {
                         setState(() {
                           gender=goals[index]["text"];
                           isSelected != isSelected;
-
-
-
                         });
 
                       },
@@ -199,16 +197,25 @@ class _GenderScreenState extends State<GenderScreen> {
             FloatingActionButtonProgressWidget(
                 progress: 0.33,
                 onPressed: () {
-                  widget.userSetup.gender=gender;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>  DateBirthScreen(
-                        userSetup: widget.userSetup,
+                  print(gender);
 
+                  if(gender !=""){
+                    widget.userSetup.gender = gender;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            DateBirthScreen(
+                              userSetup: widget.userSetup,
+
+                            ),
                       ),
-                    ),
-                  );
+                    );
+                  }
+                  else {
+                    ShowToastMsg("Please Select your Gender");
+
+                  }
                 },
                 icon: Icons.arrow_forward_ios_outlined)
           ],

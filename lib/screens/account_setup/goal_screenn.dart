@@ -4,6 +4,7 @@ import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/account_setup/gender_screen.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 
 import '../../models/user_setup_model.dart';
 
@@ -195,15 +196,21 @@ class _GoalScreenState extends State<GoalScreen> {
               child: FloatingActionButtonProgressWidget(
                 progress: 0.22,
                 onPressed: () {
-                  widget.userSetup.goal = goal;
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => GenderScreen(
-                        userSetup: widget.userSetup,
+                  if(goal != "") {
+                    widget.userSetup.goal = goal;
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            GenderScreen(
+                              userSetup: widget.userSetup,
+                            ),
                       ),
-                    ),
-                  );
+                    );
+                  }
+                  else{
+                    ShowToastMsg("Please select your Goal !");
+                  }
                 },
                 icon: Icons.arrow_forward_ios_outlined,
               ),

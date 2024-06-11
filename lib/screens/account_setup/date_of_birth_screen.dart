@@ -2,22 +2,23 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/gender_screen.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 import '../../components/setup_account_Textfield.dart';
 import '../../models/user_setup_model.dart';
 import 'height_screen.dart';
 
 class DateBirthScreen extends StatefulWidget {
-  UserSetup userSetup;
+  final UserSetup userSetup;
 
-  DateBirthScreen({Key? key, required this.userSetup});
+  DateBirthScreen({Key? key, required this.userSetup}) : super(key: key);
 
   @override
   State<DateBirthScreen> createState() => _DateBirthScreenState();
 }
 
 class _DateBirthScreenState extends State<DateBirthScreen> {
-  late TextEditingController _dateController = TextEditingController();
-  late TextEditingController _ageController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
   int? _age;
 
   @override
@@ -50,14 +51,14 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                           backgroundColor: Colors.grey[200],
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(screenSize.height * 0.06),
+                            BorderRadius.circular(screenSize.height * 0.06),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: screenSize.width * 0.025),
+                            EdgeInsets.only(left: screenSize.width * 0.025),
                             child: Icon(
                               Icons.arrow_back_ios,
                               color: Theme.of(context).colorScheme.background,
@@ -115,12 +116,11 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
                 "We will use this data to give you\n a better diet type for you",
                 textAlign: TextAlign.center,
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      color: Colors.grey,
-                    ),
+                  color: Colors.grey,
+                ),
               ),
               SizedBox(height: screenHeight * 0.15),
               SetupAccount_TextfieldWidget(
-
                 readOnly: true,
                 controller: _ageController,
                 textAlign: TextAlign.center,
@@ -174,14 +174,21 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
               FloatingActionButtonProgressWidget(
                 progress: 0.44,
                 onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => HeightScreen(
-                        userSetup: widget.userSetup,
+                  print(_age);
+                  if( _age == null){
+                    ShowToastMsg("Please enter your Date of Birth");
+                  }
+                  else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            HeightScreen(
+                              userSetup: widget.userSetup,
+                            ),
                       ),
-                    ),
-                  );
+                    );
+                  }
                 },
                 icon: Icons.arrow_forward_ios,
               ),
@@ -193,43 +200,10 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
   }
 
   Future<void> _selectDate(BuildContext context) async {
-    final DateTime? picked = await showDialog(
+    final DateTime? picked = await showDialog<DateTime>(
       context: context,
       builder: (BuildContext context) {
-        return AlertDialog(
-          backgroundColor: Color(0xffebf6d6),
-          title: Text("Select Date"),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.9,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SizedBox(
-                  height: MediaQuery.of(context).size.width * 0.6,
-                  child: CalendarDatePicker(
-                    initialDate: DateTime.now(),
-                    firstDate: DateTime(0),
-                    lastDate: DateTime.now(),
-                    onDateChanged: (DateTime date) {
-                      Navigator.of(context).pop(date);
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop(null);
-              },
-              child: Text(
-                "Cancel",
-                style: Theme.of(context).textTheme.displayMedium,
-              ),
-            ),
-          ],
-        );
+        return _DatePickerDialog();
       },
     );
 
@@ -242,11 +216,69 @@ class _DateBirthScreenState extends State<DateBirthScreen> {
       setState(() {
         _dateController.text = DateFormat('MMMM/dd/yyyy').format(selectedDate);
         _age = age;
-_ageController.text=age.toString();
+        _ageController.text = age.toString();
         widget.userSetup.dateOfBirth = picked;
-        widget.userSetup.age=age.toString();// Assign picked directly
-
+        widget.userSetup.age = age.toString();
       });
     }
+  }
+}
+
+class _DatePickerDialog extends StatefulWidget {
+  @override
+  __DatePickerDialogState createState() => __DatePickerDialogState();
+}
+
+class __DatePickerDialogState extends State<_DatePickerDialog> {
+  DateTime _selectedDate = DateTime.now();
+
+  @override
+  Widget build(BuildContext context) {
+    return AlertDialog(
+      backgroundColor: Color(0xffebf6d6),
+      title: Text("Select Date"),
+      content: Container(
+        // Use a constrained container to ensure proper layout
+        width: MediaQuery.of(context).size.width * 0.9,
+        height: MediaQuery.of(context).size.width * 0.6,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Expanded(
+              child: CalendarDatePicker(
+                initialDate: _selectedDate,
+                firstDate: DateTime(1900),
+                lastDate: DateTime.now(),
+                onDateChanged: (DateTime date) {
+                  setState(() {
+                    _selectedDate = date;
+                  });
+                },
+              ),
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(null);
+          },
+          child: Text(
+            "Cancel",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+        ),
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop(_selectedDate);
+          },
+          child: Text(
+            "OK",
+            style: Theme.of(context).textTheme.displayMedium,
+          ),
+        ),
+      ],
+    );
   }
 }

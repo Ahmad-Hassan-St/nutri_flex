@@ -5,7 +5,7 @@ import 'package:lifefit/components/setup_account_Textfield.dart';
 import 'package:lifefit/models/user_setup_model.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({super.key});
@@ -88,20 +88,26 @@ class _UserNameScreenState extends State<UserNameScreen> {
               ),
               FloatingActionButtonProgressWidget(
                   progress: 0.11,
-                  onPressed: () async{
-                    UserSetup user=UserSetup();
-                    user.userName= _controllerName.text;
-                    print(user.userName);
+                  onPressed: () {
+                    if(_controllerName.text != "") {
+                      UserSetup user = UserSetup();
+                      user.userName = _controllerName.text;
+                      print(user.userName);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) =>
+                              GoalScreen(userSetup: user,
 
-
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => GoalScreen(userSetup:user,
-
+                              ),
                         ),
-                      ),
-                    );
+                      );
+                    }
+                    else{
+                      ShowToastMsg("Please enter your Name !");
+                    }
+
+
                   },
                   icon: Icons.arrow_forward_ios)
             ],

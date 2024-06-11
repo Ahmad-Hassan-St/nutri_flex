@@ -35,6 +35,7 @@ class DmlServices {
   }  static insertUserBodyCompositionData({
     required BodyComposition bodyComposition,
     required UserSetup userSetup,
+    required int dietPlan,
 
   }) async {
     try {

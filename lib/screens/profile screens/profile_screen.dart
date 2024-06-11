@@ -278,7 +278,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Lean Mass'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["leanMass"]} kg" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["leanMass"].toStringAsFixed(2)} kg" : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -297,7 +297,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Fat Mass'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["fatMass"]} kg" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["fatMass"].toStringAsFixed(2)} kg" : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -335,7 +335,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Body Water Percentage'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["water%"]}%" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["water%"].toStringAsFixed(2)}%" : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(

@@ -10,6 +10,7 @@ import '../../components/number_container_widget.dart';
 import '../../components/onBoardcontainer.dart';
 import '../../constants/colors.dart';
 import '../../models/user_setup_model.dart';
+import '../../utils/flutter_toast_message.dart';
 
 class HeightScreen extends StatefulWidget {
   UserSetup userSetup;
@@ -216,13 +217,21 @@ class _HeightScreenState extends State<HeightScreen> {
             FloatingActionButtonProgressWidget(
               progress: 0.55,
               onPressed: () {
-                widget.userSetup.height=height;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) =>  WeightScreen(userSetup: widget.userSetup,),
-                  ),
-                );
+                print(height);
+                if(height == null){
+                  ShowToastMsg("Please Enter your height");
+                }
+                else {
+                  widget.userSetup.height = height;
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          WeightScreen(userSetup: widget.userSetup,),
+                    ),
+                  );
+                }
               },
               icon: Icons.arrow_forward_ios_outlined,
             ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
+import 'package:lifefit/screens/food_tracking/chart_screen.dart';
 import 'package:lifefit/screens/food_tracking/model.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
@@ -31,8 +32,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          home:  ScannerScreen(camera: cameras.first,)
-          // home:  SplashScreen(),
+          // home:  ScannerScreen(camera: cameras.first,)
+          home:  CalorieTracker(),
       ),
     );
   }

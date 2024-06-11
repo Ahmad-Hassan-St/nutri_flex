@@ -1,9 +1,13 @@
 import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:lifefit/constants/colors.dart';
+import 'package:lifefit/services/diet_plan_tracking.dart';
+import 'package:lifefit/utils/flutter_toast_message.dart';
 import '../../constants/foodNutrients.dart';
 import 'scanner_cliper.dart';
 
@@ -26,8 +30,6 @@ class _ScannerScreenState extends State<ScannerScreen>
   late AnimationController _animationController;
   String _scanResult = "";
   XFile? _capturedImage;
-
-
 
   @override
   void initState() {
@@ -52,6 +54,7 @@ class _ScannerScreenState extends State<ScannerScreen>
       numThreads: 1,
     );
   }
+
   Future<void> _takePicture() async {
     setState(() {
       _isScanning = true;
@@ -79,7 +82,6 @@ class _ScannerScreenState extends State<ScannerScreen>
           _isScanning = false;
           _animationController.stop();
         });
-
       } else {
         setState(() {
           _showError = true;
@@ -118,6 +120,8 @@ class _ScannerScreenState extends State<ScannerScreen>
     super.dispose();
   }
 
+  String _selectedItem = 'Break Fast';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -125,15 +129,15 @@ class _ScannerScreenState extends State<ScannerScreen>
         children: [
           _capturedImage == null
               ? FutureBuilder<void>(
-            future: _initializeControllerFuture,
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.done) {
-                return CameraPreview(_controller);
-              } else {
-                return const Center(child: CircularProgressIndicator());
-              }
-            },
-          )
+                  future: _initializeControllerFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.done) {
+                      return CameraPreview(_controller);
+                    } else {
+                      return const Center(child: CircularProgressIndicator());
+                    }
+                  },
+                )
               : Image.file(File(_capturedImage!.path)),
           ClipPath(
             clipper: ScannerClipper(),
@@ -208,13 +212,41 @@ class _ScannerScreenState extends State<ScannerScreen>
                             style: TextStyle(color: Colors.black),
                           ),
                         ),
+                        IconButton(
+                            onPressed: () async{
+                              final Map<String, Map<String, dynamic>> meals = {
+                                _selectedItem: {
+                                  'food': _scanResult,
+                                  'kcal':
+                                      foodNutrients[_scanResult.toLowerCase()]
+                                          ?['kcal'],
+                                  'fat': foodNutrients[_scanResult.toLowerCase()]
+                                ?['fat'],
+                                  'carbs': foodNutrients[_scanResult.toLowerCase()]
+                                ?['carbs'],
+                                  'protein': foodNutrients[_scanResult.toLowerCase()]
+                                  ?['protein'],
+                                },
+                              };
+                              print(_selectedItem);
+                             await DietPlanTracking().addUser("ahmad@gmail.com");
+                            await  DietPlanTracking().addDiet("ahmad@gmail.com", "day_2", meals);
+
+                            ShowToastMsg("Add item Successfully ");
+                            },
+                            icon: Icon(Icons.add, color: kPrimaryColorGreen)),
                       ],
                     ),
-                    if (foodNutrients.containsKey(_scanResult.toLowerCase())) ...[
-                      Text('KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
-                      Text('Fat: ${foodNutrients[_scanResult.toLowerCase()]?['fat'] ?? 'Unknown'} g'),
-                      Text('Carbs: ${foodNutrients[_scanResult.toLowerCase()]?['carbs'] ?? 'Unknown'} g'),
-                      Text('Protein: ${foodNutrients[_scanResult.toLowerCase()]?['protein'] ?? 'Unknown'} g'),
+                    if (foodNutrients
+                        .containsKey(_scanResult.toLowerCase())) ...[
+                      Text(
+                          'KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
+                      Text(
+                          'Fat: ${foodNutrients[_scanResult.toLowerCase()]?['fat'] ?? 'Unknown'} g'),
+                      Text(
+                          'Carbs: ${foodNutrients[_scanResult.toLowerCase()]?['carbs'] ?? 'Unknown'} g'),
+                      Text(
+                          'Protein: ${foodNutrients[_scanResult.toLowerCase()]?['protein'] ?? 'Unknown'} g'),
                     ] else ...[
                       Text('Nutritional information not available'),
                     ]
@@ -229,6 +261,30 @@ class _ScannerScreenState extends State<ScannerScreen>
               icon: const Icon(Icons.arrow_back),
               onPressed: () => Navigator.of(context).pop(),
               color: Colors.white,
+            ),
+          ),
+          Positioned(
+            top: 32,
+            left: 150,
+            child: DropdownButton<String>(
+              dropdownColor: kPrimaryColorGreen,
+              value: _selectedItem,
+              onChanged: (String? newValue) {
+                setState(() {
+                  _selectedItem = newValue!;
+                });
+              },
+              items: <String>['Break Fast', 'Lunch', 'Dinner', 'Other']
+                  .map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(
+                    value,
+                    style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        color: kWhiteColor, fontWeight: FontWeight.bold),
+                  ),
+                );
+              }).toList(),
             ),
           ),
           Positioned(

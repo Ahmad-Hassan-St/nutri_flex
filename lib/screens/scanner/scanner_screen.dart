@@ -1,7 +1,11 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
+import 'package:flutter_tflite/flutter_tflite.dart';
+import '../../constants/foodNutrients.dart';
+import 'scanner_cliper.dart';
 
 class ScannerScreen extends StatefulWidget {
   final CameraDescription camera;
@@ -20,6 +24,10 @@ class _ScannerScreenState extends State<ScannerScreen>
   bool _showError = false;
   bool _flashOn = false;
   late AnimationController _animationController;
+  String _scanResult = "";
+  XFile? _capturedImage;
+
+
 
   @override
   void initState() {
@@ -33,28 +41,62 @@ class _ScannerScreenState extends State<ScannerScreen>
       duration: const Duration(seconds: 2),
       vsync: this,
     )..repeat(reverse: true);
+    initTflite();
   }
 
-  @override
-  void dispose() {
-    _controller.dispose();
-    _animationController.dispose();
-    super.dispose();
+  initTflite() async {
+    await Tflite.loadModel(
+      model: 'assets/ai_model/modelM.tflite',
+      labels: 'assets/ai_model/labelsM.txt',
+      isAsset: true,
+      numThreads: 1,
+    );
   }
-
-  void _startScan() async {
+  Future<void> _takePicture() async {
     setState(() {
       _isScanning = true;
       _showError = false;
+      _scanResult = "";
+      _capturedImage = null;
     });
 
-    // Simulate scanning process
-    await Future.delayed(const Duration(seconds: 2));
+    await _initializeControllerFuture;
 
-    setState(() {
-      _isScanning = false;
-      _showError = true;
-    });
+    try {
+      _capturedImage = await _controller.takePicture();
+
+      var recognitions = await Tflite.runModelOnImage(
+        path: _capturedImage!.path,
+        imageMean: 127.5,
+        imageStd: 127.5,
+        numResults: 1,
+        threshold: 0.4,
+      );
+
+      if (recognitions != null && recognitions.isNotEmpty) {
+        setState(() {
+          _scanResult = recognitions.first["label"];
+          _isScanning = false;
+          _animationController.stop();
+        });
+
+      } else {
+        setState(() {
+          _showError = true;
+          _isScanning = false;
+
+          _animationController.stop();
+        });
+      }
+    } catch (e) {
+      print(e);
+      setState(() {
+        _showError = true;
+        _isScanning = false;
+
+        _animationController.stop();
+      });
+    }
   }
 
   void _toggleFlash() async {
@@ -69,11 +111,20 @@ class _ScannerScreenState extends State<ScannerScreen>
   }
 
   @override
+  void dispose() {
+    _controller.dispose();
+    _animationController.dispose();
+    Tflite.close();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
         children: [
-          FutureBuilder<void>(
+          _capturedImage == null
+              ? FutureBuilder<void>(
             future: _initializeControllerFuture,
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.done) {
@@ -82,7 +133,8 @@ class _ScannerScreenState extends State<ScannerScreen>
                 return const Center(child: CircularProgressIndicator());
               }
             },
-          ),
+          )
+              : Image.file(File(_capturedImage!.path)),
           ClipPath(
             clipper: ScannerClipper(),
             child: BackdropFilter(
@@ -125,6 +177,51 @@ class _ScannerScreenState extends State<ScannerScreen>
                 ),
               ),
             ),
+          if (_scanResult.isNotEmpty)
+            Positioned(
+              bottom: 32,
+              left: 0,
+              right: 0,
+              child: Container(
+                padding: const EdgeInsets.all(16),
+                margin: const EdgeInsets.symmetric(horizontal: 32),
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(8),
+                  boxShadow: const [
+                    BoxShadow(
+                      color: Colors.black26,
+                      blurRadius: 4,
+                    ),
+                  ],
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.check, color: Colors.green),
+                        SizedBox(width: 8),
+                        Expanded(
+                          child: Text(
+                            'Detected: $_scanResult',
+                            style: TextStyle(color: Colors.black),
+                          ),
+                        ),
+                      ],
+                    ),
+                    if (foodNutrients.containsKey(_scanResult.toLowerCase())) ...[
+                      Text('KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
+                      Text('Fat: ${foodNutrients[_scanResult.toLowerCase()]?['fat'] ?? 'Unknown'} g'),
+                      Text('Carbs: ${foodNutrients[_scanResult.toLowerCase()]?['carbs'] ?? 'Unknown'} g'),
+                      Text('Protein: ${foodNutrients[_scanResult.toLowerCase()]?['protein'] ?? 'Unknown'} g'),
+                    ] else ...[
+                      Text('Nutritional information not available'),
+                    ]
+                  ],
+                ),
+              ),
+            ),
           Positioned(
             top: 32,
             left: 16,
@@ -148,116 +245,11 @@ class _ScannerScreenState extends State<ScannerScreen>
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _isScanning ? null : _startScan,
-        child: const Icon(Icons.camera),
+        onPressed: _isScanning ? null : _takePicture,
+        child: const Icon(
+          Icons.camera,
+        ),
       ),
     );
-  }
-}
-
-class ScannerOverlay extends StatelessWidget {
-  final Animation<double> animation;
-
-  ScannerOverlay({required this.animation});
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Stack(
-        children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(20),
-            child: Container(
-              width: 300,
-              height: 380,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 2),
-                borderRadius: BorderRadius.circular(20),
-              ),
-            ),
-          ),
-          Positioned(
-            top: 0,
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: AnimatedBuilder(
-              animation: animation,
-              builder: (context, child) {
-                return CustomPaint(
-                  painter: LinePainter(animation.value),
-                );
-              },
-            ),
-          ),
-          Positioned(
-            bottom: 0,
-            left: 0,
-            right: 0,
-            child: Container(
-              decoration: const BoxDecoration(
-                color: Colors.black54,
-                borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(20),
-                    bottomLeft: Radius.circular(20)),
-              ),
-              padding: const EdgeInsets.all(8),
-              child: const Text(
-                'Scan meal',
-                style: TextStyle(color: Colors.white),
-                textAlign: TextAlign.center,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class ScannerClipper extends CustomClipper<Path> {
-  @override
-  Path getClip(Size size) {
-    Path path = Path();
-    double scannerWidth = 300;
-    double scannerHeight = 380;
-    double scannerLeft = (size.width - scannerWidth) / 2;
-    double scannerTop = (size.height - scannerHeight) / 2;
-
-    path.addRect(Rect.fromLTRB(0, 0, size.width, size.height));
-    path.addRRect(RRect.fromRectAndRadius(
-      Rect.fromLTRB(scannerLeft, scannerTop, scannerLeft + scannerWidth,
-          scannerTop + scannerHeight),
-      const Radius.circular(20),
-    ));
-    path.fillType = PathFillType.evenOdd;
-
-    return path;
-  }
-
-  @override
-  bool shouldReclip(CustomClipper<Path> oldClipper) {
-    return false;
-  }
-}
-
-class LinePainter extends CustomPainter {
-  final double position;
-
-  LinePainter(this.position);
-
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = Paint()
-      ..color = Colors.green
-      ..strokeWidth = 4;
-
-    final yPos = position * size.height;
-    canvas.drawLine(Offset(0, yPos), Offset(size.width, yPos), paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
   }
 }

@@ -13,7 +13,9 @@ import '../../services/body_composition_calculations.dart';
 import '../../services/dml_services.dart';
 
 class QuestionnaireScreen extends StatefulWidget {
-   QuestionnaireScreen({super.key, required this.bodyComposition,required this.userSetup});
+  QuestionnaireScreen(
+      {super.key, required this.bodyComposition, required this.userSetup});
+
   UserSetup userSetup;
   BodyComposition bodyComposition;
 
@@ -26,7 +28,9 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final Size screenSize = MediaQuery.of(context).size;
+    final Size screenSize = MediaQuery
+        .of(context)
+        .size;
 
     return Scaffold(
       body: Padding(
@@ -37,13 +41,13 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
         child: Column(
           children: [
             Container(
-              decoration: BoxDecoration(
-                color: Colors.white
-              ),
-                padding:EdgeInsets.only(
-                top: screenSize.height * 0.03,
+                decoration: BoxDecoration(
+                    color: Colors.white
+                ),
+                padding: EdgeInsets.only(
+                  top: screenSize.height * 0.03,
 
-              )
+                )
             ),
             Padding(
               padding: EdgeInsets.only(left: screenSize.width * 0.05),
@@ -62,17 +66,20 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                           backgroundColor: Colors.grey[200],
                           shape: RoundedRectangleBorder(
                             borderRadius:
-                                BorderRadius.circular(screenSize.height * 0.06),
+                            BorderRadius.circular(screenSize.height * 0.06),
                           ),
                           onPressed: () {
                             Navigator.pop(context);
                           },
                           child: Padding(
                             padding:
-                                EdgeInsets.only(left: screenSize.width * 0.025),
+                            EdgeInsets.only(left: screenSize.width * 0.025),
                             child: Icon(
                               Icons.arrow_back_ios,
-                              color: Theme.of(context).colorScheme.background,
+                              color: Theme
+                                  .of(context)
+                                  .colorScheme
+                                  .background,
                               size: screenSize.height * 0.025,
                             ),
                           ),
@@ -113,32 +120,43 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                     ],
                   ),
 
-              const SizedBox(height: 10),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "We ask some",
-                    style: Theme.of(context).textTheme.displayLarge,
+                  const SizedBox(height: 10),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Text(
+                        "We ask some",
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .displayLarge,
+                      ),
+                      const SizedBox(width: 8),
+                      Text(
+                        "Questions?",
+                        style: Theme
+                            .of(context)
+                            .textTheme
+                            .displayLarge!
+                            .copyWith(color: Theme
+                            .of(context)
+                            .colorScheme
+                            .primary),
+                      ),
+                    ],
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(height: 5),
                   Text(
-                    "Questions?",
-                    style: Theme.of(context)
+                    "We will use this data to give you\n a better diet type for you",
+                    textAlign: TextAlign.center,
+                    style: Theme
+                        .of(context)
                         .textTheme
-                        .displayLarge!
-                        .copyWith(color: Theme.of(context).colorScheme.primary),
-                  ),
-                ],
-              ),
-              const SizedBox(height: 5),
-              Text(
-                "We will use this data to give you\n a better diet type for you",
-                textAlign: TextAlign.center,
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                        .displayMedium!
+                        .copyWith(
                       color: Colors.grey,
                     ),
-              ),
+                  ),
                 ],
               ),
             ),
@@ -163,13 +181,13 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                         ),
                         child: InkWell(
                           borderRadius:
-                              BorderRadius.circular(screenSize.height * 0.02),
+                          BorderRadius.circular(screenSize.height * 0.02),
                           onTap: () {},
                           child: Ink(
                             decoration: BoxDecoration(
                               color: containerColor,
                               borderRadius:
-                                  BorderRadius.circular(screenSize.height * 0.02),
+                              BorderRadius.circular(screenSize.height * 0.02),
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
@@ -181,12 +199,13 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                                 children: [
                                   Text(
                                     "${index + 1}. $text",
-                                    style: Theme.of(context)
+                                    style: Theme
+                                        .of(context)
                                         .textTheme
                                         .displayMedium!
                                         .copyWith(
-                                          fontSize: screenSize.height * 0.02,
-                                        ),
+                                      fontSize: screenSize.height * 0.02,
+                                    ),
                                   ),
                                   Column(
                                     children: options.map((option) {
@@ -226,7 +245,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                 progress: 0.95,
                 onPressed: () {
                   // Check if any question is unanswered
-                  bool allQuestionsAnswered = selectedOptions.length == questions.length;
+                  bool allQuestionsAnswered = selectedOptions.length ==
+                      questions.length;
 
                   if (!allQuestionsAnswered) {
                     // Find the first unanswered question
@@ -239,7 +259,8 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                     }
 
                     // Display a message indicating the unanswered question
-                    ShowToastMsg("Please answer question $unansweredQuestion before proceeding.");
+                    ShowToastMsg(
+                        "Please answer question $unansweredQuestion before proceeding.");
                   } else {
                     // Proceed with calculating the score and navigating to the next screen
                     double score = 0.0;
@@ -252,9 +273,11 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                       double factor = question["factor"];
 
                       // Get the index of selected option and multiply it by the factor
-                      int selectedIndex = question["options"].indexOf(selectedOption);
+                      int selectedIndex = question["options"].indexOf(
+                          selectedOption);
 
-                      double optionValue = selectedIndex.toDouble(); // Convert to double
+                      double optionValue = selectedIndex
+                          .toDouble(); // Convert to double
                       score += optionValue * factor;
                     }
 
@@ -262,26 +285,36 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                     print("Calculated Score: $score");
 
 
-                    widget.bodyComposition.questionnaireScore=score;
-                    double bmiscore= double.parse(widget.userSetup.BMI);
-                    double dietPlan = BodyCompositionCalculation.bodyResultScroe(
-                        boydFatPercentage: widget.bodyComposition.bodyFatPercentage,
-                        waterPercentage: widget.bodyComposition.bodyWaterPercentage,
-                        questionScore: widget.bodyComposition.questionnaireScore, bmi:bmiscore);
+                    widget.bodyComposition.questionnaireScore = score;
+                    double bmiscore = double.parse(widget.userSetup.BMI);
+                    double dietPlan = BodyCompositionCalculation
+                        .bodyResultScroe(
+                        boydFatPercentage: widget.bodyComposition
+                            .bodyFatPercentage,
+                        waterPercentage: widget.bodyComposition
+                            .bodyWaterPercentage,
+                        questionScore: widget.bodyComposition
+                            .questionnaireScore, bmi: bmiscore);
 
                     int diet = dietPlan.round();
 
                     print(diet);
+                    try {
+                      DmlServices.insertUserData(userSetup: widget.userSetup);
+                      DmlServices.insertUserBodyCompositionData(
+                          userSetup: widget.userSetup,
+                          bodyComposition: widget.bodyComposition,
+                          dietPlan: diet);
 
-                    DmlServices.insertUserData(userSetup: widget.userSetup);
-                    DmlServices.insertUserBodyCompositionData(userSetup: widget.userSetup, bodyComposition: widget.bodyComposition,dietPlan: diet);
-
-                    Navigator.pushAndRemoveUntil(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomeFeedScreen()),
-                          (route) => false,
-                    );
-
+                      Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => HomeFeedScreen()),
+                            (route) => false,
+                      );
+                    } catch (e) {
+                      ShowToastMsg("Something went wrong");
+                    }
                   }
                 },
                 icon: Icons.arrow_forward_ios_outlined,

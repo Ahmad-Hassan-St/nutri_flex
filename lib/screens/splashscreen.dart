@@ -26,6 +26,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void checkIsLogin() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? token = sp.getString('email');
+
     bool ? isShowOnboard=sp.getBool("isShowBoardingScreens");
 
     print(token);

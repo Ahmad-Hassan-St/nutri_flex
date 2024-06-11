@@ -6,6 +6,7 @@ import 'package:lifefit/models/user_setup_model.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserNameScreen extends StatefulWidget {
   const UserNameScreen({super.key});
@@ -88,10 +89,14 @@ class _UserNameScreenState extends State<UserNameScreen> {
               ),
               FloatingActionButtonProgressWidget(
                   progress: 0.11,
-                  onPressed: () {
+                  onPressed: ()async {
                     if(_controllerName.text != "") {
+
+                      SharedPreferences sp = await SharedPreferences.getInstance();
                       UserSetup user = UserSetup();
                       user.userName = _controllerName.text;
+                      user.email= sp.getString("email")!;
+
                       print(user.userName);
                       Navigator.push(
                         context,

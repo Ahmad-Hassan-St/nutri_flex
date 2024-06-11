@@ -18,28 +18,37 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
   late int dietPlan;
 
   Future<Map<String, dynamic>> fetchDietPlan() async {
-
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString('email');
 
-    int? dietPlanNumber = sp.getInt("dietPlan");
-    String? goal = sp.getString('target');
-    print(dietPlanNumber);
-    if (dietPlanNumber== null) {
-      List<Map<String, dynamic>> bodyComposition =
-      await DmlServices().fetchDataUserBodyComposition(email);
-      dietPlan= (bodyComposition[0]["dietPlan"]);
-      dietPlanNumber = sp.setInt("dietPlan", dietPlan) as int?;
-    }
-    if (goal == null) {
-      List<Map<String, dynamic>> userDetails =
-      await DmlServices().fetchDataUserDetails(email);
-      print(userDetails[0]["goal"]);
-      goal =sp.setString('target',userDetails[0]["goal"] ) as String?;
+    if (email == null) {
+      throw Exception('Email not found in SharedPreferences');
     }
 
-        print(dietPlanNumber);
-    return await DietPlanService.suggestDietPlan(goal!,dietPlanNumber!);
+    int? dietPlanNumber = sp.getInt('dietPlan');
+    String? goal = sp.getString('target');
+
+    if (dietPlanNumber == null) {
+      List<Map<String, dynamic>> bodyComposition = await DmlServices().fetchDataUserBodyComposition(email);
+      if (bodyComposition.isNotEmpty) {
+        dietPlanNumber = bodyComposition[0]['dietPlan'];
+        await sp.setInt('dietPlan', dietPlanNumber!);
+      } else {
+        throw Exception('Failed to fetch body composition data');
+      }
+    }
+
+    if (goal == null) {
+      List<Map<String, dynamic>> userDetails = await DmlServices().fetchDataUserDetails(email);
+      if (userDetails.isNotEmpty) {
+        goal = userDetails[0]['goal'];
+        await sp.setString('target', goal!);
+      } else {
+        throw Exception('Failed to fetch user details');
+      }
+    }
+
+    return await DietPlanService.suggestDietPlan(goal!, dietPlanNumber!);
   }
 
   List<Map<String, dynamic>> getMealItems(Map<String, dynamic> data) {

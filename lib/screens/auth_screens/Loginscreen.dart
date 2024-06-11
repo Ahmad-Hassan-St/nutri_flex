@@ -4,8 +4,10 @@ import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/auth_screens/forgetpasswordscreen.dart';
 import 'package:lifefit/screens/auth_screens/signup_screen.dart';
+import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/services/auth_services.dart';
+import 'package:lifefit/services/dml_services.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../../components/TextFieldWidget.dart';
@@ -264,12 +266,24 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (user != null) {
                         ShowToastMsg(
                             "${user.user?.email}. is login successful");
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const UserNameScreen(),
-                          ),
-                        );
+
+                        final data = await DmlServices().fetchDataUserDetails(_emailController.text.trim());
+                        if(data !=null){
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HomeFeedScreen(),
+                            ),
+                          );
+                        }
+                        else {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const UserNameScreen(),
+                            ),
+                          );
+                        }
                       }
                     } catch (e) {
                       print(e);

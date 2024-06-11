@@ -23,12 +23,21 @@ class TextfieldWidget extends StatefulWidget {
 class _TextfieldWidgetState extends State<TextfieldWidget> {
   late bool _showError;
   late String _errorMessage;
+  late bool _isPasswordVisible;
 
   @override
   void initState() {
     super.initState();
     _showError = false;
     _errorMessage = '';
+    _isPasswordVisible = false;
+  }
+
+  // Method to toggle password visibility
+  void _togglePasswordVisibility() {
+    setState(() {
+      _isPasswordVisible = !_isPasswordVisible;
+    });
   }
 
   @override
@@ -47,7 +56,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
           ),
           child: TextFormField(
             controller: widget.controller,
-            obscureText: widget.obscureText ?? false,
+            obscureText: widget.obscureText! && !_isPasswordVisible,
             onChanged: (value) {
               setState(() {
                 _showError = widget.validator != null && widget.validator!(value) != null;
@@ -64,7 +73,16 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
                 color: Colors.grey,
                 fontSize: 13,
               ),
-              suffixIcon: Padding(
+              suffixIcon: widget.icon == Icons.lock ? Padding(
+                padding: const EdgeInsets.only(right: 20), // Adjust the padding from the right here
+                child: IconButton(
+                  icon: Icon(
+                    _isPasswordVisible ? Icons.lock_open_outlined : Icons.lock,
+                    color: const Color(0xFF19b888),
+                  ),
+                  onPressed: _togglePasswordVisibility,
+                ),
+              ) : Padding(
                 padding: const EdgeInsets.only(right: 30),
                 child: Icon(
                   widget.icon,
@@ -72,7 +90,7 @@ class _TextfieldWidgetState extends State<TextfieldWidget> {
                 ),
               ),
               border: InputBorder.none,
-              errorText: _showError ? null : null, // Set error text to null to display it outside
+              errorText: _showError ? null : null,
               contentPadding: const EdgeInsets.symmetric(
                 horizontal: 26.0,
                 vertical: 23.0,

@@ -252,7 +252,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/calender.png"),
+                        child: Image.asset("assets/images/bicep.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -271,7 +271,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/weight.png"),
+                        child: Image.asset("assets/images/lean.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -290,7 +290,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/height.png"),
+                        child: Image.asset("assets/images/fat.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -309,7 +309,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/gender.png"),
+                        child: Image.asset("assets/images/calories.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -328,7 +328,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/gender.png"),
+                        child: Image.asset("assets/images/bodyWater.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -347,7 +347,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       leading: CircleAvatar(
                         radius: 30,
                         backgroundColor: Colors.transparent,
-                        child: Image.asset("assets/images/gender.png"),
+                        child: Image.asset("assets/images/fatPercentage.png"),
                       ),
                       trailing: Icon(
                         Icons.edit,

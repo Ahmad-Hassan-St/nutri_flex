@@ -5,21 +5,21 @@ import 'package:flutter/services.dart';
 
 class DietPlanService {
 
-
   static const List balancedDietPlan = [
-    "balanced diet plan 1.json",
-    "balanced diet plan 2.json",
-    "balanced diet plan 3.json",
+    "BDP_1.json",
+    "BDP_2.json",
+    "BDP_3.json",
   ];
   static const List weightGainDietPlan = [
-    "weight gain plan1.json",
-    "weight gain plan2.json",
-    "weight gain plan3.json",
+    "WGP_1.json",
+    "WGP_2.json",
+    "WGP_3.json",
   ];
   static const List weightLossDietPlan = [
-    "weight loss diet plan 1.json",
-    "weight loss diet plan 2.json",
-    "weight loss diet plan 3.json",
+    "WLP_1.json",
+    "WLP_2.json",
+    "WLP_3.json",
+
   ];
 
   static Future<Map<String, dynamic>> suggestDietPlan(String goal,int planNumber) async {
@@ -35,8 +35,7 @@ class DietPlanService {
       dietPlan = balancedDietPlan;
     }
 
-    final String response =
-        await rootBundle.loadString("assets/diet_plan/${dietPlan[planNumber]}");
+    final String response = await rootBundle.loadString("assets/diet_plan/${dietPlan[planNumber]}");
     final result = await json.decode(response);
     // print(result['meal_plan']);
     return result;

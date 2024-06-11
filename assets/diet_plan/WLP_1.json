@@ -1,0 +1,592 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "2 boiled eggs",
+            "protein": 12,
+            "carbs": 0,
+            "fat": 10,
+            "calories": 156,
+            "weight": 100
+          },
+          {
+            "name": "1 whole wheat toast",
+            "protein": 3,
+            "carbs": 13,
+            "fat": 1,
+            "calories": 77,
+            "weight": 30
+          },
+          {
+            "name": "1 small apple",
+            "protein": 0,
+            "carbs": 25,
+            "fat": 0,
+            "calories": 39,
+            "weight": 150
+          }
+        ],
+        "calories": 272
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled chicken breast",
+            "protein": 25,
+            "carbs": 0,
+            "fat": 3,
+            "calories": 120,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup brown rice",
+            "protein": 2,
+            "carbs": 23,
+            "fat": 1,
+            "calories": 108,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 2,
+            "carbs": 4,
+            "fat": 0,
+            "calories": 68,
+            "weight": 100
+          }
+        ],
+        "calories": 374
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Lentil soup",
+            "protein": 7,
+            "carbs": 20,
+            "fat": 1,
+            "calories": 113,
+            "weight": 250
+          },
+          {
+            "name": "1 roti",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 1,
+            "calories": 89,
+            "weight": 50
+          },
+          {
+            "name": "1/2 cup yogurt",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 4,
+            "calories": 73,
+            "weight": 120
+          }
+        ],
+        "calories": 275
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "1 small banana",
+            "protein": 1,
+            "carbs": 27,
+            "fat": 0,
+            "calories": 90,
+            "weight": 100
+          }
+        ],
+        "calories": 90
+      }
+    },
+    "day_2": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Oatmeal with skimmed milk",
+            "protein": 6,
+            "carbs": 25,
+            "fat": 2,
+            "calories": 152,
+            "weight": 200
+          },
+          {
+            "name": "Honey",
+            "protein": 0,
+            "carbs": 17,
+            "fat": 0,
+            "calories": 64,
+            "weight": 20
+          },
+          {
+            "name": "Strawberries",
+            "protein": 1,
+            "carbs": 11,
+            "fat": 0,
+            "calories": 91,
+            "weight": 100
+          }
+        ],
+        "calories": 307
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Baked fish fillet",
+            "protein": 30,
+            "carbs": 0,
+            "fat": 3,
+            "calories": 147,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup quinoa",
+            "protein": 4,
+            "carbs": 31,
+            "fat": 3,
+            "calories": 160,
+            "weight": 90
+          },
+          {
+            "name": "Salad",
+            "protein": 1,
+            "carbs": 4,
+            "fat": 0,
+            "calories": 24,
+            "weight": 50
+          }
+        ],
+        "calories": 331
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chickpea curry",
+            "protein": 8,
+            "carbs": 23,
+            "fat": 3,
+            "calories": 152,
+            "weight": 200
+          },
+          {
+            "name": "1 roti",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 1,
+            "calories": 89,
+            "weight": 50
+          },
+          {
+            "name": "Cucumber & tomato salad",
+            "protein": 1,
+            "carbs": 6,
+            "fat": 0,
+            "calories": 30,
+            "weight": 100
+          }
+        ],
+        "calories": 320
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "10 almonds",
+            "protein": 3,
+            "carbs": 2,
+            "fat": 6,
+            "calories": 70,
+            "weight": 14
+          }
+        ],
+        "calories": 70
+      }
+    },
+    "day_3": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Greek yogurt",
+            "protein": 17,
+            "carbs": 6,
+            "fat": 0,
+            "calories": 100,
+            "weight": 150
+          },
+          {
+            "name": "Granola",
+            "protein": 3,
+            "carbs": 42,
+            "fat": 7,
+            "calories": 254,
+            "weight": 50
+          },
+          {
+            "name": "Mixed berries",
+            "protein": 1,
+            "carbs": 15,
+            "fat": 0,
+            "calories": 95,
+            "weight": 100
+          }
+        ],
+        "calories": 295
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Vegetable stir-fry with tofu",
+            "protein": 12,
+            "carbs": 15,
+            "fat": 10,
+            "calories": 191,
+            "weight": 200
+          },
+          {
+            "name": "1/2 cup quinoa",
+            "protein": 4,
+            "carbs": 31,
+            "fat": 3,
+            "calories": 160,
+            "weight": 90
+          }
+        ],
+        "calories": 251
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Grilled chicken kebab",
+            "protein": 25,
+            "carbs": 1,
+            "fat": 3,
+            "calories": 127,
+            "weight": 150
+          },
+          {
+            "name": "1 roti",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 1,
+            "calories": 89,
+            "weight": 50
+          },
+          {
+            "name": "Mixed green salad",
+            "protein": 1,
+            "carbs": 4,
+            "fat": 0,
+            "calories": 30,
+            "weight": 100
+          }
+        ],
+        "calories": 320
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "1 small orange",
+            "protein": 1,
+            "carbs": 12,
+            "fat": 0,
+            "calories": 62,
+            "weight": 130
+          }
+        ],
+        "calories": 62
+      }
+    },
+    "day_4": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Scrambled eggs with veggies",
+            "protein": 10,
+            "carbs": 4,
+            "fat": 12,
+            "calories": 164,
+            "weight": 100
+          },
+          {
+            "name": "1 whole wheat toast",
+            "protein": 3,
+            "carbs": 13,
+            "fat": 1,
+            "calories": 77,
+            "weight": 30
+          }
+        ],
+        "calories": 240
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Lentil soup",
+            "protein": 7,
+            "carbs": 20,
+            "fat": 1,
+            "calories": 113,
+            "weight": 250
+          },
+          {
+            "name": "1/2 cup brown rice",
+            "protein": 2,
+            "carbs": 23,
+            "fat": 1,
+            "calories": 108,
+            "weight": 100
+          }
+        ],
+        "calories": 249
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Baked fish fillet",
+            "protein": 30,
+            "carbs": 0,
+            "fat": 3,
+            "calories": 147,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup quinoa",
+            "protein": 4,
+            "carbs": 31,
+            "fat": 3,
+            "calories": 160,
+            "weight": 90
+          },
+          {
+            "name": "Steamed broccoli",
+            "protein": 3,
+            "carbs": 6,
+            "fat": 0,
+            "calories": 66,
+            "weight": 100
+          }
+        ],
+        "calories": 286
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "1 small pear",
+            "protein": 1,
+            "carbs": 25,
+            "fat": 0,
+            "calories": 51,
+            "weight": 130
+          }
+        ],
+        "calories": 51
+      }
+    },
+    "day_5": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Protein smoothie",
+            "protein": 15,
+            "carbs": 20,
+            "fat": 5,
+            "calories": 200,
+            "weight": 250
+          }
+        ],
+        "calories": 200
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Chicken salad with mixed greens",
+            "protein": 20,
+            "carbs": 8,
+            "fat": 10,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 200
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Vegetable curry",
+            "protein": 5,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 200,
+            "weight": 200
+          },
+          {
+            "name": "1 roti",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 1,
+            "calories": 89,
+            "weight": 50
+          }
+        ],
+        "calories": 320
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "1/2 cup low-fat cottage cheese",
+            "protein": 14,
+            "carbs": 3,
+            "fat": 2,
+            "calories": 90,
+            "weight": 120
+          }
+        ],
+        "calories": 90
+      }
+    },
+    "day_6": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole grain cereal with skimmed milk",
+            "protein": 9,
+            "carbs": 36,
+            "fat": 3,
+            "calories": 190,
+            "weight": 100
+          },
+          {
+            "name": "Sliced mango",
+            "protein": 1,
+            "carbs": 25,
+            "fat": 0,
+            "calories": 80,
+            "weight": 100
+          }
+        ],
+        "calories": 270
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled shrimp skewers",
+            "protein": 25,
+            "carbs": 1,
+            "fat": 3,
+            "calories": 127,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup brown rice",
+            "protein": 2,
+            "carbs": 23,
+            "fat": 1,
+            "calories": 108,
+            "weight": 100
+          }
+        ],
+        "calories": 259
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chickpea salad",
+            "protein": 6,
+            "carbs": 25,
+            "fat": 3,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 200
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Carrot sticks with hummus",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 3,
+            "calories": 100,
+            "weight": 150
+          }
+        ],
+        "calories": 100
+      }
+    },
+    "day_7": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Vegetable omelette",
+            "protein": 12,
+            "carbs": 2,
+            "fat": 10,
+            "calories": 180,
+            "weight": 100
+          }
+        ],
+        "calories": 180
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Spinach and feta salad",
+            "protein": 5,
+            "carbs": 3,
+            "fat": 6,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 200
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Grilled chicken breast",
+            "protein": 25,
+            "carbs": 0,
+            "fat": 3,
+            "calories": 120,
+            "weight": 150
+          },
+          {
+            "name": "1 roti",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 1,
+            "calories": 89,
+            "weight": 50
+          },
+          {
+            "name": "Steamed vegetables",
+            "protein": 3,
+            "carbs": 6,
+            "fat": 0,
+            "calories": 30,
+            "weight": 100
+          }
+        ],
+        "calories": 335
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "1 small apple",
+            "protein": 0,
+            "carbs": 14,
+            "fat": 0,
+            "calories": 52,
+            "weight": 150
+          }
+        ],
+        "calories": 52
+      }
+    }
+  }
+}
+
+

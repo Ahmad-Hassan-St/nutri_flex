@@ -1,0 +1,454 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Scrambled eggs with spinach",
+            "protein": 12,
+            "carbs": 3,
+            "fat": 10,
+            "calories": 180,
+            "weight": 150
+          },
+          {
+            "name": "1 slice whole wheat toast",
+            "protein": 4,
+            "carbs": 12,
+            "fat": 2,
+            "calories": 70,
+            "weight": 30
+          }
+        ],
+        "calories": 250
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled chicken salad with mixed greens",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 8,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Balsamic vinaigrette",
+            "protein": 0,
+            "carbs": 3,
+            "fat": 5,
+            "calories": 100,
+            "weight": 30
+          }
+        ],
+        "calories": 300
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Vegetable stir-fry with tofu",
+            "protein": 15,
+            "carbs": 20,
+            "fat": 6,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup brown rice",
+            "protein": 3,
+            "carbs": 20,
+            "fat": 1,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 350
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Greek yogurt with berries",
+            "protein": 8,
+            "carbs": 15,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_2": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Oatmeal with sliced banana",
+            "protein": 5,
+            "carbs": 30,
+            "fat": 2,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Almond milk",
+            "protein": 1,
+            "carbs": 2,
+            "fat": 3,
+            "calories": 100,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Turkey sandwich with whole wheat bread",
+            "protein": 20,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Lettuce, tomato, mustard",
+            "protein": 1,
+            "carbs": 3,
+            "fat": 0,
+            "calories": 50,
+            "weight": 50
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Baked salmon with steamed vegetables",
+            "protein": 25,
+            "carbs": 10,
+            "fat": 8,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Carrot sticks with hummus",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 7,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_3": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole grain cereal with skim milk",
+            "protein": 7,
+            "carbs": 30,
+            "fat": 3,
+            "calories": 180,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup berries",
+            "protein": 1,
+            "carbs": 15,
+            "fat": 0,
+            "calories": 70,
+            "weight": 100
+          }
+        ],
+        "calories": 250
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Quinoa salad with chickpeas, cucumber, and lemon dressing",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 6,
+            "calories": 250,
+            "weight": 200
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Vegetable soup",
+            "protein": 5,
+            "carbs": 15,
+            "fat": 2,
+            "calories": 100,
+            "weight": 200
+          },
+          {
+            "name": "1 slice whole wheat bread",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 2,
+            "calories": 150,
+            "weight": 50
+          }
+        ],
+        "calories": 250
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Mixed nuts",
+            "protein": 5,
+            "carbs": 5,
+            "fat": 15,
+            "calories": 150,
+            "weight": 30
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_4": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Smoothie with spinach, banana, almond milk, protein powder",
+            "protein": 15,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 250,
+            "weight": 300
+          }
+        ],
+        "calories": 300
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled tofu with mixed vegetables",
+            "protein": 10,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup quinoa",
+            "protein": 5,
+            "carbs": 20,
+            "fat": 3,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chickpea curry with 1 roti",
+            "protein": 10,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 250,
+            "weight": 200
+          }
+        ],
+        "calories": 300
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Apple slices with peanut butter",
+            "protein": 2,
+            "carbs": 15,
+            "fat": 10,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_5": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole wheat toast with avocado and poached egg",
+            "protein": 10,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Mediterranean salad with feta cheese, olives, and vinaigrette",
+            "protein": 10,
+            "carbs": 15,
+            "fat": 20,
+            "calories": 250,
+            "weight": 200
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Grilled shrimp skewers with quinoa",
+            "protein": 20,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 300,
+            "weight": 200
+          }
+        ],
+        "calories": 300
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Cottage cheese with pineapple",
+            "protein": 10,
+            "carbs": 15,
+            "fat": 5,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_6": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Scrambled tofu with bell peppers and onions",
+            "protein": 8,
+            "carbs": 6,
+            "fat": 5,
+            "calories": 120,
+            "weight": 150
+          }
+        ],
+        "calories": 250
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Whole wheat wrap with grilled vegetables and hummus",
+            "protein": 6,
+            "carbs": 25,
+            "fat": 12,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Vegetable stir-fry with tofu",
+            "protein": 15,
+            "carbs": 20,
+            "fat": 6,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "1/2 cup brown rice",
+            "protein": 3,
+            "carbs": 20,
+            "fat": 1,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 350
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Yogurt with sliced almonds",
+            "protein": 6,
+            "carbs": 10,
+            "fat": 8,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    },
+    "day_7": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Banana oat pancakes with maple syrup",
+            "protein": 5,
+            "carbs": 40,
+            "fat": 5,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled chicken Caesar salad",
+            "protein": 25,
+            "carbs": 10,
+            "fat": 15,
+            "calories": 250,
+            "weight": 200
+          }
+        ],
+        "calories": 350
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Stuffed bell peppers with ground turkey and quinoa",
+            "protein": 20,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 300,
+            "weight": 200
+          }
+        ],
+        "calories": 300
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Celery sticks with peanut butter",
+            "protein": 3,
+            "carbs": 5,
+            "fat": 8,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 150
+      }
+    }
+  }
+}

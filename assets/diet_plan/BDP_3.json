@@ -1,0 +1,665 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole grain toast with almond butter",
+            "protein": 5,
+            "carbs": 20,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Greek yogurt with honey",
+            "protein": 8,
+            "carbs": 15,
+            "fat": 5,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Orange slices",
+            "protein": 1,
+            "carbs": 15,
+            "fat": 0,
+            "calories": 100,
+            "weight": 100
+          }
+        ],
+        "calories": 400
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled vegetable wrap with hummus",
+            "protein": 5,
+            "carbs": 30,
+            "fat": 8,
+            "calories": 300,
+            "weight": 200
+          },
+          {
+            "name": "Mixed greens salad",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 5,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 500
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Baked salmon with garlic and herbs",
+            "protein": 25,
+            "carbs": 5,
+            "fat": 15,
+            "calories": 400,
+            "weight": 200
+          },
+          {
+            "name": "Quinoa pilaf",
+            "protein": 8,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Steamed green beans",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 1,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 600
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Cottage cheese with pineapple chunks",
+            "protein": 10,
+            "carbs": 5,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_2": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Omelette with spinach, tomatoes, and feta cheese",
+            "protein": 15,
+            "carbs": 10,
+            "fat": 8,
+            "calories": 250,
+            "weight": 200
+          },
+          {
+            "name": "Whole grain toast",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 2,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Apple slices",
+            "protein": 1,
+            "carbs": 20,
+            "fat": 0,
+            "calories": 100,
+            "weight": 100
+          }
+        ],
+        "calories": 450
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Turkey and avocado salad with balsamic vinaigrette",
+            "protein": 20,
+            "carbs": 10,
+            "fat": 12,
+            "calories": 400,
+            "weight": 250
+          }
+        ],
+        "calories": 550
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Grilled chicken breast with lemon and herbs",
+            "protein": 25,
+            "carbs": 5,
+            "fat": 10,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Brown rice",
+            "protein": 5,
+            "carbs": 30,
+            "fat": 2,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Steamed broccoli",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 1,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 700
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Carrot sticks with hummus",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_3": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Greek yogurt with granola and mixed berries",
+            "protein": 12,
+            "carbs": 25,
+            "fat": 7,
+            "calories": 300,
+            "weight": 200
+          },
+          {
+            "name": "Whole wheat toast with jam",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 3,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Orange juice",
+            "protein": 1,
+            "carbs": 25,
+            "fat": 0,
+            "calories": 150,
+            "weight": 200
+          }
+        ],
+        "calories": 400
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Quinoa salad",
+            "protein": 5,
+            "carbs": 15,
+            "fat": 5,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "black beans",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 100,
+            "weight": 50
+          },
+          {
+            "name": "corn",
+            "protein": 1,
+            "carbs": 5,
+            "fat": 3,
+            "calories": 50,
+            "weight": 50
+          },
+          {
+            "name": "avocado",
+            "protein": 1,
+            "carbs": 0,
+            "fat": 5,
+            "calories": 50,
+            "weight": 50
+          }
+        ],
+        "calories": 500
+      }
+    ,
+      "dinner": {
+        "items": [
+          {
+            "name": "Shrimp stir-fry with mixed vegetables",
+            "protein": 15,
+            "carbs": 25,
+            "fat": 8,
+            "calories": 300,
+            "weight": 200
+          },
+          {
+            "name": "Quinoa",
+            "protein": 8,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Side salad with vinaigrette",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 3,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 600
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Mixed nuts",
+            "protein": 5,
+            "carbs": 5,
+            "fat": 10,
+            "calories": 150,
+            "weight": 50
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_4": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole grain cereal with skim milk",
+            "protein": 8,
+            "carbs": 20,
+            "fat": 3,
+            "calories": 200,
+            "weight": 200
+          },
+          {
+            "name": "Banana slices",
+            "protein": 1,
+            "carbs": 25,
+            "fat": 0,
+            "calories": 100,
+            "weight": 100
+          },
+          {
+            "name": "Chia seeds",
+            "protein": 3,
+            "carbs": 5,
+            "fat": 7,
+            "calories": 50,
+            "weight": 50
+          }
+        ],
+        "calories": 350
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Mediterranean chickpea salad with feta cheese and olives",
+            "protein": 10,
+            "carbs": 30,
+            "fat": 8,
+            "calories": 300,
+            "weight": 200
+          }
+        ],
+        "calories": 550
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Turkey meatballs in marinara sauce",
+            "protein": 15,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Whole wheat spaghetti",
+            "protein": 6,
+            "carbs": 40,
+            "fat": 3,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Roasted zucchini",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 1,
+            "calories": 100,
+            "weight": 100
+          }
+        ],
+        "calories": 700
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Apple slices with peanut butter",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 8,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_5": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Whole wheat pancakes with maple syrup",
+            "protein": 8,
+            "carbs": 40,
+            "fat": 10,
+            "calories": 300,
+            "weight": 200
+          },
+          {
+            "name": "Turkey bacon",
+            "protein": 6,
+            "carbs": 2,
+            "fat": 8,
+            "calories": 150,
+            "weight": 50
+          },
+          {
+            "name": "Mixed fruit salad",
+            "protein": 2,
+            "carbs": 30,
+            "fat": 1,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 450
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Grilled chicken Caesar salad with whole grain croutons",
+            "protein": 20,
+            "carbs": 30,
+            "fat": 15,
+            "calories": 400,
+            "weight": 250
+          }
+        ],
+        "calories": 550
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Baked tofu with teriyaki sauce",
+            "protein": 15,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Brown rice",
+            "protein": 5,
+            "carbs": 40,
+            "fat": 3,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Stir-fried vegetables",
+            "protein": 3,
+            "carbs": 20,
+            "fat": 5,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 700
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Yogurt with granola and mixed berries",
+            "protein": 5,
+            "carbs": 20,
+            "fat": 10,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_6": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Smoothie with spinach",
+            "protein": 2,
+            "carbs": 4,
+            "fat": 1,
+            "calories": 50,
+            "weight": 50
+          },
+          {
+            "name": "banana",
+            "protein": 1,
+            "carbs": 10,
+            "fat": 0,
+            "calories": 50,
+            "weight": 50
+          },
+          {
+            "name": "almond milk",
+            "protein": 1,
+            "carbs": 4,
+            "fat": 1,
+            "calories": 50,
+            "weight": 50
+          },
+          {
+            "name": "protein powder",
+            "protein": 6,
+            "carbs": 2,
+            "fat": 3,
+            "calories": 100,
+            "weight": 50
+          }
+        ],
+        "calories": 350
+      },
+
+      "lunch": {
+        "items": [
+          {
+            "name": "Vegetable and lentil soup",
+            "protein": 8,
+            "carbs": 20,
+            "fat": 3,
+            "calories": 200,
+            "weight": 200
+          },
+          {
+            "name": "Whole grain roll",
+            "protein": 4,
+            "carbs": 30,
+            "fat": 2,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Mixed greens salad",
+            "protein": 2,
+            "carbs": 10,
+            "fat": 5,
+            "calories": 100,
+            "weight": 100
+          }
+        ],
+        "calories": 550
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Grilled salmon with lemon-dill sauce",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 15,
+            "calories": 400,
+            "weight": 200
+          },
+          {
+            "name": "Quinoa pilaf",
+            "protein": 8,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 150
+
+          },
+          {
+            "name": "Steamed asparagus",
+            "protein": 2,
+            "carbs": 5,
+            "fat": 1,
+            "calories": 50,
+            "weight": 100
+          }
+        ],
+        "calories": 700
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Greek yogurt with honey and almonds",
+            "protein": 10,
+            "carbs": 15,
+            "fat": 10,
+            "calories": 200,
+            "weight": 150
+          }
+        ],
+        "calories": 300
+      }
+    },
+    "day_7": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Scrambled eggs with bell peppers and onions",
+            "protein": 15,
+            "carbs": 5,
+            "fat": 10,
+            "calories": 250,
+            "weight": 200
+          },
+          {
+            "name": "Whole grain toast",
+            "protein": 3,
+            "carbs": 15,
+            "fat": 2,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Fresh fruit salad",
+            "protein": 2,
+            "carbs": 20,
+            "fat": 1,
+            "calories": 100,
+            "weight": 150
+          }
+        ],
+        "calories": 450
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Tuna salad sandwich with whole grain bread",
+            "protein": 20,
+            "carbs": 30,
+            "fat": 15,
+            "calories": 400,
+            "weight": 250
+          },
+          {
+            "name": "Carrot sticks with hummus",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 5,
+            "calories": 150,
+            "weight": 100
+          }
+        ],
+        "calories": 550
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Baked cod with garlic and herbs",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 10,
+            "calories": 300,
+            "weight": 200
+          },
+          {
+            "name": "Quinoa salad with cucumber and tomatoes",
+            "protein": 8,
+            "carbs": 25,
+            "fat": 5,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 700
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Trail mix with dried fruits and nuts",
+            "protein": 5,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 250,
+            "weight": 100
+          }
+        ],
+        "calories": 300
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           theme: appTheme,
           // home:  ScannerScreen(camera: cameras.first,)
-          home: const HomeFeedScreen()
+          home:  SplashScreen()
 
       ),
     );

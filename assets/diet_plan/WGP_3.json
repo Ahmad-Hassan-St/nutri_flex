@@ -1,0 +1,886 @@
+{
+  "meal_plan": {
+    "day_1": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Cheese paratha",
+            "protein": 8,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 400,
+            "weight": 150
+          },
+          {
+            "name": "Fried eggs",
+            "protein": 10,
+            "carbs": 2,
+            "fat": 12,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 800
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Vegetable Biryani",
+            "protein": 12,
+            "carbs": 45,
+            "fat": 15,
+            "calories": 600,
+            "weight": 200
+          },
+          {
+            "name": "Chicken curry",
+            "protein": 15,
+            "carbs": 10,
+            "fat": 20,
+            "calories": 400,
+            "weight": 150
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 2,
+            "carbs": 5,
+            "fat": 2,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chapati",
+            "protein": 6,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Beef Kofta",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 25,
+            "calories": 450,
+            "weight": 200
+          },
+          {
+            "name": "Daal Chawal",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 350,
+            "weight": 250
+          },
+          {
+            "name": "Mixed vegetable salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 900
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Pakoras",
+            "protein": 6,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 300,
+            "weight": 150
+          },
+          {
+            "name": "Mango Shake",
+            "protein": 4,
+            "carbs": 35,
+            "fat": 10,
+            "calories": 500,
+            "weight": 250
+          }
+        ],
+        "calories": 800
+      }
+    },
+    "day_2": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Alu Bhujia with paratha",
+            "protein": 6,
+            "carbs": 35,
+            "fat": 20,
+            "calories": 400,
+            "weight": 200
+          },
+          {
+            "name": "Fried eggs",
+            "protein": 10,
+            "carbs": 2,
+            "fat": 12,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 900
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Chicken Pulao",
+            "protein": 15,
+            "carbs": 50,
+            "fat": 25,
+            "calories": 650,
+            "weight": 300
+          },
+          {
+            "name": "Mutton curry",
+            "protein": 20,
+            "carbs": 10,
+            "fat": 30,
+            "calories": 450,
+            "weight": 150
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1100
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Naan",
+            "protein": 6,
+            "carbs": 45,
+            "fat": 10,
+            "calories": 300,
+            "weight": 100
+          },
+          {
+            "name": "Chicken Karahi",
+            "protein": 15,
+            "carbs": 5,
+            "fat": 20,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Daal Makhni",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 400,
+            "weight": 250
+          },
+          {
+            "name": "Mixed fruit salad",
+            "protein": 2,
+            "carbs": 15,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Samosas",
+            "protein": 6,
+            "carbs": 25,
+            "fat": 15,
+            "calories": 300,
+            "weight": 150
+          },
+          {
+            "name": "Falooda",
+            "protein": 2,
+            "carbs": 40,
+            "fat": 5,
+            "calories": 300,
+            "weight": 200
+          }
+        ],
+        "calories": 600
+      }
+    },
+    "day_3": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Vegetable omelette with toast",
+            "protein": 12,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Fried potatoes",
+            "protein": 3,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 800
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Beef Biryani",
+            "protein": 18,
+            "carbs": 55,
+            "fat": 25,
+            "calories": 700,
+            "weight": 300
+          },
+          {
+            "name": "Beef curry",
+            "protein": 20,
+            "carbs": 15,
+            "fat": 30,
+            "calories": 500,
+            "weight": 200
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1200
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Roti",
+            "protein": 6,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Mutton Korma",
+            "protein": 18,
+            "carbs": 10,
+            "fat": 25,
+            "calories": 500,
+            "weight": 200
+          },
+          {
+            "name": "Chana Masala",
+            "protein": 12,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 350,
+            "weight": 250
+          },
+          {
+            "name": "Mixed vegetable salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Fruit Chaat",
+            "protein": 2,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Mango Shake",
+            "protein": 4,
+            "carbs": 35,
+            "fat": 10,
+            "calories": 500,
+            "weight": 250
+          }
+        ],
+        "calories": 500
+      }
+    },
+    "day_4": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "French Toast with honey",
+            "protein": 8,
+            "carbs": 35,
+            "fat": 10,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Fried eggs",
+            "protein": 10,
+            "carbs": 2,
+            "fat": 12,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 750
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Chicken Handi with naan",
+            "protein": 15,
+            "carbs": 40,
+            "fat": 20,
+            "calories": 600,
+            "weight": 300
+          },
+          {
+            "name": "Mixed vegetable rice",
+            "protein": 8,
+            "carbs": 50,
+            "fat": 15,
+            "calories": 400,
+            "weight": 200
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1100
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chapati",
+            "protein": 6,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Beef Nihari",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 25,
+            "calories": 450,
+            "weight": 200
+          },
+          {
+            "name": "Saag",
+            "protein": 8,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 350,
+            "weight": 250
+          },
+          {
+            "name": "Mixed fruit salad",
+            "protein": 2,
+            "carbs": 15,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Kebabs",
+            "protein": 6,
+            "carbs": 15,
+            "fat": 10,
+            "calories": 250,
+            "weight": 150
+          },
+          {
+            "name": "Lemonade",
+            "protein": 1,
+            "carbs": 30,
+            "fat": 5,
+            "calories": 250,
+            "weight": 250
+          }
+        ],
+        "calories": 500
+      }
+    },
+    "day_5": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Scrambled eggs with toast",
+            "protein": 14,
+            "carbs": 25,
+            "fat": 15,
+            "calories": 400,
+            "weight": 200
+          },
+          {
+            "name": "Fried potatoes",
+            "protein": 3,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 200,
+            "weight": 150
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 800
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Vegetable Biryani",
+            "protein": 12,
+            "carbs": 45,
+            "fat": 15,
+            "calories": 600,
+            "weight": 200
+          },
+          {
+            "name": "Chicken curry",
+            "protein": 15,
+            "carbs": 10,
+            "fat": 20,
+            "calories": 400,
+            "weight": 150
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 2,
+            "carbs": 5,
+            "fat": 2,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Naan",
+            "protein": 6,
+            "carbs": 45,
+            "fat": 10,
+            "calories": 300,
+            "weight": 100
+          },
+          {
+            "name": "Beef Karahi",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 25,
+            "calories": 450,
+            "weight": 200
+          },
+          {
+            "name": "Daal",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 350,
+            "weight": 250
+          },
+          {
+            "name": "Mixed fruit salad",
+            "protein": 2,
+            "carbs": 15,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Pakoras",
+            "protein": 6,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 300,
+            "weight": 150
+          },
+          {
+            "name": "Falooda",
+            "protein": 2,
+            "carbs": 40,
+            "fat": 5,
+            "calories": 300,
+            "weight": 200
+          }
+        ],
+        "calories": 700
+      }
+    },
+    "day_6": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Aloo paratha with yogurt",
+            "protein": 6,
+            "carbs": 40,
+            "fat": 20,
+            "calories": 450,
+            "weight": 200
+          },
+          {
+            "name": "Fried eggs",
+            "protein": 10,
+            "carbs": 2,
+            "fat": 12,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 850
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Mutton Pulao",
+            "protein": 15,
+            "carbs": 50,
+            "fat": 25,
+            "calories": 650,
+            "weight": 300
+          },
+          {
+            "name": "Mutton curry",
+            "protein": 20,
+            "carbs": 10,
+            "fat": 30,
+            "calories": 450,
+            "weight": 150
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1100
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Roti",
+            "protein": 6,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Chicken Korma",
+            "protein": 15,
+            "carbs": 5,
+            "fat": 20,
+            "calories": 350,
+            "weight": 200
+          },
+          {
+            "name": "Daal Mash",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 400,
+            "weight": 250
+          },
+          {
+            "name": "Mixed fruit salad",
+            "protein": 2,
+            "carbs": 15,
+            "fat": 3,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Pakoras",
+            "protein": 6,
+            "carbs": 20,
+            "fat": 15,
+            "calories": 300,
+            "weight": 150
+          },
+          {
+            "name": "Chai",
+            "protein": 1,
+            "carbs": 15,
+            "fat": 5,
+            "calories": 100,
+            "weight": 200
+          }
+        ],
+        "calories": 900
+      }
+    },
+    "day_7": {
+      "breakfast": {
+        "items": [
+          {
+            "name": "Cheese paratha",
+            "protein": 8,
+            "carbs": 25,
+            "fat": 10,
+            "calories": 400,
+            "weight": 150
+          },
+          {
+            "name": "Fried eggs",
+            "protein": 10,
+            "carbs": 2,
+            "fat": 12,
+            "calories": 200,
+            "weight": 100
+          },
+          {
+            "name": "Lassi",
+            "protein": 4,
+            "carbs": 20,
+            "fat": 8,
+            "calories": 200,
+            "weight": 200
+          }
+        ],
+        "calories": 800
+      },
+      "lunch": {
+        "items": [
+          {
+            "name": "Chicken Biryani",
+            "protein": 15,
+            "carbs": 55,
+            "fat": 30,
+            "calories": 750,
+            "weight": 300
+          },
+          {
+            "name": "Chicken curry",
+            "protein": 15,
+            "carbs": 10,
+            "fat": 20,
+            "calories": 400,
+            "weight": 150
+          },
+          {
+            "name": "Raita",
+            "protein": 5,
+            "carbs": 8,
+            "fat": 6,
+            "calories": 150,
+            "weight": 100
+          },
+          {
+            "name": "Salad",
+            "protein": 2,
+            "carbs": 5,
+            "fat": 2,
+            "calories": 250,
+            "weight": 150
+          }
+        ],
+        "calories": 1000
+      },
+      "dinner": {
+        "items": [
+          {
+            "name": "Chapati",
+            "protein": 6,
+            "carbs": 30,
+            "fat": 10,
+            "calories": 250,
+            "weight": 100
+          },
+          {
+            "name": "Beef Karahi",
+            "protein": 20,
+            "carbs": 5,
+            "fat": 25,
+            "calories": 450,
+            "weight": 200
+          },
+          {
+            "name": "Daal Makhni",
+            "protein": 10,
+            "carbs": 40,
+            "fat": 15,
+            "calories": 400,
+            "weight": 250
+          },
+          {
+            "name": "Mixed vegetable salad",
+            "protein": 3,
+            "carbs": 10,
+            "fat": 2,
+            "calories": 150,
+            "weight": 150
+          }
+        ],
+        "calories": 900
+      },
+      "snack": {
+        "items": [
+          {
+            "name": "Samosas",
+            "protein": 6,
+            "carbs": 25,
+            "fat": 15,
+            "calories": 300,
+            "weight": 150
+          },
+          {
+            "name": "Mango Shake",
+            "protein": 4,
+            "carbs": 35,
+            "fat": 10,
+            "calories": 500,
+            "weight": 250
+          }
+        ],
+        "calories": 800
+      }
+    }
+  }
+}

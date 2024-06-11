@@ -49,17 +49,15 @@ class DietPlanTracking {
 
   // Retrieve diet for a specific user and day
   Future<QuerySnapshot<Object?>> getDiet(String userId, String day) async {
-    // final data =  await _db.collection('users')
-    //     .doc(userId)
-    //     .collection('diet')
-    //     .doc(day)
-    //     .get();
-    final data = await DietPlanTracking().getAllDiet("12345");
+
+    final data = await DietPlanTracking().getAllDiet("ahmad@gmail.com");
     data.docs.forEach((doc) {
       print('Diet data for ${doc.id}: ${doc.data()}');
     });
+
     return data;
   }
+
   Future<QuerySnapshot> getAllDiet(String userId) async {
     final data = await _db.collection('users')
         .doc(userId)

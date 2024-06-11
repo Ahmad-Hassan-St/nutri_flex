@@ -3,51 +3,84 @@ import 'dart:ui';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
+import '../../services/diet_plan_tracking.dart';
+
 class CalorieTracker extends StatefulWidget {
   @override
   _CalorieTrackerState createState() => _CalorieTrackerState();
 }
 
 class _CalorieTrackerState extends State<CalorieTracker> {
-  List<FlSpot> breakfastData = [
-    const FlSpot(0, 0),
-    const FlSpot(1, 1500),
-    const FlSpot(2, 1572),
-    const FlSpot(3, 1433)
-  ];
-  List<FlSpot> lunchData = [
-    const FlSpot(0, 0),
-    const FlSpot(1, 3000),
-    const FlSpot(2, 4987),
-    const FlSpot(3, 1000)
-  ];
-  List<FlSpot> dinnerData = [
-    const FlSpot(0, 0),
-    const FlSpot(1, 2000),
-    const FlSpot(2, 2091),
-    const FlSpot(3, 1632)
-  ];
-  List<FlSpot> otherData = [
-    const FlSpot(0, 0),
-    const FlSpot(1, 1800),
-    const FlSpot(2, 1932),
-    const FlSpot(3, 1144)
-  ];
+  double breakfastData = 0;
+  double lunchData = 0;
+  double dinnerData = 0;
+  double otherData = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
+
+  void getData() async {
+    final data = await DietPlanTracking().getDiet("ahmad@gmail.com", "day");
+    Map<String, double> totalCalories = {
+      'breakfast': 0,
+      'lunch': 0,
+      'dinner': 0,
+      'other': 0
+    };
+
+    data.docs.forEach((doc) {
+      final dietData = doc.data() as Map<String, dynamic>;
+      dietData.forEach((mealType, meals) {
+        double mealTotal = 0;
+        if (meals is List) {
+          meals.forEach((meal) {
+            mealTotal += meal['kcal'];
+          });
+        } else if (meals is Map) {
+          mealTotal += meals['kcal'];
+        }
+
+        if (mealType == 'Break Fast') {
+          totalCalories['breakfast'] = (totalCalories['breakfast'] ?? 0) + mealTotal;
+        } else if (mealType == 'Lunch') {
+          totalCalories['lunch'] = (totalCalories['lunch'] ?? 0) + mealTotal;
+        } else if (mealType == 'Dinner') {
+          totalCalories['dinner'] = (totalCalories['dinner'] ?? 0) + mealTotal;
+        } else if (mealType == 'Other') {
+          totalCalories['other'] = (totalCalories['other'] ?? 0) + mealTotal;
+        }
+      });
+    });
+
+    setState(() {
+      breakfastData = totalCalories['breakfast'] ?? 0;
+      lunchData = totalCalories['lunch'] ?? 0;
+      dinnerData = totalCalories['dinner'] ?? 0;
+      otherData = totalCalories['other'] ?? 0;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
-    final padding = MediaQuery.of(context).padding;
 
     return Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         children: [
-          Center(child: Padding(
-            padding: const EdgeInsets.only(top: 28.0),
-            child: Text("Calorie Tracking",style: Theme.of(context).textTheme.displayLarge,),
-          )),
+          Center(
+            child: Padding(
+              padding: const EdgeInsets.only(top: 28.0),
+              child: Text(
+                "Calorie Tracking",
+                style: Theme.of(context).textTheme.displayLarge,
+              ),
+            ),
+          ),
           Padding(
             padding: EdgeInsets.all(screenWidth * 0.04),
             child: Container(
@@ -59,8 +92,8 @@ class _CalorieTrackerState extends State<CalorieTracker> {
               child: Column(
                 children: [
                   SizedBox(height: screenHeight * 0.02),
-                  const Text(
-                    '10582 kcal',
+                  Text(
+                    '${breakfastData + lunchData + dinnerData + otherData} kcal',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
                   const Text(
@@ -79,7 +112,12 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                           borderData: FlBorderData(show: false),
                           lineBarsData: [
                             LineChartBarData(
-                              spots: breakfastData,
+                              spots: [
+                                FlSpot(0, breakfastData),
+                                FlSpot(1, lunchData),
+                                FlSpot(2, dinnerData),
+                                FlSpot(3, otherData),
+                              ],
                               isCurved: true,
                               color: const Color(0xff9DD030),
                               barWidth: 2,
@@ -89,60 +127,6 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                                 gradient: LinearGradient(
                                   colors: [
                                     const Color(0xff9DD030).withOpacity(0.2),
-                                    Colors.transparent,
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),
-                              ),
-                            ),
-                            LineChartBarData(
-                              spots: lunchData,
-                              isCurved: true,
-                              color: const Color(0xff19B888),
-                              barWidth: 4,
-                              isStrokeCapRound: true,
-                              belowBarData: BarAreaData(
-                                show: true,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xff19B888).withOpacity(0.2),
-                                    Colors.transparent,
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),
-                              ),
-                            ),
-                            LineChartBarData(
-                              spots: dinnerData,
-                              isCurved: true,
-                              color: const Color(0xff39ACFF),
-                              barWidth: 4,
-                              isStrokeCapRound: true,
-                              belowBarData: BarAreaData(
-                                show: true,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xff39ACFF).withOpacity(0.2),
-                                    Colors.transparent,
-                                  ],
-                                  begin: Alignment.topCenter,
-                                  end: Alignment.bottomCenter,
-                                ),
-                              ),
-                            ),
-                            LineChartBarData(
-                              spots: otherData,
-                              isCurved: true,
-                              color: const Color(0xff8439FF),
-                              barWidth: 4,
-                              isStrokeCapRound: true,
-                              belowBarData: BarAreaData(
-                                show: true,
-                                gradient: LinearGradient(
-                                  colors: [
-                                    const Color(0xff8439FF).withOpacity(0.2),
                                     Colors.transparent,
                                   ],
                                   begin: Alignment.topCenter,
@@ -188,7 +172,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                     ],
                   ),
                   child: Padding(
-                    padding:  EdgeInsets.only(top: screenHeight * 0.02),
+                    padding: EdgeInsets.only(top: screenHeight * 0.02),
                     child: Column(
                       children: [
                         Row(
@@ -196,14 +180,14 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                           children: [
                             CalorieDetail(
                               title: 'Breakfast',
-                              kcal: 1572,
-                              percentage: 14,
+                              kcal: breakfastData.toInt(),
+                              percentage: ((breakfastData / (breakfastData + lunchData + dinnerData + otherData)) * 100).toInt(),
                               color: const Color(0xff9DD030),
                             ),
                             CalorieDetail(
                               title: 'Lunch',
-                              kcal: 4987,
-                              percentage: 48,
+                              kcal: lunchData.toInt(),
+                              percentage: ((lunchData / (breakfastData + lunchData + dinnerData + otherData)) * 100).toInt(),
                               color: const Color(0xff19B888),
                             ),
                           ],
@@ -213,14 +197,14 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                           children: [
                             CalorieDetail(
                               title: 'Dinner',
-                              kcal: 2091,
-                              percentage: 20,
+                              kcal: dinnerData.toInt(),
+                              percentage: ((dinnerData / (breakfastData + lunchData + dinnerData + otherData)) * 100).toInt(),
                               color: const Color(0xff39ACFF),
                             ),
                             CalorieDetail(
                               title: 'Other',
-                              kcal: 1932,
-                              percentage: 18,
+                              kcal: otherData.toInt(),
+                              percentage: ((otherData / (breakfastData + lunchData + dinnerData + otherData)) * 100).toInt(),
                               color: const Color(0xff8439FF),
                             ),
                           ],
@@ -288,29 +272,29 @@ class CalorieDetail extends StatelessWidget {
                 child: Text(
                   '$kcal kcal',
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold
-                  ) ),
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold
+                  ),
+                ),
               ),
             ],
           ),
           Row(
-
             children: [
               Text(
                 title,
-                style:Theme.of(context).textTheme.displayMedium!.copyWith(
+                style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     fontSize: 13,
                     fontWeight: FontWeight.bold
-                )
+                ),
               ),
               SizedBox(width: screenWidth * 0.09),
               Text(
                 '$percentage%',
                 style: Theme.of(context).textTheme.displayMedium!.copyWith(
                     fontSize: 18,
-                  color: color
-                )
+                    color: color
+                ),
               ),
             ],
           ),

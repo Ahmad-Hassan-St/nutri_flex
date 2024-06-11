@@ -22,11 +22,11 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
     String mealKey = selectedMealType.toLowerCase();
 
     if (data["meal_plan"].containsKey(dayKey) && data["meal_plan"][dayKey].containsKey(mealKey)) {
+
       return List<Map<String, dynamic>>.from(data["meal_plan"][dayKey][mealKey]['items']);
     }
     return [];
   }
-
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -152,7 +152,7 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
                     itemCount: mealItems.length,
                     itemBuilder: (context, index) {
                       var item = mealItems[index];
-
+                     // totalKcl +=  (mealItems[index]['calories'] as num ).toInt();
                       return NutritionItem(
                         title: item['name'],
                         calories: item['calories'],
@@ -164,6 +164,7 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
                     },
                   ),
                 ),
+                // Text("data $totalKcl"),
               ],
             );
           }

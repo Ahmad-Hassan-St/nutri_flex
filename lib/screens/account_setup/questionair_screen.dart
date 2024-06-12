@@ -11,6 +11,7 @@ import '../../components/onBoardcontainer.dart';
 import '../../constants/questions.dart';
 import '../../services/body_composition_calculations.dart';
 import '../../services/dml_services.dart';
+import '../animation_screen/loading_screen.dart';
 
 class QuestionnaireScreen extends StatefulWidget {
   QuestionnaireScreen(
@@ -25,7 +26,21 @@ class QuestionnaireScreen extends StatefulWidget {
 
 class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
   final Map<int, String> selectedOptions = {};
+  void _submitAnswers(BuildContext context) {
+    // Navigate to the loading screen
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => const LoadingScreen()),
+    );
 
+    // Wait for one minute and then navigate to the diet plan screen
+    Future.delayed(Duration(seconds: 4 ), () {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomeFeedScreen()),
+      );
+    });
+  }
   @override
   Widget build(BuildContext context) {
     final Size screenSize = MediaQuery
@@ -305,13 +320,14 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                           userSetup: widget.userSetup,
                           bodyComposition: widget.bodyComposition,
                           dietPlan: diet);
+                      _submitAnswers(context);
 
-                      Navigator.pushAndRemoveUntil(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => HomeFeedScreen()),
-                            (route) => false,
-                      );
+                      // Navigator.pushAndRemoveUntil(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //       builder: (context) => HomeFeedScreen()),
+                      //       (route) => false,
+                      // );
                     } catch (e) {
                       ShowToastMsg("Something went wrong");
                     }

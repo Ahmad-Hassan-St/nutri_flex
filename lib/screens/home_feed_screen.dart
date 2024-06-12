@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
+import 'package:lifefit/screens/latest_news/latest_news.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 
 import 'food_tracking/chart_screen.dart';
@@ -17,9 +18,10 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
   int selectedIndex = 1;
 
   final List<Widget> screenList = <Widget>[
-    CalorieTracker(),
+    HomePage(),
     ShowDietScreen(),
-    const Text("Stats", style: TextStyle(fontSize: 50, color: Colors.red)),
+
+    CalorieTracker(),
     const ProfileScreen(),
   ];
 
@@ -49,6 +51,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             BottomNavItem(icon: 'assets/icons/reports.svg', text: 'Trains'),
             BottomNavItem(icon: 'assets/icons/stats.svg', text: 'Bookings'),
             BottomNavItem(icon: 'assets/icons/profile.svg', text: 'Setting'),
+
           ],
           selectedIndex: selectedIndex,
           onTabSelected: (index) {

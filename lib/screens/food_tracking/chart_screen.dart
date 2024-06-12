@@ -4,6 +4,7 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import '../../services/diet_plan_tracking.dart';
+import 'calories_details.dart';
 
 class CalorieTracker extends StatefulWidget {
   @override
@@ -21,7 +22,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
     super.initState();
     getData();
   }
-
+bool isData = false;
   void getData() async {
     final data = await DietPlanTracking().getDiet("ahmad@gmail.com", "day");
     Map<String, double> totalCalories = {
@@ -60,6 +61,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
       lunchData = totalCalories['lunch'] ?? 0;
       dinnerData = totalCalories['dinner'] ?? 0;
       otherData = totalCalories['other'] ?? 0;
+      isData=true;
     });
   }
 
@@ -70,7 +72,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body: isData? Column(
         children: [
           Center(
             child: Padding(
@@ -113,10 +115,10 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                           lineBarsData: [
                             LineChartBarData(
                               spots: [
-                                FlSpot(0, breakfastData),
+                                FlSpot(0, otherData),
                                 FlSpot(1, lunchData),
                                 FlSpot(2, dinnerData),
-                                FlSpot(3, otherData),
+                                FlSpot(3, breakfastData),
                               ],
                               isCurved: true,
                               color: const Color(0xff9DD030),
@@ -127,6 +129,75 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                                 gradient: LinearGradient(
                                   colors: [
                                     const Color(0xff9DD030).withOpacity(0.2),
+                                    Colors.transparent,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                            ),
+
+                            LineChartBarData(
+                              spots: [
+                                FlSpot(0, lunchData),
+                                FlSpot(1, breakfastData),
+                                FlSpot(2, otherData),
+                                FlSpot(3, otherData),
+                              ],
+                              isCurved: true,
+                              color: const Color(0xff19B888),
+                              barWidth: 4,
+                              isStrokeCapRound: true,
+                              belowBarData: BarAreaData(
+                                show: true,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    const Color(0xff19B888).withOpacity(0.2),
+                                    Colors.transparent,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                            ),
+                            LineChartBarData(
+                              spots: [
+                                FlSpot(0, otherData),
+                                FlSpot(1, lunchData),
+                                FlSpot(2, dinnerData),
+                                FlSpot(3, breakfastData),
+                              ],
+                              isCurved: true,
+                              color: const Color(0xff39ACFF),
+                              barWidth: 4,
+                              isStrokeCapRound: true,
+                              belowBarData: BarAreaData(
+                                show: true,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    const Color(0xff39ACFF).withOpacity(0.2),
+                                    Colors.transparent,
+                                  ],
+                                  begin: Alignment.topCenter,
+                                  end: Alignment.bottomCenter,
+                                ),
+                              ),
+                            ),
+                            LineChartBarData(spots: [
+                              FlSpot(0, dinnerData),
+                              FlSpot(1, otherData),
+                              FlSpot(2, dinnerData),
+                              FlSpot(3, breakfastData),
+                            ],
+                              isCurved: true,
+                              color: const Color(0xff8439FF),
+                              barWidth: 4,
+                              isStrokeCapRound: true,
+                              belowBarData: BarAreaData(
+                                show: true,
+                                gradient: LinearGradient(
+                                  colors: [
+                                    const Color(0xff8439FF).withOpacity(0.2),
                                     Colors.transparent,
                                   ],
                                   begin: Alignment.topCenter,
@@ -217,7 +288,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
             ),
           ),
         ],
-      ),
+      ): Center(child: CircularProgressIndicator())
     );
   }
 
@@ -239,88 +310,6 @@ class _CalorieTrackerState extends State<CalorieTracker> {
         ),
         const SizedBox(width: 11),
       ],
-    );
-  }
-}
-
-class CalorieDetail extends StatelessWidget {
-  final String title;
-  final int kcal;
-  final int percentage;
-  final Color color;
-
-  CalorieDetail({
-    required this.title,
-    required this.kcal,
-    required this.percentage,
-    required this.color,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    final screenWidth = MediaQuery.of(context).size.width;
-
-    return Padding(
-      padding: EdgeInsets.symmetric(vertical: screenWidth * 0.02),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              Padding(
-                padding: EdgeInsets.only(right: screenWidth * 0.05),
-                child: Text(
-                  '$kcal kcal',
-                  style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold
-                  ),
-                ),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              Text(
-                title,
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    fontSize: 13,
-                    fontWeight: FontWeight.bold
-                ),
-              ),
-              SizedBox(width: screenWidth * 0.09),
-              Text(
-                '$percentage%',
-                style: Theme.of(context).textTheme.displayMedium!.copyWith(
-                    fontSize: 18,
-                    color: color
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: screenWidth * 0.01),
-          Stack(
-            children: [
-              Container(
-                width: screenWidth * 0.3,
-                height: 5,
-                decoration: BoxDecoration(
-                  color: color.withOpacity(0.2),
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-              Container(
-                width: screenWidth * 0.3 * (percentage / 100),
-                height: 5,
-                decoration: BoxDecoration(
-                  color: color,
-                  borderRadius: BorderRadius.circular(5),
-                ),
-              ),
-            ],
-          ),
-        ],
-      ),
     );
   }
 }

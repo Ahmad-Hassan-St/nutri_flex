@@ -52,7 +52,7 @@ class DietPlanTracking {
 
     final data = await DietPlanTracking().getAllDiet("ahmad@gmail.com");
     data.docs.forEach((doc) {
-      print('Diet data for ${doc.id}: ${doc.data()}');
+      // print('Diet data for ${doc.id}: ${doc.data()}');
     });
 
     return data;

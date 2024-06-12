@@ -4,6 +4,8 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 
+import 'food_tracking/chart_screen.dart';
+
 class HomeFeedScreen extends StatefulWidget {
   const HomeFeedScreen({super.key});
 
@@ -15,8 +17,7 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
   int selectedIndex = 1;
 
   final List<Widget> screenList = <Widget>[
-    const Text("Home1", style: TextStyle(fontSize: 50, color: Colors.red)),
-    // const Text("Reports", style: TextStyle(fontSize: 50, color: Colors.red)),
+    CalorieTracker(),
     ShowDietScreen(),
     const Text("Stats", style: TextStyle(fontSize: 50, color: Colors.red)),
     const ProfileScreen(),

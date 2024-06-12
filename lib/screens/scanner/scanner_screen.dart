@@ -230,17 +230,15 @@ class _ScannerScreenState extends State<ScannerScreen>
                               };
                               print(_selectedItem);
                              await DietPlanTracking().addUser("ahmad@gmail.com");
-                            await  DietPlanTracking().addDiet("ahmad@gmail.com", "day_2", meals);
+                            await  DietPlanTracking().addDiet("ahmad@gmail.com", "day_5", meals);
 
                             ShowToastMsg("Add item Successfully ");
                             },
                             icon: Icon(Icons.add, color: kPrimaryColorGreen)),
                       ],
                     ),
-                    if (foodNutrients
-                        .containsKey(_scanResult.toLowerCase())) ...[
-                      Text(
-                          'KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
+                    if (foodNutrients.containsKey(_scanResult.toLowerCase())) ...[
+                      Text('KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
                       Text(
                           'Fat: ${foodNutrients[_scanResult.toLowerCase()]?['fat'] ?? 'Unknown'} g'),
                       Text(

@@ -5,6 +5,7 @@ import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
 import 'package:lifefit/screens/latest_news/latest_news.dart';
 import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
 
+import 'chat/chat_screen.dart';
 import 'food_tracking/chart_screen.dart';
 
 class HomeFeedScreen extends StatefulWidget {
@@ -20,7 +21,6 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
   final List<Widget> screenList = <Widget>[
     HomePage(),
     ShowDietScreen(),
-
     CalorieTracker(),
     const ProfileScreen(),
   ];
@@ -51,7 +51,6 @@ class _HomeFeedScreenState extends State<HomeFeedScreen> {
             BottomNavItem(icon: 'assets/icons/reports.svg', text: 'Trains'),
             BottomNavItem(icon: 'assets/icons/stats.svg', text: 'Bookings'),
             BottomNavItem(icon: 'assets/icons/profile.svg', text: 'Setting'),
-
           ],
           selectedIndex: selectedIndex,
           onTabSelected: (index) {

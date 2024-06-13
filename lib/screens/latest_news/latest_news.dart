@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
+import 'package:lifefit/screens/chat/chat_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../services/api_services.dart';
 import '../../services/url_lanucher.dart';
@@ -23,7 +24,16 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
-        title: Center(child: Text('Home Feed',style:Theme.of(context).textTheme.displayLarge)),
+        centerTitle: true,
+        title: Text('Home Feed',style:Theme.of(context).textTheme.displayLarge),
+        actions: [
+          Padding(
+            padding: const EdgeInsets.only(right: 18.0,top: 10,),
+            child: IconButton(onPressed: (){
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>ChatPage()));
+            }, icon: const Icon(Icons.chat_outlined)),
+          )
+        ],
       ),
       body: FutureBuilder<Map<String, dynamic>>(
         future: futureData,

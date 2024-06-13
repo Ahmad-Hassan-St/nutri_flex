@@ -70,11 +70,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     screenSize.height * 0.06),
                               ),
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) =>
-                                        const UserNameScreen()));
+                                
                               },
                               child: Padding(
                                 padding: EdgeInsets.only(

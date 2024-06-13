@@ -33,7 +33,6 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          // home:  ScannerScreen(camera: cameras.first,)
           home:SplashScreen(),
       ),
     );

@@ -5,9 +5,11 @@ import 'package:camera/camera.dart';
 import 'dart:async';
 import 'dart:ui' as ui;
 import 'package:flutter_tflite/flutter_tflite.dart';
+import 'package:intl/intl.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/services/diet_plan_tracking.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../constants/foodNutrients.dart';
 import 'scanner_cliper.dart';
 
@@ -229,8 +231,17 @@ class _ScannerScreenState extends State<ScannerScreen>
                                 },
                               };
                               print(_selectedItem);
-                             await DietPlanTracking().addUser("ahmad@gmail.com");
-                            await  DietPlanTracking().addDiet("ahmad@gmail.com", "day_5", meals);
+
+                              SharedPreferences sp = await SharedPreferences.getInstance();
+                              String ? email = sp.getString("email");
+                              // Get the current date
+                              DateTime now = DateTime.now();
+                              String formattedDate = DateFormat('dd_MM_yy').format(now);
+                              String day = 'day_$formattedDate';
+
+                              await DietPlanTracking().addUser(email!);
+
+                            await  DietPlanTracking().addDiet(email, day, meals);
 
                             ShowToastMsg("Add item Successfully ");
                             },

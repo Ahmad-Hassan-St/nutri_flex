@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:lifefit/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../components/ListTileContainer.dart';
+import '../../services/auth_services.dart';
 import '../../services/dml_services.dart';
 import '../account_setup/account_setup_screen.dart';
 
@@ -57,6 +59,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   children: [
                     Row(
                       children: [
+                        SizedBox(
+                          width: screenSize.width * 0.35,
+                        ),
+                        Text(
+                          "Profile",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                        SizedBox(
+                          width: screenSize.width * 0.2,
+                        ),
                         Container(
                           height: screenSize.height * 0.07,
                           width: screenSize.height * 0.07,
@@ -70,13 +82,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     screenSize.height * 0.06),
                               ),
                               onPressed: () {
-                                
+                                _showLogoutDialog(context);
+
                               },
                               child: Padding(
                                 padding: EdgeInsets.only(
                                     left: screenSize.width * 0.025),
                                 child: Icon(
-                                  Icons.arrow_back_ios,
+                                  Icons.logout,
                                   color:
                                   Theme.of(context).colorScheme.background,
                                   size: screenSize.height * 0.025,
@@ -85,13 +98,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
-                          width: screenSize.width * 0.2,
-                        ),
-                        Text(
-                          "Profile",
-                          style: Theme.of(context).textTheme.displayLarge,
-                        ),
+
                       ],
                     ),
                     SizedBox(
@@ -363,6 +370,36 @@ class _ProfileScreenState extends State<ProfileScreen> {
           }
         },
       ),
+    );
+  }
+  void _showLogoutDialog(BuildContext context) {
+    showDialog(
+
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          backgroundColor: Color(0xffebf6d6),
+
+          title: Text("Confirm Logout"),
+          content: Text("Do you want to log out?"),
+          actions: <Widget>[
+            TextButton(
+              child: Text("No",style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.normal),),
+
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            TextButton(
+              child: Text("Yes",style: Theme.of(context).textTheme.displayLarge,),
+              onPressed: () {
+                Navigator.of(context).pop();
+                AuthServices().handleLogout(context);
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

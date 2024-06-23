@@ -24,6 +24,8 @@ class _ChatPageState extends State<ChatPage> {
   final _user = const types.User(
     id: '82091008-a484-4a89-ae75-a22bf8d6f3ac',
   );
+
+
   bool _isLoading = false;
 
   @override

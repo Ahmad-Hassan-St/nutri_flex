@@ -50,8 +50,8 @@ class _ScannerScreenState extends State<ScannerScreen>
 
   initTflite() async {
     await Tflite.loadModel(
-      model: 'assets/ai_model/modelM.tflite',
-      labels: 'assets/ai_model/labelsM.txt',
+      model: 'assets/ai_model/latest_model.tflite',
+      labels: 'assets/ai_model/latest_labels.txt',
       isAsset: true,
       numThreads: 1,
     );

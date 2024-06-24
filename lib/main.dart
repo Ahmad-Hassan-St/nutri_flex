@@ -8,6 +8,7 @@ import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/services/auth_services.dart';
+import 'package:lifefit/services/check_internet_services.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
 

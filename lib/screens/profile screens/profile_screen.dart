@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import '../../chat_module/api/apis.dart';
 import '../../components/ListTileContainer.dart';
 import '../../services/auth_services.dart';
 import '../../services/dml_services.dart';
@@ -23,10 +24,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
     String? email = sp.getString('email');
     userEmail = email ?? "";
     List<Map<String, dynamic>> fetchedData =
-    await DmlServices().fetchDataUserDetails(userEmail);
+        await DmlServices().fetchDataUserDetails(userEmail);
 
     bodyComposition =
-    await DmlServices().fetchDataUserBodyComposition(userEmail);
+        await DmlServices().fetchDataUserBodyComposition(userEmail);
     print(bodyComposition);
 
     return fetchedData;
@@ -52,6 +53,18 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return const Center(child: Text('No data available.'));
           } else {
             List<Map<String, dynamic>> dataList = snapshot.data!;
+            double bmi = double.parse( dataList[0]["BMI"]);
+            String  bmiCategory ="";
+
+            if (bmi < 18.5) {
+              bmiCategory = "Underweight";
+            } else if (bmi >= 18.5 && bmi < 25) {
+              bmiCategory = "Normal Weight";
+            } else if (bmi >= 25 && bmi < 30) {
+              bmiCategory = "Overweight";
+            } else if (bmi >= 30) {
+              bmiCategory = "Obesity";
+            }
             return Padding(
               padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20),
               child: SingleChildScrollView(
@@ -83,7 +96,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               ),
                               onPressed: () {
                                 _showLogoutDialog(context);
-
                               },
                               child: Padding(
                                 padding: EdgeInsets.only(
@@ -91,14 +103,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 child: Icon(
                                   Icons.logout,
                                   color:
-                                  Theme.of(context).colorScheme.background,
+                                      Theme.of(context).colorScheme.background,
                                   size: screenSize.height * 0.025,
                                 ),
                               ),
                             ),
                           ),
                         ),
-
                       ],
                     ),
                     SizedBox(
@@ -107,8 +118,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     CustomListTile(
                       leading: CircleAvatar(
                         radius: 30,
-                        backgroundColor: Colors.blue,
-                        child: Image.asset("assets/images/profile.png"),
+                        backgroundColor: Colors.transparent,
+                        // Set background color to transparent
+                        child: ClipOval(
+                          child: Image.network(
+                            APIs.me.image.toString(),
+                            fit: BoxFit.cover,
+                            width: 60.0,
+                            height: 60.0,
+                          ),
+                        ),
                       ),
                       trailing: Icon(
                         Icons.edit,
@@ -124,7 +143,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Row(
                       children: [
                         Text(
-                          "Quick Login",
+                          "$bmiCategory",
                           style: Theme.of(context).textTheme.displayLarge,
                         ),
                       ],
@@ -262,7 +281,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Bicep Circumference'),
-                      subtitle: bodyComposition.isNotEmpty ? "${dataList[0]["bicepSize"]} cm" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${dataList[0]["bicepSize"]} cm"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -281,7 +302,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Lean Mass'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["leanMass"].toStringAsFixed(2)} kg" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${bodyComposition[0]["leanMass"].toStringAsFixed(2)}"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -300,7 +323,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Fat Mass'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["fatMass"].toStringAsFixed(2)} kg" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${bodyComposition[0]["fatMass"].toStringAsFixed(2)}"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -319,7 +344,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Calories'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["calories"].toStringAsFixed(2)} kcal" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${bodyComposition[0]["calories"].toStringAsFixed(2)} kcal"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -338,7 +365,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Body Water Percentage'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["water%"].toStringAsFixed(2)}%" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${bodyComposition[0]["water%"].toStringAsFixed(2)}%"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -357,7 +386,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         color: Theme.of(context).colorScheme.primary,
                       ),
                       title: ('Body Fat Percentage'),
-                      subtitle: bodyComposition.isNotEmpty ? "${bodyComposition[0]["fatMass%"].toStringAsFixed(2)}%" : 'N/A',
+                      subtitle: bodyComposition.isNotEmpty
+                          ? "${bodyComposition[0]["fatMass%"].toStringAsFixed(2)}%"
+                          : 'N/A',
                       containerHeight: screenSize.height * 0.116,
                     ),
                     SizedBox(
@@ -372,26 +403,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
     );
   }
+
   void _showLogoutDialog(BuildContext context) {
     showDialog(
-
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
           backgroundColor: Color(0xffebf6d6),
-
           title: Text("Confirm Logout"),
           content: Text("Do you want to log out?"),
           actions: <Widget>[
             TextButton(
-              child: Text("No",style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.normal),),
-
+              child: Text(
+                "No",
+                style: Theme.of(context)
+                    .textTheme
+                    .displayMedium
+                    ?.copyWith(fontWeight: FontWeight.normal),
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Yes",style: Theme.of(context).textTheme.displayMedium,),
+              child: Text(
+                "Yes",
+                style: Theme.of(context).textTheme.displayMedium,
+              ),
               onPressed: () {
                 Navigator.of(context).pop();
                 AuthServices().handleLogout(context);

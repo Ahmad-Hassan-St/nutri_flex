@@ -89,6 +89,8 @@ class AuthServices {
   handleLogout(BuildContext context) async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     sp.remove('email');
+    sp.remove('dietPlan');
+    sp.remove('target');
 
     await _auth.signOut();
     ShowToastMsg("You are logout");

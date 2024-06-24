@@ -28,6 +28,8 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
     int? dietPlanNumber = sp.getInt('dietPlan');
     String? goal = sp.getString('target');
 
+    print(dietPlanNumber);
+    print(goal);
     if (dietPlanNumber == null) {
       List<Map<String, dynamic>> bodyComposition = await DmlServices().fetchDataUserBodyComposition(email);
       if (bodyComposition.isNotEmpty) {
@@ -40,6 +42,7 @@ class _ShowDietScreenState extends State<ShowDietScreen> {
 
     if (goal == null) {
       List<Map<String, dynamic>> userDetails = await DmlServices().fetchDataUserDetails(email);
+      print(userDetails);
       if (userDetails.isNotEmpty) {
         goal = userDetails[0]['goal'];
         await sp.setString('target', goal!);

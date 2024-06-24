@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/chat/chat_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
+import '../../chat_module/screens/home_screen.dart';
 import '../../services/api_services.dart';
 import '../../services/url_lanucher.dart';
 
@@ -17,10 +18,14 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     futureData = ApiServices().apiData();
+    print(futureData);
   }
 
   @override
   Widget build(BuildContext context) {
+
+    futureData = ApiServices().apiData();
+    print(futureData);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.transparent,
@@ -30,7 +35,7 @@ class _HomePageState extends State<HomePage> {
           Padding(
             padding: const EdgeInsets.only(right: 18.0,top: 10,),
             child: IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (_)=>ChatPage()));
+              Navigator.push(context, MaterialPageRoute(builder: (_)=>HomeScreen()));
             }, icon: const Icon(Icons.chat_outlined)),
           )
         ],

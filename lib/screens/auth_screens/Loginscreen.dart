@@ -10,6 +10,8 @@ import 'package:lifefit/services/auth_services.dart';
 import 'package:lifefit/services/dml_services.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
 import 'package:slide_to_act/slide_to_act.dart';
+import '../../chat_module/api/apis.dart';
+import '../../chat_module/helper/dialogs.dart';
 import '../../components/TextFieldWidget.dart';
 import '../../services/local_auth.dart';
 import '../../utils/validations.dart';
@@ -157,11 +159,9 @@ class _LoginScreenState extends State<LoginScreen> {
                                 setState(() {
                                   isBiometricAuth = true;
                                 });
-                              }
-                              else{
+                              } else {
                                 setState(() {
                                   isBiometricAuth = false;
-
                                 });
                               }
                             },
@@ -254,10 +254,9 @@ class _LoginScreenState extends State<LoginScreen> {
                 innerColor: const Color(0xFF173430),
                 outerColor: const Color(0xFF173430),
                 onSubmit: () async {
-                  if(!isBiometricAuth){
+                  if (!isBiometricAuth) {
                     ShowToastMsg("First authenticate Biometric");
-                  }
-                  else {
+                  } else {
                     try {
                       UserCredential user = await AuthServices().signInAuth(
                         email: _emailController.text.trim(),
@@ -267,16 +266,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         ShowToastMsg(
                             "${user.user?.email}. is login successful");
 
-                        final data = await DmlServices().fetchDataUserDetails(_emailController.text.trim());
-                        if(data !=null){
+                        final data = await DmlServices()
+                            .fetchDataUserDetails(_emailController.text.trim());
+                        if (data != null) {
+                          _checKUserExistsOrAdd();
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
                               builder: (context) => const HomeFeedScreen(),
                             ),
                           );
-                        }
-                        else {
+                        } else {
+                          _checKUserExistsOrAdd();
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -300,5 +301,14 @@ class _LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+
+  _checKUserExistsOrAdd() async {
+    //for showing progress bar
+
+    if (await APIs.userExists() && mounted) {
+    } else {
+      await APIs.createUser();
+    }
   }
 }

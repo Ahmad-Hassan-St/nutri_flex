@@ -1,27 +1,30 @@
 import 'package:camera/camera.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:flutter_notification_channel/flutter_notification_channel.dart';
+import 'package:flutter_notification_channel/notification_importance.dart';
+import 'package:lifefit/chat_module/screens/auth/login_screen.dart';
 import 'package:lifefit/firebase_options.dart';
-import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
-import 'package:lifefit/screens/diet%20plan/show_dietPlan_screens.dart';
-import 'package:lifefit/screens/food_tracking/chart_screen.dart';
-import 'package:lifefit/screens/food_tracking/model.dart';
-import 'package:lifefit/screens/home_feed_screen.dart';
-import 'package:lifefit/screens/latest_news/latest_news.dart';
-import 'package:lifefit/screens/profile%20screens/profile_screen.dart';
-import 'package:lifefit/screens/scanner/scanner_screen.dart';
+import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
-import 'screens/food_tracking/food_tracking.dart';
 
 List<CameraDescription> cameras = [];
+late Size mq = Size(0, 0);
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  cameras = await availableCameras();
-  runApp(const MyApp());
+
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown])
+      .then((value) async {
+    _initializeFirebase();
+    cameras = await availableCameras();
+
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
@@ -37,4 +40,16 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+_initializeFirebase() async {
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+
+  var result = await FlutterNotificationChannel().registerNotificationChannel(
+      description: 'For Showing Message Notification',
+      id: 'chats',
+      importance: NotificationImportance.IMPORTANCE_HIGH,
+      name: 'Chats');
+
+  print('\nNotification Channel Result: $result');
 }

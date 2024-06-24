@@ -384,14 +384,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
           content: Text("Do you want to log out?"),
           actions: <Widget>[
             TextButton(
-              child: Text("No",style: Theme.of(context).textTheme.displayLarge?.copyWith(fontWeight: FontWeight.normal),),
+              child: Text("No",style: Theme.of(context).textTheme.displayMedium?.copyWith(fontWeight: FontWeight.normal),),
 
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text("Yes",style: Theme.of(context).textTheme.displayLarge,),
+              child: Text("Yes",style: Theme.of(context).textTheme.displayMedium,),
               onPressed: () {
                 Navigator.of(context).pop();
                 AuthServices().handleLogout(context);

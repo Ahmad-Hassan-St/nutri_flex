@@ -17,7 +17,7 @@ import '../../services/local_auth.dart';
 import '../../utils/validations.dart';
 
 class LoginScreen extends StatefulWidget {
-  const LoginScreen({Key? key}) : super(key: key);
+  const   LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -266,9 +266,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         ShowToastMsg(
                             "${user.user?.email}. is login successful");
 
-                        final data = await DmlServices()
-                            .fetchDataUserDetails(_emailController.text.trim());
-                        if (data != null) {
+                        final data = await DmlServices().fetchDataUserDetails(_emailController.text.trim());
+                        if (data != null && data.isNotEmpty) {
+                          print(data);
                           _checKUserExistsOrAdd();
                           Navigator.pushReplacement(
                             context,

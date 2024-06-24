@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> {
     print(token);
     print(isShowOnboard);
     if (token != null && token.isNotEmpty) {
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) =>   HomeFeedScreen()));
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const HomeFeedScreen()));
     }
     else if (isShowOnboard == true) {
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_) => const LoginScreen()));

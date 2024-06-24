@@ -8,14 +8,17 @@ class DietPlanTracking {
     await _db.collection('users').doc(email).set({});
   }
 
-  Future<void> addDiet(String email, String day, Map<String, Map<String, dynamic>> newMeals) async {
-    final docRef = _db.collection('users').doc(email).collection('diet').doc(day);
+  Future<void> addDiet(String email, String day,
+      Map<String, Map<String, dynamic>> newMeals) async {
+    final docRef =
+        _db.collection('users').doc(email).collection('diet').doc(day);
 
     await _db.runTransaction((transaction) async {
       DocumentSnapshot snapshot = await transaction.get(docRef);
 
       if (snapshot.exists) {
-        Map<String, dynamic> existingMeals = snapshot.data() as Map<String, dynamic>;
+        Map<String, dynamic> existingMeals =
+            snapshot.data() as Map<String, dynamic>;
 
         // Append new meals to existing ones
         newMeals.forEach((mealType, mealData) {
@@ -46,23 +49,25 @@ class DietPlanTracking {
     });
   }
 
-
   // Retrieve diet for a specific user and day
   Future<QuerySnapshot<Object?>> getDiet(String userId, String day) async {
+    try {
+      final data = await DietPlanTracking().getAllDiet(userId);
+      data.docs.forEach((doc) {
+        // print('Diet data for ${doc.id}: ${doc.data()}');
+      });
 
-    final data = await DietPlanTracking().getAllDiet("ahmad@gmail.com");
-    data.docs.forEach((doc) {
-      // print('Diet data for ${doc.id}: ${doc.data()}');
-    });
+      return data;
+    } on FirebaseException catch (e) {
+      print(e.message);
 
-    return data;
+      rethrow; // Rethrow the exception to be handled by the caller
+    }
   }
 
   Future<QuerySnapshot> getAllDiet(String userId) async {
-    final data = await _db.collection('users')
-        .doc(userId)
-        .collection('diet')
-        .get();
+    final data =
+        await _db.collection('users').doc(userId).collection('diet').get();
     return data;
   }
 

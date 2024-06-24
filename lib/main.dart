@@ -8,6 +8,7 @@ import 'package:lifefit/chat_module/screens/auth/login_screen.dart';
 import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';
+import 'package:lifefit/services/auth_services.dart';
 import 'package:lifefit/utils/app_theme.dart';
 
 
@@ -32,11 +33,12 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // AuthServices().handleLogout(context);
     return SafeArea(
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: appTheme,
-          home:SplashScreen(),
+          home: SplashScreen(),
       ),
     );
   }

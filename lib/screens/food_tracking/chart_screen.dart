@@ -38,7 +38,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
   void getData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString("email");
-    final data = await DietPlanTracking().getDiet(email!, "day");
+    final data = await DietPlanTracking().getDiet("huzaifa@gmail.com", "day");
     Map<String, List<double>> mealData = {
       'breakfast': [],
       'lunch': [],
@@ -111,8 +111,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: isData
-          ? Column(
+      body: Column(
               children: [
                 Padding(
                   padding: const EdgeInsets.only(top: 28.0, bottom: 20,left: 60),
@@ -147,6 +146,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                     ],
                   ),
                 ),
+                isData ?
                 Padding(
                   padding: EdgeInsets.all(screenWidth * 0.04),
                   child: Container(
@@ -294,8 +294,13 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                       ],
                     ),
                   ),
-                ),
-                Expanded(
+                )
+                    : Padding(
+                      padding:  EdgeInsets.only(top:screenHeight * 0.35),
+                      child: Text("Add Meals for Tracking"),
+                    ),
+
+                isData ? Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
                       padding: EdgeInsets.all(screenWidth * 0.04),
@@ -384,10 +389,10 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                       ),
                     ),
                   ),
-                ),
+                ) : Text(""),
+
               ],
             )
-          : const Center(child: CircularProgressIndicator()),
     );
   }
 

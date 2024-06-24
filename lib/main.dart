@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_notification_channel/flutter_notification_channel.dart';
 import 'package:flutter_notification_channel/notification_importance.dart';
-import 'package:lifefit/chat_module/screens/auth/login_screen.dart';
 import 'package:lifefit/firebase_options.dart';
 import 'package:lifefit/screens/auth_screens/Loginscreen.dart';
 import 'package:lifefit/screens/splashscreen.dart';

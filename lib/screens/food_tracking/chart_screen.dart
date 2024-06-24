@@ -38,7 +38,7 @@ class _CalorieTrackerState extends State<CalorieTracker> {
   void getData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString("email");
-    final data = await DietPlanTracking().getDiet("huzaifa@gmail.com", "day");
+    final data = await DietPlanTracking().getDiet(email!, "day");
     Map<String, List<double>> mealData = {
       'breakfast': [],
       'lunch': [],
@@ -299,7 +299,6 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                       padding:  EdgeInsets.only(top:screenHeight * 0.35),
                       child: Text("Add Meals for Tracking"),
                     ),
-
                 isData ? Expanded(
                   child: SingleChildScrollView(
                     child: Padding(
@@ -390,7 +389,6 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                     ),
                   ),
                 ) : Text(""),
-
               ],
             )
     );

@@ -12,7 +12,6 @@ import '../../main.dart';
 import '../api/apis.dart';
 import '../helper/dialogs.dart';
 import '../models/chat_user.dart';
-import 'auth/login_screen.dart';
 
 //profile screen -- to show signed in user info
 class ProfileScreen extends StatefulWidget {

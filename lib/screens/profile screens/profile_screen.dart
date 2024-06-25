@@ -129,10 +129,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           ),
                         ),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('${dataList[0]["userName"]}'),
                       subtitle: dataList[0]["email"],
                       containerHeight: screenSize.height * 0.14,
@@ -166,6 +163,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       title: ('Bmi'),
                       subtitle: dataList[0]["BMI"],
                       containerHeight: screenSize.height * 0.116,
+
                     ),
                     SizedBox(
                       height: screenSize.height * 0.023,
@@ -189,10 +187,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/calender.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Age'),
                       subtitle: dataList[0]["age"],
                       containerHeight: screenSize.height * 0.116,
@@ -208,10 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/weight.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Weight'),
                       subtitle: "${dataList[0]["weight"]} kg",
                       containerHeight: screenSize.height * 0.116,
@@ -227,10 +219,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/height.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                       
                       title: ('Height'),
                       subtitle: "${dataList[0]["height"]} cm",
                       containerHeight: screenSize.height * 0.116,
@@ -276,10 +265,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/bicep.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+                       
                       title: ('Bicep Circumference'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${dataList[0]["bicepSize"]} cm"
@@ -297,10 +283,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/lean.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Lean Mass'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["leanMass"].toStringAsFixed(2)}"
@@ -318,10 +301,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/fat.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Fat Mass'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["fatMass"].toStringAsFixed(2)}"
@@ -339,10 +319,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/calories.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Calories'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["calories"].toStringAsFixed(2)} kcal"
@@ -360,10 +337,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/bodyWater.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Body Water Percentage'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["water%"].toStringAsFixed(2)}%"
@@ -381,10 +355,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/fatPercentage.png"),
                       ),
-                      trailing: Icon(
-                        Icons.edit,
-                        color: Theme.of(context).colorScheme.primary,
-                      ),
+
                       title: ('Body Fat Percentage'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["fatMass%"].toStringAsFixed(2)}%"

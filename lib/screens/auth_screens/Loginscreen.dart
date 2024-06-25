@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/screens/account_setup/account_setup_screen.dart';
 import 'package:lifefit/screens/auth_screens/forgetpasswordscreen.dart';
@@ -9,6 +10,7 @@ import 'package:lifefit/screens/splashscreen.dart';
 import 'package:lifefit/services/auth_services.dart';
 import 'package:lifefit/services/dml_services.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:slide_to_act/slide_to_act.dart';
 import '../../chat_module/api/apis.dart';
 import '../../chat_module/helper/dialogs.dart';
@@ -17,7 +19,7 @@ import '../../services/local_auth.dart';
 import '../../utils/validations.dart';
 
 class LoginScreen extends StatefulWidget {
-  const   LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -45,42 +47,8 @@ class _LoginScreenState extends State<LoginScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Row(
-              children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                    top: screenHeight * 0.04,
-                    left: screenWidth * 0.05,
-                  ),
-                  child: Container(
-                    height: screenHeight * 0.08,
-                    width: screenHeight * 0.08,
-                    child: FittedBox(
-                      child: FloatingActionButton(
-                        heroTag: null,
-                        elevation: 0,
-                        backgroundColor: Colors.grey[200],
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(screenHeight * 0.05),
-                        ),
-                        onPressed: () {},
-                        child: Padding(
-                          padding: const EdgeInsets.only(left: 8.0),
-                          child: Icon(
-                            Icons.arrow_back_ios,
-                            color: Theme.of(context).colorScheme.background,
-                            size: 20,
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
             SizedBox(
-              height: screenHeight * 0.1,
+              height: screenHeight * 0.2,
             ),
             Text(
               "Welcome Back 👋",
@@ -226,7 +194,10 @@ class _LoginScreenState extends State<LoginScreen> {
                     },
                     child: Text(
                       'Signup',
-                      style: Theme.of(context).textTheme.displayMedium,
+                      style: Theme.of(context)
+                          .textTheme
+                          .displayMedium!
+                          .copyWith(color: const Color(0xFF19b888)),
                     ),
                   ),
                 ],
@@ -266,7 +237,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         ShowToastMsg(
                             "${user.user?.email}. is login successful");
 
-                        final data = await DmlServices().fetchDataUserDetails(_emailController.text.trim());
+                        final data = await DmlServices()
+                            .fetchDataUserDetails(_emailController.text.trim());
                         if (data != null && data.isNotEmpty) {
                           print(data);
                           _checKUserExistsOrAdd();
@@ -294,6 +266,100 @@ class _LoginScreenState extends State<LoginScreen> {
                 submittedIcon: const Icon(
                   Icons.check,
                   color: Colors.white,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: screenHeight * 0.026,
+            ),
+            Padding(
+              padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+              child: SlideAction(
+                sliderRotate: false,
+                height: screenHeight * 0.07,
+                elevation: 0,
+                text: 'Continue With Google',
+                textStyle: Theme.of(context).textTheme.displayMedium!.copyWith(
+                      color: Theme.of(context).colorScheme.onBackground,
+                    ),
+                borderRadius: screenHeight * 0.03,
+                sliderButtonIcon: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: Color(0xFF19b888),
+                  size: 13,
+                ),
+                innerColor: const Color(0xFF173430),
+                outerColor: const Color(0xFF173430),
+                onSubmit:() async {
+                  UserCredential userCredential =
+                  await AuthServices().SignInWithGoogle();
+                  User? user = userCredential.user;
+                  if (user != null) {
+                    SharedPreferences sp =
+                    await SharedPreferences.getInstance();
+                    sp.setString("email", user.email.toString());
+
+                    ShowToastMsg("Registration with google");
+
+                    print(user);
+
+                    // Navigator.pushReplacement(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const UserNameScreen(),
+                    //   ),
+                    // );
+                  }
+
+
+                  if (user != null) {
+                    ShowToastMsg(
+                        "${user.email}. is login successful");
+
+                    final data = await DmlServices().fetchDataUserDetails(user.email);
+                    if (data != null && data.isNotEmpty) {
+                      print(data);
+                      _checKUserExistsOrAdd();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const HomeFeedScreen(),
+                        ),
+                      );
+                    } else {
+                      _checKUserExistsOrAdd();
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const UserNameScreen(),
+                        ),
+                      );
+                    }
+                  }
+
+
+                },
+                submittedIcon: const Icon(
+                  Icons.check,
+                  color: Colors.white,
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Padding(
+                      padding:  EdgeInsets.only(left: screenWidth * 0.1),
+                      child: Text(
+                        "Continue With Google",
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium!
+                            .copyWith(
+                              color: Theme.of(context).colorScheme.onBackground,
+                            ),
+                      ),
+                    ),
+                    SvgPicture.asset("assets/icons/google.svg")
+                  ],
                 ),
               ),
             ),

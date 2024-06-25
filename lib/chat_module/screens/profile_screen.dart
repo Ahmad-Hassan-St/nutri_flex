@@ -10,7 +10,6 @@ import '../../main.dart';
 import '../api/apis.dart';
 import '../helper/dialogs.dart';
 import '../models/chat_user.dart';
-import 'auth/login_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   final ChatUser user;

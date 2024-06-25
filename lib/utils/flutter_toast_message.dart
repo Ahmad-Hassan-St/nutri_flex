@@ -6,7 +6,7 @@ void ShowToastMsg(String message) {
     msg: message,
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
-    backgroundColor: kPrimaryColorGreen,
+    backgroundColor: kLimeGreen,
     textColor: kSecondaryDarkGreen,
   );
 }

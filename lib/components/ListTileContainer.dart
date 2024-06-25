@@ -2,20 +2,22 @@ import 'package:flutter/material.dart';
 
 class CustomListTile extends StatelessWidget {
   final Widget leading;
-  final Widget trailing;
+  final Widget ? trailing;
   final String title;
   final String subtitle;
   final double containerHeight;
   final double? padding;
   Color? Containercolor;
+  VoidCallback? onTap;
 
   CustomListTile({
     Key? key,
     required this.containerHeight,
     required this.leading,
-    required this.trailing,
+    this.trailing,
     required this.title,
     required this.subtitle,
+    this.onTap,
     this.padding = 25.0,
     this.Containercolor=const Color(0xffebf6d6),
     // Default padding value
@@ -44,6 +46,8 @@ class CustomListTile extends StatelessWidget {
             style: Theme.of(context).textTheme.displaySmall,
           ),
           trailing: trailing,
+          onTap: onTap,
+
         ),
       ),
     );

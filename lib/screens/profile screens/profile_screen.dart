@@ -6,9 +6,13 @@ import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../chat_module/api/apis.dart';
 import '../../components/ListTileContainer.dart';
+import '../../components/app_information_widget.dart';
 import '../../services/auth_services.dart';
 import '../../services/dml_services.dart';
 import '../account_setup/account_setup_screen.dart';
+import '../static_screens/about_us.dart';
+import '../static_screens/privacy_policy_screen.dart';
+import '../static_screens/terms_condition_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -141,21 +145,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         // Set background color to transparent
                         child: ClipOval(
-                          child:dataList[0]['image'] ==null? Image.asset(
-                            "assets/images/profile.png",
-                            fit: BoxFit.cover,
-                            width: 60.0,
-                            height: 60.0,
-                          ):
-                          CachedNetworkImage(
-                            imageUrl: dataList[0]['image'],
-                            fit: BoxFit.cover,
-                            width: 60.0,
-                            height: 60.0,
-                            placeholder: (context, url) => CircularProgressIndicator(),
-                            errorWidget: (context, url, error) => Icon(Icons.error),
-                          ),
-
+                          child: dataList[0]['image'] == null
+                              ? Image.asset(
+                                  "assets/images/profile.png",
+                                  fit: BoxFit.cover,
+                                  width: 60.0,
+                                  height: 60.0,
+                                )
+                              : CachedNetworkImage(
+                                  imageUrl: dataList[0]['image'],
+                                  fit: BoxFit.cover,
+                                  width: 60.0,
+                                  height: 60.0,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                ),
                         ),
                       ),
                       title: ('${dataList[0]["userName"]}'),
@@ -391,6 +397,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     SizedBox(
                       height: screenSize.height * 0.0144,
                     ),
+                    Row(
+                      children: [
+                        Text(
+                          "App Information",
+                          style: Theme.of(context).textTheme.displayLarge,
+                        ),
+                      ],
+                    ),
+                    SizedBox(
+                      height: screenSize.height * 0.023,
+                    ),
+                    AppInformationWidget(text: 'About Us', onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => AboutUsPage(),
+                        ),
+                      );
+                    }, icon: Icons.info,),
+                    SizedBox(
+                      height: screenSize.height * 0.0144,
+                    ),
+                    AppInformationWidget(text: 'Terms and Condition', onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => TermsAndConditionsScreen(),
+                        ),
+                      );
+                    }, icon:Icons.lock_person,),
+                    SizedBox(
+                      height: screenSize.height * 0.0144,
+                    ),
+                    AppInformationWidget(text: 'Privacy Policy', onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => PrivacyPolicyNutriFlexScreen(),
+                        ),
+                      );
+                    }, icon: Icons.privacy_tip,),
+
+                    SizedBox(
+                      height: screenSize.height * 0.023,
+                    ),
                   ],
                 ),
               ),
@@ -438,3 +489,4 @@ class _ProfileScreenState extends State<ProfileScreen> {
     );
   }
 }
+

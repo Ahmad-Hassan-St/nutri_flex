@@ -50,8 +50,8 @@ class _ScannerScreenState extends State<ScannerScreen>
 
   initTflite() async {
     await Tflite.loadModel(
-      model: 'assets/ai_model/modelM.tflite',
-      labels: 'assets/ai_model/labelsM.txt',
+      model: 'assets/ai_model/model_unquant.tflite',
+      labels: 'assets/ai_model/huzaifa_labels.txt',
       isAsset: true,
       numThreads: 1,
     );
@@ -248,16 +248,16 @@ class _ScannerScreenState extends State<ScannerScreen>
                             icon: Icon(Icons.add, color: kPrimaryColorGreen)),
                       ],
                     ),
-                    if (foodNutrients.containsKey(_scanResult.toLowerCase())) ...[
-                      Text('KCal: ${foodNutrients[_scanResult.toLowerCase()]?['kcal'] ?? 'Unknown'}'),
+                    if (foodNutrients.containsKey(_scanResult.toLowerCase().trim())) ...[
+                      Text('KCal: ${foodNutrients[_scanResult.toLowerCase().trim()]?['kcal'] ?? 'Unknown'}'),
                       Text(
-                          'Fat: ${foodNutrients[_scanResult.toLowerCase()]?['fat'] ?? 'Unknown'} g'),
+                          'Fat: ${foodNutrients[_scanResult.toLowerCase().trim()]?['fat'] ?? 'Unknown'} g'),
                       Text(
-                          'Carbs: ${foodNutrients[_scanResult.toLowerCase()]?['carbs'] ?? 'Unknown'} g'),
+                          'Carbs: ${foodNutrients[_scanResult.toLowerCase().trim()]?['carbs'] ?? 'Unknown'} g'),
                       Text(
-                          'Protein: ${foodNutrients[_scanResult.toLowerCase()]?['protein'] ?? 'Unknown'} g'),
+                          'Protein: ${foodNutrients[_scanResult.toLowerCase().trim()]?['protein'] ?? 'Unknown'} g'),
                     ] else ...[
-                      Text('Nutritional information not available'),
+                      Text('Nutritional information not available ${_scanResult.toLowerCase().trim()}'),
                     ]
                   ],
                 ),

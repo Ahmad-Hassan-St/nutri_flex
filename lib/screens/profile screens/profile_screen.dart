@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
+import 'package:lifefit/models/user_setup_model.dart';
+import 'package:lifefit/screens/account_setup/goal_screenn.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import '../../chat_module/api/apis.dart';
 import '../../components/ListTileContainer.dart';
@@ -53,6 +55,22 @@ class _ProfileScreenState extends State<ProfileScreen> {
             return const Center(child: Text('No data available.'));
           } else {
             List<Map<String, dynamic>> dataList = snapshot.data!;
+            print(dataList[0]);
+            UserSetup userSetup = UserSetup();
+            userSetup.BMI=dataList[0]["BMI"];
+            userSetup.height=dataList[0]["height"];
+            userSetup.weight=dataList[0]["weight"];
+            userSetup.age=dataList[0]["age"];
+            userSetup.gender=dataList[0]["gender"];
+            userSetup.email=dataList[0]["email"];
+            userSetup.goal = dataList[0]["goal"];
+            userSetup.bicepSize = dataList[0]["bicepSize"];
+            userSetup.targetWeight=dataList[0]["targetWeight"];
+            userSetup.userName = dataList[0]["userName"];
+            userSetup.isUpdate=true;
+
+
+
             double bmi = double.parse( dataList[0]["BMI"]);
             String  bmiCategory ="";
 
@@ -163,6 +181,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       title: ('Bmi'),
                       subtitle: dataList[0]["BMI"],
                       containerHeight: screenSize.height * 0.116,
+                      onTap: (){
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) =>GoalScreen(userSetup: userSetup)
+                          ),
+                        );
+                      },
 
                     ),
                     SizedBox(

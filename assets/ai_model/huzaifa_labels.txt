@@ -1,0 +1,34 @@
+Apple
+Banana  
+Beetroot  
+Bell pepper  
+Cabbage  
+Capsicum  
+Carrot  
+Cauliflower  
+Chilli pepper  
+Corn  
+Cucumber  
+Eggplant  
+Garlic  
+Ginger  
+Grapes  
+Jalapeño  
+Kiwi  
+Lemon  
+Lettuce  
+Mango  
+Onion  
+Orange  
+Paprika  
+Pear  
+Peas  
+Pineapple  
+Pomegranate  
+Potato  
+Radish  
+Soy beans  
+Tomato  
+Watermelon  
+Sweet corn  
+Spinach

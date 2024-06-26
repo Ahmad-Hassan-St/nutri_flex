@@ -12,6 +12,7 @@ class UserSetup {
   late String _age;
   late String _BMI;
   late int _bicepSize;
+   bool _isUpdate =false;
 
   // Getters
   String get userName => _userName;
@@ -25,6 +26,7 @@ class UserSetup {
   String get age => _age;
   String get BMI   => _BMI;
   int get bicepSize => _bicepSize;
+  bool get isUpdate => _isUpdate;
 
   // Setters
   set userName(String value) => _userName = value;
@@ -38,6 +40,7 @@ class UserSetup {
   set age(String value) => _age = value;
   set BMI(String value) => _BMI = value;
   set bicepSize(int value) => _bicepSize = value;
+  set isUpdate(bool value) => _isUpdate = value;
 }
 
 

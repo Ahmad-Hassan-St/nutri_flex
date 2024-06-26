@@ -85,6 +85,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
             } else if (bmi >= 30) {
               bmiCategory = "Obesity";
             }
+
+            print(imgUrl);
             return Padding(
               padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20),
               child: SingleChildScrollView(
@@ -141,8 +143,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         // Set background color to transparent
                         child: ClipOval(
-                          child: Image.asset(
+                          child:imgUrl ==null? Image.asset(
                             "assets/images/profile.png",
+                            fit: BoxFit.cover,
+                            width: 60.0,
+                            height: 60.0,
+                          ):
+                          Image.network(imgUrl,
                             fit: BoxFit.cover,
                             width: 60.0,
                             height: 60.0,

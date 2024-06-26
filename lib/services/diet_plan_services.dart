@@ -21,11 +21,23 @@ class DietPlanService {
     "WLP_3.json",
 
   ];
+  static const List dietPlan = [
+    "WGP_1.json",
+    "WGP_2.json",
+    "WGP_3.json",
+    "BDP_1.json",
+    "BDP_2.json",
+    "BDP_3.json",
+    "WLP_1.json",
+    "WLP_2.json",
+    "WLP_3.json",
+  ];
 
   static Future<Map<String, dynamic>> suggestDietPlan(String goal,int planNumber) async {
     // int index = Random().nextInt(3)
     int index = 1;
-    print(index);
+    // print(index);
+
     List dietPlan = [];
     if (goal == "Lose weight") {
       dietPlan = weightLossDietPlan;
@@ -37,7 +49,8 @@ class DietPlanService {
 
     final String response = await rootBundle.loadString("assets/diet_plan/${dietPlan[planNumber]}");
     final result = await json.decode(response);
-    // print(result['meal_plan']);
+
+
     return result;
   }
 

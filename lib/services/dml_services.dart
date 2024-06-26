@@ -50,7 +50,7 @@ class DmlServices {
         "water%": bodyComposition.bodyWaterPercentage,
         "calories": bodyComposition.calories,
         "questionnaireScore": bodyComposition.questionnaireScore,
-        "dietPlan": 1,
+        "dietPlan": dietPlan,
       });
       return;
     } on FirebaseException catch (e) {
@@ -184,7 +184,7 @@ class DmlServices {
           "water%": bodyComposition.bodyWaterPercentage,
           "calories": bodyComposition.calories,
           "questionnaireScore": bodyComposition.questionnaireScore,
-          "dietPlan": 1,
+          "dietPlan": dietPlan,
 
         });
       } else {
@@ -196,21 +196,6 @@ class DmlServices {
   }
 
 
-  Future<List<Map<String, dynamic>>> fetchTrainsData() async {
-    QuerySnapshot querySnapshot = await _fireStore.collection('trains').get();
-
-    List<Map<String, dynamic>> dataList = [];
-
-    querySnapshot.docs.forEach((DocumentSnapshot document) {
-      Map<String, dynamic> documentData =
-          document.data() as Map<String, dynamic>;
-      documentData['documentId'] =
-          document.id; // Add the document ID to the map
-      dataList.add(documentData);
-    });
-
-    return dataList;
-  }
 
   Future<void> cancelBooking(String documentId) async {
     try {
@@ -224,15 +209,5 @@ class DmlServices {
     }
   }
 
-  void addTrainsData() async {
-    DocumentReference documentReference = _fireStore.collection('trains').doc();
-    await documentReference.set({
-      'Train Name': "Coastal Voyage",
-      "Start Location": "Salmiya",
-      "Destination": "Fahaheel",
-      "Fare": "4",
-      "Departure": " 09:45",
-      "Arrival": "10:30",
-    });
-  }
+
 }

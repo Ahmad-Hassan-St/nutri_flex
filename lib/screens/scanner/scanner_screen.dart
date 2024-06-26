@@ -220,13 +220,13 @@ class _ScannerScreenState extends State<ScannerScreen>
                                 _selectedItem: {
                                   'food': _scanResult,
                                   'kcal':
-                                      foodNutrients[_scanResult.toLowerCase()]
+                                      foodNutrients[_scanResult.toLowerCase().trim()]
                                           ?['kcal'],
-                                  'fat': foodNutrients[_scanResult.toLowerCase()]
+                                  'fat': foodNutrients[_scanResult.toLowerCase().trim()]
                                 ?['fat'],
-                                  'carbs': foodNutrients[_scanResult.toLowerCase()]
+                                  'carbs': foodNutrients[_scanResult.toLowerCase().trim()]
                                 ?['carbs'],
-                                  'protein': foodNutrients[_scanResult.toLowerCase()]
+                                  'protein': foodNutrients[_scanResult.toLowerCase().trim()]
                                   ?['protein'],
                                 },
                               };

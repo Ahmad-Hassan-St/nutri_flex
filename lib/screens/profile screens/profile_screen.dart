@@ -18,13 +18,15 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String userEmail = "";
-
+  String imgUrl = "";
   List<Map<String, dynamic>> bodyComposition = [];
 
   Future<List<Map<String, dynamic>>> fetchUserData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString('email');
     userEmail = email ?? "";
+    imgUrl = await APIs.me.image.toString();
+
     List<Map<String, dynamic>> fetchedData =
         await DmlServices().fetchDataUserDetails(userEmail);
 
@@ -56,23 +58,23 @@ class _ProfileScreenState extends State<ProfileScreen> {
           } else {
             List<Map<String, dynamic>> dataList = snapshot.data!;
             print(dataList[0]);
+            print(imgUrl);
+
             UserSetup userSetup = UserSetup();
-            userSetup.BMI=dataList[0]["BMI"];
-            userSetup.height=dataList[0]["height"];
-            userSetup.weight=dataList[0]["weight"];
-            userSetup.age=dataList[0]["age"];
-            userSetup.gender=dataList[0]["gender"];
-            userSetup.email=dataList[0]["email"];
+            userSetup.BMI = dataList[0]["BMI"];
+            userSetup.height = dataList[0]["height"];
+            userSetup.weight = dataList[0]["weight"];
+            userSetup.age = dataList[0]["age"];
+            userSetup.gender = dataList[0]["gender"];
+            userSetup.email = dataList[0]["email"];
             userSetup.goal = dataList[0]["goal"];
             userSetup.bicepSize = dataList[0]["bicepSize"];
-            userSetup.targetWeight=dataList[0]["targetWeight"];
+            userSetup.targetWeight = dataList[0]["targetWeight"];
             userSetup.userName = dataList[0]["userName"];
-            userSetup.isUpdate=true;
+            userSetup.isUpdate = true;
 
-
-
-            double bmi = double.parse( dataList[0]["BMI"]);
-            String  bmiCategory ="";
+            double bmi = double.parse(dataList[0]["BMI"]);
+            String bmiCategory = "";
 
             if (bmi < 18.5) {
               bmiCategory = "Underweight";
@@ -139,15 +141,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         // Set background color to transparent
                         child: ClipOval(
-                          child: Image.network(
-                            APIs.me.image.toString(),
+                          child: Image.asset(
+                            "assets/images/profile.png",
                             fit: BoxFit.cover,
                             width: 60.0,
                             height: 60.0,
                           ),
                         ),
                       ),
-
                       title: ('${dataList[0]["userName"]}'),
                       subtitle: dataList[0]["email"],
                       containerHeight: screenSize.height * 0.14,
@@ -181,15 +182,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       title: ('Bmi'),
                       subtitle: dataList[0]["BMI"],
                       containerHeight: screenSize.height * 0.116,
-                      onTap: (){
+                      onTap: () {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) =>GoalScreen(userSetup: userSetup)
-                          ),
+                              builder: (context) =>
+                                  GoalScreen(userSetup: userSetup)),
                         );
                       },
-
                     ),
                     SizedBox(
                       height: screenSize.height * 0.023,
@@ -213,7 +213,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/calender.png"),
                       ),
-
                       title: ('Age'),
                       subtitle: dataList[0]["age"],
                       containerHeight: screenSize.height * 0.116,
@@ -229,7 +228,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/weight.png"),
                       ),
-
                       title: ('Weight'),
                       subtitle: "${dataList[0]["weight"]} kg",
                       containerHeight: screenSize.height * 0.116,
@@ -245,7 +243,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/height.png"),
                       ),
-                       
                       title: ('Height'),
                       subtitle: "${dataList[0]["height"]} cm",
                       containerHeight: screenSize.height * 0.116,
@@ -291,7 +288,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/bicep.png"),
                       ),
-                       
                       title: ('Bicep Circumference'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${dataList[0]["bicepSize"]} cm"
@@ -309,7 +305,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/lean.png"),
                       ),
-
                       title: ('Lean Mass'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["leanMass"].toStringAsFixed(2)}"
@@ -327,7 +322,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/fat.png"),
                       ),
-
                       title: ('Fat Mass'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["fatMass"].toStringAsFixed(2)}"
@@ -345,7 +339,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/calories.png"),
                       ),
-
                       title: ('Calories'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["calories"].toStringAsFixed(2)} kcal"
@@ -363,7 +356,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/bodyWater.png"),
                       ),
-
                       title: ('Body Water Percentage'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["water%"].toStringAsFixed(2)}%"
@@ -381,7 +373,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         child: Image.asset("assets/images/fatPercentage.png"),
                       ),
-
                       title: ('Body Fat Percentage'),
                       subtitle: bodyComposition.isNotEmpty
                           ? "${bodyComposition[0]["fatMass%"].toStringAsFixed(2)}%"

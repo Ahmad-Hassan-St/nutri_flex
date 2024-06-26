@@ -50,8 +50,7 @@ class DmlServices {
         "water%": bodyComposition.bodyWaterPercentage,
         "calories": bodyComposition.calories,
         "questionnaireScore": bodyComposition.questionnaireScore,
-        "dietPlan":1
-
+        "dietPlan": 1,
       });
       return;
     } on FirebaseException catch (e) {
@@ -128,59 +127,74 @@ class DmlServices {
     }
   }
 
-  Future<List<Map<String, dynamic>>> fetchDataByEmailBookedTrains(
-      String? email) async {
-    CollectionReference ridesCollection = _fireStore.collection('bookedTrains');
-    try {
-      QuerySnapshot querySnapshot =
-          await ridesCollection.where("Email", isEqualTo: email).get();
-
-      List<Map<String, dynamic>> dataList = [];
-
-      querySnapshot.docs.forEach((DocumentSnapshot document) {
-        Map<String, dynamic> documentData =
-            document.data() as Map<String, dynamic>;
-        documentData['documentId'] =
-            document.id; // Add the document ID to the map
-        dataList.add(documentData);
-      });
-
-      return dataList;
-    } catch (e) {
-      print("Error fetching data: $e");
-      return [];
-    }
-  }
-
   Future<void> updateUsersData({
-    required String email,
-    required String userName,
-    required String firstName,
-    required String lastName,
-    required String cnic,
+    required UserSetup userSetup,
   }) async {
-    CollectionReference usersCollection = _fireStore.collection('users');
+    CollectionReference usersCollection = _fireStore.collection('userDetails');
 
     try {
       QuerySnapshot querySnapshot =
-          await usersCollection.where("email", isEqualTo: email).get();
+          await usersCollection.where("email", isEqualTo: userSetup.email).get();
 
       if (querySnapshot.docs.isNotEmpty) {
         DocumentReference userDocument = querySnapshot.docs.first.reference;
 
         await userDocument.update({
-          'firstName': firstName,
-          'lastName': lastName,
-          'userName': userName,
-          'cnic': cnic,
+          "userName": userSetup.userName,
+          "goal": userSetup.goal,
+          "weight": userSetup.weight,
+          "height": userSetup.height,
+          "gender": userSetup.gender,
+          "targetWeight": userSetup.targetWeight,
+          "dateOfBirth": userSetup.dateOfBirth,
+          "age": userSetup.age ?? " years",
+          "BMI": userSetup.BMI,
+          "bicepSize": userSetup.bicepSize,
+
         });
       } else {
-        print("User with email $email not found.");
+        print("User with email ${userSetup.email} not found.");
       }
     } catch (e) {
       print("Error updating user image: $e");
     }
   }
+
+
+  Future<void> updateUserBodyComposition({
+    required UserSetup userSetup,
+    required BodyComposition bodyComposition,
+    required int dietPlan,
+  }) async {
+    CollectionReference usersCollection = _fireStore.collection('bodyComposition');
+
+    try {
+      QuerySnapshot querySnapshot =
+      await usersCollection.where("email", isEqualTo: userSetup.email).get();
+
+      if (querySnapshot.docs.isNotEmpty) {
+        DocumentReference userDocument = querySnapshot.docs.first.reference;
+
+        await userDocument.update({
+          'email': userSetup.email,
+          "muscleMass": bodyComposition.muscleMass,
+          "leanMass": bodyComposition.leanMass,
+          "fatMass": bodyComposition.fatMass,
+          "fatMass%": bodyComposition.bodyFatPercentage,
+          "water%": bodyComposition.bodyWaterPercentage,
+          "calories": bodyComposition.calories,
+          "questionnaireScore": bodyComposition.questionnaireScore,
+          "dietPlan": 1,
+
+        });
+      } else {
+        print("User with email ${userSetup.email} not found.");
+      }
+    } catch (e) {
+      print("Error updating user image: $e");
+    }
+  }
+
 
   Future<List<Map<String, dynamic>>> fetchTrainsData() async {
     QuerySnapshot querySnapshot = await _fireStore.collection('trains').get();

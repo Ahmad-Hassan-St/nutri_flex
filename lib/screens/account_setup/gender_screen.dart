@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:lifefit/components/onBoardcontainer.dart';
 import 'package:lifefit/screens/account_setup/date_of_birth_screen.dart';
 import 'package:lifefit/screens/account_setup/goal_screenn.dart';
+import 'package:lifefit/screens/account_setup/height_screen.dart';
 
 import '../../constants/colors.dart';
 import '../../models/user_setup_model.dart';
@@ -27,6 +28,15 @@ class _GenderScreenState extends State<GenderScreen> {
     {"text": "Female", "imagePath": "assets/icons/female.svg"},
   ];
 
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    if(widget.userSetup.isUpdate==true) {
+      print(widget.userSetup.isUpdate);
+      // Navigator.push(context, MaterialPageRoute(builder: (context)=>HeightScreen(userSetup: widget.userSetup)));
+    }
+  }
   String gender = "" ;
 
   final bool isSelected = true;

@@ -6,6 +6,7 @@ import 'package:lifefit/models/user_setup_model.dart';
 import 'package:lifefit/screens/diet%20plan/diet_plan.dart';
 import 'package:lifefit/screens/home_feed_screen.dart';
 import 'package:lifefit/utils/flutter_toast_message.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../components/onBoardcontainer.dart';
 import '../../constants/questions.dart';
@@ -258,7 +259,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
               padding: EdgeInsets.only(bottom: screenSize.height * 0.03),
               child: FloatingActionButtonProgressWidget(
                 progress: 0.95,
-                onPressed: () {
+                onPressed: () async {
                   // Check if any question is unanswered
                   bool allQuestionsAnswered = selectedOptions.length ==
                       questions.length;
@@ -314,6 +315,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                     int diet = dietPlan.round();
 
                     print(diet);
+                    if(widget.userSetup.isUpdate!=true){
                     try {
                       DmlServices.insertUserData(userSetup: widget.userSetup);
                       DmlServices.insertUserBodyCompositionData(
@@ -322,16 +324,31 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                           dietPlan: diet);
                       _submitAnswers(context);
 
-                      // Navigator.pushAndRemoveUntil(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //       builder: (context) => HomeFeedScreen()),
-                      //       (route) => false,
-                      // );
                     } catch (e) {
                       ShowToastMsg("Something went wrong");
                     }
                   }
+                    else {
+
+                      SharedPreferences sp = await SharedPreferences.getInstance();
+                      sp.remove('dietPlan');
+                      sp.remove('target');
+
+                      try {
+                        DmlServices().updateUsersData(userSetup: widget.userSetup);
+                        DmlServices().updateUserBodyComposition(
+                            userSetup: widget.userSetup,
+                            bodyComposition: widget.bodyComposition,
+                            dietPlan: diet);
+                        _submitAnswers(context);
+
+                      } catch (e) {
+                        ShowToastMsg("Something went wrong");
+                      }
+
+                    }
+                  }
+
                 },
                 icon: Icons.arrow_forward_ios_outlined,
               ),

@@ -340,6 +340,7 @@ class _QuestionnaireScreenState extends State<QuestionnaireScreen> {
                             userSetup: widget.userSetup,
                             bodyComposition: widget.bodyComposition,
                             dietPlan: diet);
+                        print("updated");
                         _submitAnswers(context);
 
                       } catch (e) {

@@ -34,7 +34,11 @@ class _GenderScreenState extends State<GenderScreen> {
     super.initState();
     if(widget.userSetup.isUpdate==true) {
       print(widget.userSetup.isUpdate);
-      // Navigator.push(context, MaterialPageRoute(builder: (context)=>HeightScreen(userSetup: widget.userSetup)));
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+
+        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context)=>HeightScreen(userSetup: widget.userSetup)));
+
+      });
     }
   }
   String gender = "" ;

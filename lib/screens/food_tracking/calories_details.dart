@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 
 class CalorieDetail extends StatelessWidget {
+  final String unit;
   final String title;
   final int kcal;
   final int percentage;
@@ -12,6 +13,7 @@ class CalorieDetail extends StatelessWidget {
     required this.kcal,
     required this.percentage,
     required this.color,
+    required this.unit,
   });
 
   @override
@@ -28,7 +30,7 @@ class CalorieDetail extends StatelessWidget {
               Padding(
                 padding: EdgeInsets.only(right: screenWidth * 0.05),
                 child: Text(
-                  '$kcal kcal',
+                  '$kcal $unit',
                   style: Theme.of(context).textTheme.displayMedium!.copyWith(
                       fontSize: 18,
                       fontWeight: FontWeight.bold

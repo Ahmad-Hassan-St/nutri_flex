@@ -27,6 +27,9 @@ class _CalorieTrackerState extends State<CalorieTracker> {
   double totalDinnerCalories = 0;
   double totalOtherCalories = 0;
 
+  final List<String> foodTrack = ["KCAL", "Fat", "Carbs","Protein"];
+  String selectedMealType = "KCAL";
+
   @override
   void initState() {
     super.initState();
@@ -34,8 +37,21 @@ class _CalorieTrackerState extends State<CalorieTracker> {
   }
 
   bool isData = false;
+  String unit="kcal";
 
   void getData() async {
+    // Clear previous data
+    setState(() {
+      breakfastSpots.clear();
+      lunchSpots.clear();
+      dinnerSpots.clear();
+      otherSpots.clear();
+      totalBreakfastCalories = 0;
+      totalLunchCalories = 0;
+      totalDinnerCalories = 0;
+      totalOtherCalories = 0;
+    });
+
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString("email");
     final data = await DietPlanTracking().getDiet(email!, "day");
@@ -55,10 +71,10 @@ class _CalorieTrackerState extends State<CalorieTracker> {
         double mealTotal = 0;
         if (meals is List) {
           meals.forEach((meal) {
-            mealTotal += meal['kcal'];
+            mealTotal += meal[selectedMealType.toLowerCase()] ?? 0;
           });
         } else if (meals is Map) {
-          mealTotal += meals['kcal'];
+          mealTotal += meals[selectedMealType.toLowerCase()] ?? 0;
         }
         if (mealType == 'Break Fast') {
           mealData['breakfast']?.add(mealTotal);
@@ -111,18 +127,24 @@ class _CalorieTrackerState extends State<CalorieTracker> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Column(
+      body: SingleChildScrollView(
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            minHeight: screenHeight,
+          ),
+          child: IntrinsicHeight(
+            child: Column(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top: 28.0, bottom: 20,left: 60),
+                  padding: const EdgeInsets.only(top: 28.0, bottom: 20, left: 60),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        "Calorie Tracking",
-                        style: Theme.of(context).textTheme.displayLarge!.copyWith(
-                      fontSize: 30
-                  )
+                          "Calorie Tracking",
+                          style: Theme.of(context).textTheme.displayLarge!.copyWith(
+                              fontSize: 30
+                          )
                       ),
                       Container(
                         height: 50,
@@ -134,13 +156,11 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                               context,
                               MaterialPageRoute(builder: (context) => ScannerScreen(camera: cameras.first,)),
                             );
-
                           },
                           shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(50)
+                              borderRadius: BorderRadius.circular(50)
                           ),
-                          child: SvgPicture.asset("assets/images/scanner.svg",),
-
+                          child: SvgPicture.asset("assets/images/scanner.svg"),
                         ),
                       )
                     ],
@@ -149,248 +169,278 @@ class _CalorieTrackerState extends State<CalorieTracker> {
                 isData ?
                 Padding(
                   padding: EdgeInsets.all(screenWidth * 0.04),
-                  child: Container(
-                    height: screenHeight * 0.47,
-                    decoration: BoxDecoration(
-                      color: const Color(0xffebf6d6),
-                      borderRadius: BorderRadius.circular(screenWidth * 0.05),
-                    ),
-                    child: Column(
-                      children: [
-                        SizedBox(height: screenHeight * 0.02),
-                        Container(
-                          height: 52,
-                          width: 140,
-                          decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Center(
-                            child: Text(
-                              '${(totalBreakfastCalories + totalLunchCalories + totalDinnerCalories + totalOtherCalories).toStringAsFixed(1)} kcal',
-                              style: Theme.of(context)
-                                  .textTheme
-                                  .displayLarge!
-                                  .copyWith(
-                                    fontSize: 23,
-                                  ),
-                            ),
-                          ),
-                        ),
-                        Text(
-                          '892 Avg cals - 2925 Goal Cals',
-                          style: Theme.of(context)
-                              .textTheme
-                              .displayMedium!
-                              .copyWith(color: Colors.grey),
-                        ),
-                        SizedBox(height: screenHeight * 0.02),
-                        AspectRatio(
-                          aspectRatio: 1.6,
-                          child: Padding(
-                            padding: EdgeInsets.symmetric(
-                                horizontal: screenWidth * 0.05),
-                            child: LineChart(
-                              LineChartData(
-                                gridData: const FlGridData(show: true),
-                                titlesData: const FlTitlesData(show: false),
-                                borderData: FlBorderData(show: false),
-                                lineBarsData: [
-                                  LineChartBarData(
-                                    spots: breakfastSpots,
-                                    isCurved: true,
-                                    color: const Color(0xff9DD030),
-                                    barWidth: 2,
-                                    isStrokeCapRound: true,
-                                    belowBarData: BarAreaData(
-                                      show: true,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          const Color(0xff9DD030)
-                                              .withOpacity(0.2),
-                                          Colors.transparent,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                  ),
-                                  LineChartBarData(
-                                    spots: lunchSpots,
-                                    isCurved: true,
-                                    color: const Color(0xff19B888),
-                                    barWidth: 2,
-                                    isStrokeCapRound: true,
-                                    belowBarData: BarAreaData(
-                                      show: true,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          const Color(0xff19B888)
-                                              .withOpacity(0.2),
-                                          Colors.transparent,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                  ),
-                                  LineChartBarData(
-                                    spots: dinnerSpots,
-                                    isCurved: true,
-                                    color: const Color(0xff39ACFF),
-                                    barWidth: 2,
-                                    isStrokeCapRound: true,
-                                    belowBarData: BarAreaData(
-                                      show: true,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          const Color(0xff39ACFF)
-                                              .withOpacity(0.2),
-                                          Colors.transparent,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                  ),
-                                  LineChartBarData(
-                                    spots: otherSpots,
-                                    isCurved: true,
-                                    color: const Color(0xff8439FF),
-                                    barWidth: 2,
-                                    isStrokeCapRound: true,
-                                    belowBarData: BarAreaData(
-                                      show: true,
-                                      gradient: LinearGradient(
-                                        colors: [
-                                          const Color(0xff8439FF)
-                                              .withOpacity(0.2),
-                                          Colors.transparent,
-                                        ],
-                                        begin: Alignment.topCenter,
-                                        end: Alignment.bottomCenter,
-                                      ),
-                                    ),
-                                  ),
-                                ],
+                  child: Column(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: foodTrack.map((type) {
+                          return GestureDetector(
+                            onTap: () {
+                              setState(() {
+                                selectedMealType = type;
+                                type=="KCAL"?unit="Kcal":unit="Gram";
+
+                                getData();
+                                // Fetch data again based on the selected type
+                              });
+                            },
+                            child: Container(
+                              padding: EdgeInsets.symmetric(vertical: screenHeight * 0.014, horizontal: screenWidth * 0.038),
+                              decoration: BoxDecoration(
+                                color: selectedMealType == type ? Theme.of(context).colorScheme.secondary : Colors.white,
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              child: Text(
+                                type,
+                                style: Theme.of(context).textTheme.displayMedium!.copyWith(
+                                  color: selectedMealType == type ? Colors.white : Theme.of(context).colorScheme.background,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: screenWidth * 0.042,
+                                ),
                               ),
                             ),
-                          ),
+                          );
+                        }).toList(),
+                      ),
+                      SizedBox(height: screenHeight*0.02,),
+                      Container(
+                        height: screenHeight * 0.47,
+                        decoration: BoxDecoration(
+                          color: const Color(0xffebf6d6),
+                          borderRadius: BorderRadius.circular(screenWidth * 0.05),
                         ),
-                        SizedBox(height: screenHeight * 0.03),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        child: Column(
                           children: [
-                            legendItem(
-                                color: const Color(0xff9DD030),
-                                text: "Breakfast"),
-                            legendItem(
-                                color: const Color(0xff19B888), text: "Lunch"),
-                            legendItem(
-                                color: const Color(0xff39ACFF), text: "Dinner"),
-                            legendItem(
-                                color: const Color(0xff8439FF), text: "Other"),
+                            SizedBox(height: screenHeight * 0.02),
+                            Container(
+                              height: 52,
+                              width: 140,
+                              decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  borderRadius: BorderRadius.circular(20)),
+                              child: Center(
+                                child: Text(
+                                  '${(totalBreakfastCalories + totalLunchCalories + totalDinnerCalories + totalOtherCalories).toStringAsFixed(1)} $unit',
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .displayLarge!
+                                      .copyWith(
+                                    fontSize: 23,
+                                  ),
+                                ),
+                              ),
+                            ),
+                            // Text(
+                            //   '892 Avg cals - 2925 Goal Cals',
+                            //   style: Theme.of(context)
+                            //       .textTheme
+                            //       .displayMedium!
+                            //       .copyWith(color: Colors.grey),
+                            // ),
+                            SizedBox(height: screenHeight * 0.02),
+                            AspectRatio(
+                              aspectRatio: 1.6,
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: screenWidth * 0.05),
+                                child: LineChart(
+                                  LineChartData(
+                                    gridData: const FlGridData(show: true),
+                                    titlesData: const FlTitlesData(show: false),
+                                    borderData: FlBorderData(show: false),
+                                    lineBarsData: [
+                                      LineChartBarData(
+                                        spots: breakfastSpots,
+                                        isCurved: true,
+                                        color: const Color(0xff9DD030),
+                                        barWidth: 2,
+                                        isStrokeCapRound: true,
+                                        belowBarData: BarAreaData(
+                                          show: true,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              const Color(0xff9DD030).withOpacity(0.2),
+                                              Colors.transparent,
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),
+                                        ),
+                                      ),
+                                      LineChartBarData(
+                                        spots: lunchSpots,
+                                        isCurved: true,
+                                        color: const Color(0xff19B888),
+                                        barWidth: 2,
+                                        isStrokeCapRound: true,
+                                        belowBarData: BarAreaData(
+                                          show: true,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              const Color(0xff19B888).withOpacity(0.2),
+                                              Colors.transparent,
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),
+                                        ),
+                                      ),
+                                      LineChartBarData(
+                                        spots: dinnerSpots,
+                                        isCurved: true,
+                                        color: const Color(0xff39ACFF),
+                                        barWidth: 2,
+                                        isStrokeCapRound: true,
+                                        belowBarData: BarAreaData(
+                                          show: true,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              const Color(0xff39ACFF).withOpacity(0.2),
+                                              Colors.transparent,
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),
+                                        ),
+                                      ),
+                                      LineChartBarData(
+                                        spots: otherSpots,
+                                        isCurved: true,
+                                        color: const Color(0xff8439FF),
+                                        barWidth: 2,
+                                        isStrokeCapRound: true,
+                                        belowBarData: BarAreaData(
+                                          show: true,
+                                          gradient: LinearGradient(
+                                            colors: [
+                                              const Color(0xff8439FF).withOpacity(0.2),
+                                              Colors.transparent,
+                                            ],
+                                            begin: Alignment.topCenter,
+                                            end: Alignment.bottomCenter,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: screenHeight * 0.03),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                legendItem(
+                                    color: const Color(0xff9DD030),
+                                    text: "Breakfast"),
+                                legendItem(
+                                    color: const Color(0xff19B888), text: "Lunch"),
+                                legendItem(
+                                    color: const Color(0xff39ACFF), text: "Dinner"),
+                                legendItem(
+                                    color: const Color(0xff8439FF), text: "Other"),
+                              ],
+                            ),
                           ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                 )
                     : Padding(
-                      padding:  EdgeInsets.only(top:screenHeight * 0.35),
-                      child: Text("Add Meals for Tracking"),
-                    ),
-                isData ? Expanded(
-                  child: SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.all(screenWidth * 0.04),
-                      child: Container(
-                        height: screenHeight * 0.22,
-                        decoration: BoxDecoration(
-                          color: const Color(0xffF6F7F7),
-                          borderRadius:
-                              BorderRadius.circular(screenWidth * 0.05),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.grey.withOpacity(0.2),
-                              spreadRadius: 2,
-                              blurRadius: 5,
-                              offset: const Offset(0, 3),
-                            ),
-                          ],
+                  padding: EdgeInsets.only(top: screenHeight * 0.35),
+                  child: Text("Add Meals for Tracking"),
+                ),
+                isData ? Padding(
+                  padding: EdgeInsets.all(screenWidth * 0.04),
+                  child: Container(
+                    height: screenHeight * 0.22,
+                    decoration: BoxDecoration(
+                      color: const Color(0xffF6F7F7),
+                      borderRadius: BorderRadius.circular(screenWidth * 0.05),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.2),
+                          spreadRadius: 2,
+                          blurRadius: 5,
+                          offset: const Offset(0, 3),
                         ),
-                        child: Padding(
-                          padding: EdgeInsets.only(top: screenHeight * 0.02),
-                          child: Column(
+                      ],
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.only(top: screenHeight * 0.02),
+                      child: Column(
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
                             children: [
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CalorieDetail(
-                                    title: 'Breakfast',
-                                    kcal: totalBreakfastCalories.toInt(),
-                                    percentage: (totalBreakfastCalories /
-                                            (totalBreakfastCalories +
-                                                totalLunchCalories +
-                                                totalDinnerCalories +
-                                                totalOtherCalories) *
-                                            100)
-                                        .toInt(),
-                                    color: const Color(0xff9DD030),
-                                  ),
-                                  CalorieDetail(
-                                    title: 'Lunch',
-                                    kcal: totalLunchCalories.toInt(),
-                                    percentage: (totalLunchCalories /
-                                            (totalBreakfastCalories +
-                                                totalLunchCalories +
-                                                totalDinnerCalories +
-                                                totalOtherCalories) *
-                                            100)
-                                        .toInt(),
-                                    color: const Color(0xff19B888),
-                                  ),
-                                ],
+                              CalorieDetail(
+                                unit: unit,
+
+                                title: 'Breakfast',
+                                kcal: totalBreakfastCalories.toInt(),
+                                percentage: (totalBreakfastCalories == 0 ? 0 : (totalBreakfastCalories /
+                                    (totalBreakfastCalories +
+                                        totalLunchCalories +
+                                        totalDinnerCalories +
+                                        totalOtherCalories) *
+                                    100)).toInt(),
+                                color: const Color(0xff9DD030),
                               ),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceAround,
-                                children: [
-                                  CalorieDetail(
-                                    title: 'Dinner',
-                                    kcal: totalDinnerCalories.toInt(),
-                                    percentage: (totalDinnerCalories /
-                                            (totalBreakfastCalories +
-                                                totalLunchCalories +
-                                                totalDinnerCalories +
-                                                totalOtherCalories) *
-                                            100)
-                                        .toInt(),
-                                    color: const Color(0xff39ACFF),
-                                  ),
-                                  CalorieDetail(
-                                    title: 'Other',
-                                    kcal: totalOtherCalories.toInt(),
-                                    percentage: (totalOtherCalories /
-                                            (totalBreakfastCalories +
-                                                totalLunchCalories +
-                                                totalDinnerCalories +
-                                                totalOtherCalories) *
-                                            100)
-                                        .toInt(),
-                                    color: const Color(0xff8439FF),
-                                  ),
-                                ],
+                              CalorieDetail(
+                                unit: unit,
+
+                                title: 'Lunch',
+                                kcal: totalLunchCalories.toInt(),
+                                percentage: (totalLunchCalories == 0 ? 0 : (totalLunchCalories /
+                                    (totalBreakfastCalories +
+                                        totalLunchCalories +
+                                        totalDinnerCalories +
+                                        totalOtherCalories) *
+                                    100)).toInt(),
+                                color: const Color(0xff19B888),
                               ),
                             ],
                           ),
-                        ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              CalorieDetail(
+                                unit: unit,
+
+                                title: 'Dinner',
+                                kcal: totalDinnerCalories.toInt(),
+                                percentage: (totalDinnerCalories == 0 ? 0 : (totalDinnerCalories /
+                                    (totalBreakfastCalories +
+                                        totalLunchCalories +
+                                        totalDinnerCalories +
+                                        totalOtherCalories) *
+                                    100)).toInt(),
+                                color: const Color(0xff39ACFF),
+                              ),
+                              CalorieDetail(
+                                unit: unit,
+                                title: 'Other',
+                                kcal: totalOtherCalories.toInt(),
+                                percentage: (totalOtherCalories == 0 ? 0 : (totalOtherCalories /
+                                    (totalBreakfastCalories +
+                                        totalLunchCalories +
+                                        totalDinnerCalories +
+                                        totalOtherCalories) *
+                                    100)).toInt(),
+                                color: const Color(0xff8439FF),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
                     ),
                   ),
                 ) : Text(""),
               ],
-            )
+            ),
+          ),
+        ),
+      ),
     );
   }
 

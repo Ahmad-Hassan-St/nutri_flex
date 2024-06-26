@@ -7,7 +7,7 @@ class ApiServices {
   final String baseUri = "https://newsapi.org/v2/everything";
 
   Future<Map<String, dynamic>> apiData() async {
-    final url = Uri.parse("$baseUri?q=$keyword&from=2024-05-24&sortBy=publishedAt&apiKey=$apiKey");
+    final url = Uri.parse("$baseUri?q=$keyword&from=2024-05-26&sortBy=publishedAt&apiKey=$apiKey");
     http.Response response = await http.get(url);
 
     if (response.statusCode == 200) {

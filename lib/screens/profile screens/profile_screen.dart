@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:lifefit/constants/colors.dart';
 import 'package:lifefit/models/user_setup_model.dart';
@@ -18,14 +19,13 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   String userEmail = "";
-  String imgUrl = "";
+
   List<Map<String, dynamic>> bodyComposition = [];
 
   Future<List<Map<String, dynamic>>> fetchUserData() async {
     SharedPreferences sp = await SharedPreferences.getInstance();
     String? email = sp.getString('email');
     userEmail = email ?? "";
-    imgUrl = await APIs.me.image.toString();
 
     List<Map<String, dynamic>> fetchedData =
         await DmlServices().fetchDataUserDetails(userEmail);
@@ -58,7 +58,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           } else {
             List<Map<String, dynamic>> dataList = snapshot.data!;
             print(dataList[0]);
-            print(imgUrl);
 
             UserSetup userSetup = UserSetup();
             userSetup.BMI = dataList[0]["BMI"];
@@ -86,7 +85,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               bmiCategory = "Obesity";
             }
 
-            print(imgUrl);
             return Padding(
               padding: const EdgeInsets.only(top: 28.0, left: 20, right: 20),
               child: SingleChildScrollView(
@@ -143,17 +141,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         backgroundColor: Colors.transparent,
                         // Set background color to transparent
                         child: ClipOval(
-                          child:imgUrl ==null? Image.asset(
+                          child:dataList[0]['image'] ==null? Image.asset(
                             "assets/images/profile.png",
                             fit: BoxFit.cover,
                             width: 60.0,
                             height: 60.0,
                           ):
-                          Image.network(imgUrl,
+                          CachedNetworkImage(
+                            imageUrl: dataList[0]['image'],
                             fit: BoxFit.cover,
                             width: 60.0,
                             height: 60.0,
+                            placeholder: (context, url) => CircularProgressIndicator(),
+                            errorWidget: (context, url, error) => Icon(Icons.error),
                           ),
+
                         ),
                       ),
                       title: ('${dataList[0]["userName"]}'),

@@ -63,7 +63,7 @@ class DmlServices {
 
   Future<void> updateUserImageByEmail(
       {required String email, required String imageUrl}) async {
-    CollectionReference usersCollection = _fireStore.collection('users');
+    CollectionReference usersCollection = _fireStore.collection('userDetails');
 
     try {
       QuerySnapshot querySnapshot =

@@ -7,6 +7,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:http/http.dart';
+import 'package:lifefit/services/dml_services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/chat_user.dart';
 import '../models/message.dart';
@@ -236,11 +238,15 @@ class APIs {
     });
 
     //updating image in firestore database
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    String email = sp.getString('email')!;
     me.image = await ref.getDownloadURL();
     await firestore
         .collection('users')
         .doc(user.uid)
         .update({'image': me.image});
+
+    DmlServices().updateUserImageByEmail(email: email, imageUrl: me.image);
   }
 
   // for getting specific user info

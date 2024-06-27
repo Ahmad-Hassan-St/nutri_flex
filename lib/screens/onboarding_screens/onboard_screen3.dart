@@ -24,6 +24,17 @@ class onBoardScreen3 extends StatefulWidget {
 }
 
 class _onBoardScreen3State extends State<onBoardScreen3> {
+  void setIsOnBoardScreen()async{
+    SharedPreferences sp = await SharedPreferences.getInstance();
+    sp.setBool("isShowBoardingScreens", true);
+
+  }
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    setIsOnBoardScreen();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +57,8 @@ class _onBoardScreen3State extends State<onBoardScreen3> {
                   text: "Login",
                   textcolor: Theme.of(context).colorScheme.tertiary,
                   backgroundcolor: Theme.of(context).colorScheme.primary,
-                  onpressed: () {
+                  onpressed: ()  {
+
                     Navigator.pushReplacement(
                         context,
                         MaterialPageRoute(
@@ -159,6 +171,7 @@ class _onBoardScreen3State extends State<onBoardScreen3> {
                                 SharedPreferences sp =
                                 await SharedPreferences.getInstance();
                                 sp.setString("email", user.email.toString());
+                                sp.setBool("isShowBoardingScreens", true);
 
                                 ShowToastMsg("Registration with google");
 

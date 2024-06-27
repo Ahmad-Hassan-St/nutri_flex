@@ -29,6 +29,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
     bool ? isShowOnboard=sp.getBool("isShowBoardingScreens");
 
+
     print(token);
     print(isShowOnboard);
     if (token != null && token.isNotEmpty) {

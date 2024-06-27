@@ -298,6 +298,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SharedPreferences sp =
                     await SharedPreferences.getInstance();
                     sp.setString("email", user.email.toString());
+                    sp.setBool("isShowBoardingScreens", true);
 
                     ShowToastMsg("Registration with google");
 
